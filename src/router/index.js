@@ -13,8 +13,16 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Dashboard',
-    component: () => import('@/views/dashboard/index.vue')
+    redirect: 'dashboard',
+    component: () => import('@/layout/index.vue'),
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        meta: { title: '首页' },
+        component: () => import('@/views/dashboard/index.vue')
+      }
+    ]
   }
 ]
 

@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
-import path from 'path'
 import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  plugins: [vue()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -11,7 +12,8 @@ export default defineConfig({
       'util': path.resolve(__dirname, 'src/utils'),
       'com': path.resolve(__dirname, 'src/components'),
       'lay': path.resolve(__dirname, 'src/layout'),
-    }
-  },
-  plugins: [vue()]
+    },
+    // 不推荐省略后缀 https://github.com/vitejs/vite/issues/178#issuecomment-630138450
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
+  }
 })
