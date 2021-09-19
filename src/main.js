@@ -4,9 +4,10 @@
  * @link https://www.7b3.rog or https://github.com/tomdiary
  */
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
+import {ElMenu, ElMenuItem, ElMenuItemGroup, ElSubMenu} from 'element-plus'
 import router from './router'
 import store from '@/store'
+import { SvgIcon } from '@/components'
 import App from './App.vue'
 
 // style
@@ -16,6 +17,10 @@ import 'element-plus/dist/index.css'
 const app = createApp(App)
 
 app.use(router)
-app.use(store)
-app.use(ElementPlus)
+  .use(store)
+  .use(ElMenu)
+  .use(ElSubMenu)
+  .use(ElMenuItem)
+  .use(ElMenuItemGroup)
+  .component('svg-icon', SvgIcon)
 app.mount('#cv-admin')

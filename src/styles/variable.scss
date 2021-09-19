@@ -1,5 +1,20 @@
 /* scss变量 */
+$main-padding: 12px;
 $main-size: 16px;
 $main-bgc: #EBECF0;
 $main-color: #2B2E4A;         // https://colorhunt.co/palette/2b2e4ae8454590374953354a
 $secondary-color: #E84545;    // https://colorhunt.co/palette/2b2e4ae8454590374953354a
+
+// header
+$header-hei: 52px;
+
+// sidebar
+$sidebar-width: 260px;
+$sidebar-hei: 56px;
+$sidebar-text-color: #FFF;
+$sidebar-menu-group-color: #1f2136;
+$sidebar-menu-item-hover-color: rgba(31, 33, 54, .6);
+$sidebar-menu-group-item-hover-color: rgba(43, 46, 74, .6);
+
+// tagsView
+$tags-view-hei: 44px;

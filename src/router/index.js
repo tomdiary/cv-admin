@@ -23,6 +23,25 @@ const routes = [
         component: () => import('@/views/dashboard/index.vue')
       }
     ]
+  },
+  {
+    path: '/table',
+    redirect: '/table/default',
+    component: () => import('@/layout/index.vue'),
+    children: [
+      {
+        path: 'default',
+        name: 'TableDefault',
+        meta: { title: '默认表格' },
+        component: () => import('@/views/table/default/index.vue')
+      },
+      {
+        path: 'merge',
+        name: 'TableMerge',
+        meta: { title: '表格合并行/列' },
+        component: () => import('@/views/table/merge/index.vue')
+      }
+    ]
   }
 ]
 
