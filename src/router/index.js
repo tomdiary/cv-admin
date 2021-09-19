@@ -9,6 +9,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
+    meta: { title: '登录' },
     component: () => import('@/views/login/index.vue')
   },
   {
@@ -19,7 +20,7 @@ const routes = [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        meta: { title: '首页' },
+        meta: { title: '首页', icon: 'dashboard', affix: true },
         component: () => import('@/views/dashboard/index.vue')
       }
     ]
@@ -28,6 +29,7 @@ const routes = [
     path: '/table',
     redirect: '/table/default',
     component: () => import('@/layout/index.vue'),
+    meta: { title: '表格', icon: 'table' },
     children: [
       {
         path: 'default',
