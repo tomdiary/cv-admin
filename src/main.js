@@ -18,7 +18,7 @@ import {
 } from 'element-plus'
 import router from '@/router'
 import store from '@/store'
-import App from './App.vue'
+import App from '@/App.vue'
 import { SvgIcon } from '@/components'
 
 // style

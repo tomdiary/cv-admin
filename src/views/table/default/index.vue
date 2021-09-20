@@ -29,24 +29,25 @@
 
 <script>
 import { toRefs, reactive, onMounted } from 'vue'
-import PageLayout from '@/layout/PageLayout'
+import PageLayout from '@lay/PageLayout'
 
 export default {
   components: {
     PageLayout
   },
-  setup(props) {
+  setup() {
     const state = reactive({
       pageTotal: 232,
       tableData: []
     })
 
     onMounted(() => {
+      // eslint-disable-next-line no-use-before-define
       baseInitData()
     })
 
     const baseInitData = () => {
-      for(let i = 0; i < 26; i++) {
+      for (let i = 0; i < 26; i++) {
         state.tableData.push({
           date: '2021-10-05 12:10:42',
           name: '柒比叁',

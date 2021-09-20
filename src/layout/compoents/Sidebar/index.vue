@@ -21,6 +21,15 @@
               <el-menu-item index="/table/merge">合并行/列</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
+          <el-sub-menu index="/map">
+            <template #title>
+              <svg-icon icon-class="map" />
+              <span>高德地图</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/map/default">默认地图</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
         </el-menu>
       </div>
     </el-scrollbar>

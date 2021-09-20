@@ -10,38 +10,52 @@ const routes = [
     path: '/login',
     name: 'Login',
     meta: { title: '登录' },
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@views/login/index.vue')
   },
   {
     path: '/',
     redirect: 'dashboard',
-    component: () => import('@/layout/index.vue'),
+    component: () => import('@lay/index.vue'),
     children: [
       {
         path: 'dashboard',
         name: 'Dashboard',
         meta: { title: '首页', icon: 'dashboard', affix: true },
-        component: () => import('@/views/dashboard/index.vue')
+        component: () => import('@views/dashboard/index.vue')
       }
     ]
   },
   {
     path: '/table',
     redirect: '/table/default',
-    component: () => import('@/layout/index.vue'),
+    component: () => import('@lay/index.vue'),
     meta: { title: '表格', icon: 'table' },
     children: [
       {
         path: 'default',
         name: 'TableDefault',
         meta: { title: '默认表格' },
-        component: () => import('@/views/table/default/index.vue')
+        component: () => import('@views/table/default/index.vue')
       },
       {
         path: 'merge',
         name: 'TableMerge',
         meta: { title: '表格合并行/列' },
-        component: () => import('@/views/table/merge/index.vue')
+        component: () => import('@views/table/merge/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/map',
+    redirect: '/map/default',
+    component: () => import('@lay/index.vue'),
+    meta: { title: '高德地图', icon: 'map' },
+    children: [
+      {
+        path: 'default',
+        name: 'MapDefault',
+        meta: { title: '默认表格' },
+        component: () => import('@views/map/default/index.vue')
       }
     ]
   }
