@@ -19,11 +19,18 @@ import {
 import router from '@/router'
 import store from '@/store'
 import App from '@/App.vue'
-import { SvgIcon } from '@/components'
+import { SvgIcon } from '@com'
+import api from '@/api'
+import { setupProdMockServer } from '../mock'
 
 // style
 import '@/styles/index.scss'
 import 'element-plus/dist/index.css'
+
+setupProdMockServer()
+
+// 全局挂载api
+window.$api = api
 
 const app = createApp(App)
 

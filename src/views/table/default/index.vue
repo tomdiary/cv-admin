@@ -42,7 +42,6 @@ export default {
     })
 
     onMounted(() => {
-      // eslint-disable-next-line no-use-before-define
       baseInitData()
     })
 

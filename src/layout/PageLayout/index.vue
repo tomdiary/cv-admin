@@ -6,10 +6,12 @@
     <main class="page-layout-main">
       <slot :mainHeight="mainHeight"></slot>
     </main>
-    <footer v-if="isFooter" :class="{
-      'page-layout-footer': true,
-      'page-layout-footer-right': footerDirection === 'right',
-      'page-layout-footer-left': footerDirection === 'left'
+    <footer
+      v-if="isFooter"
+      :class="{
+        'page-layout-footer': true,
+        'page-layout-footer-right': footerDirection === 'right',
+        'page-layout-footer-left': footerDirection === 'left'
       }">
       <slot name="footer"></slot>
     </footer>
@@ -17,7 +19,12 @@
 </template>
 
 <script>
-import { toRefs, reactive, nextTick, onMounted } from 'vue'
+import {
+  toRefs,
+  reactive,
+  nextTick,
+  onMounted
+} from 'vue'
 import config from '@/config'
 
 export default {
@@ -53,8 +60,8 @@ export default {
       const layoutMain = document.querySelector('.page-layout-main')
       const layoutFooter = document.querySelector('.page-layout-footer')
       layoutMain.setAttribute(
-          'style',
-          `height: calc(100% - ${layoutHeader.offsetHeight + layoutHeaderMarginBottom + (props.isFooter ? layoutFooter.offsetHeight : 0)}px)`
+        'style',
+        `height: calc(100% - ${layoutHeader.offsetHeight + layoutHeaderMarginBottom + (props.isFooter ? layoutFooter.offsetHeight : 0)}px)`
       )
       state.mainHeight = layoutMain.offsetHeight
     }
