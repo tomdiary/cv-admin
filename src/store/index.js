@@ -9,10 +9,6 @@ import app from './moduels/app'
 import user from './moduels/user'
 
 export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
   modules: {
     app,
     user

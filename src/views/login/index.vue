@@ -9,8 +9,8 @@
       </div>
       <div class="core-login">
         <h2 class="login-title">用户登录</h2>
-        <el-form ref="formRef" :model="formData" size="default">
-          <el-form-item>
+        <el-form ref="formRef" :model="formData" :rules="formRules" size="default">
+          <el-form-item prop="username">
             <el-input
                 class="username"
                 v-model="formData.username"
@@ -19,7 +19,7 @@
               <svg-icon slot="prefix" icon-class="username" />
             </el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
                 class="password"
                 show-password
@@ -28,12 +28,6 @@
                 clearable>
               <svg-icon slot="prefix" icon-class="password" />
             </el-input>
-          </el-form-item>
-          <el-form-item>
-            <div class="code">
-              <el-input v-model="formData.code" placeholder="验证码"></el-input>
-              <div class="code-img"></div>
-            </div>
           </el-form-item>
           <el-form-item>
             <el-checkbox v-model="formData.isPasswd">记住密码</el-checkbox>
@@ -49,23 +43,48 @@
 
 <script>
 import { reactive, ref } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   setup(props) {
+    const store = useStore()
     const formData = reactive({
       username: 'admin',
       password: '123456',
-      isPasswd: false,
-      code: ''
+      isPasswd: false
     })
+    const formRef = ref(null)
     const loading = ref(false)
+    const formRules = reactive({
+      username: [
+        { required: true, message: '请填写账号', trigger: 'blur' },
+        { min: 5, max: 10, message: '长度在 5 到 10 个字符', trigger: 'blur' }
+      ],
+      password: [
+        { required: true, message: '请填写密码', trigger: 'blur' },
+        { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
+      ]
+    })
 
     const onSubmit = () => {
-      loading.value = true
+      formRef.value.validate((valid) => {
+        if (!valid) return false
+        loading.value = true
+        const userInfo = {
+          username: formData.username,
+          password: formData.password
+        }
+        store.dispatch('user/atUserLogin', userInfo).then(res => {
+          loading.value = false
+          console.log(store.state.user)
+        })
+      })
     }
 
     return {
+      formRef,
       formData,
+      formRules,
       loading,
       onSubmit
     }
@@ -76,7 +95,7 @@ export default {
 <style scoped lang="scss">
 ::v-deep(.el-form) {
 
-  .username, .password, .code {
+  .username, .password {
 
     .el-input__inner {
       padding: 26px 20px 26px 50px !important;
@@ -139,13 +158,6 @@ export default {
     font-size: 20px;
     letter-spacing: 2px;
   }
-
-  .code {
-
-    .el-input__inner {
-      padding: 26px 20px !important;
-    }
-  }
 }
 
 .login {
@@ -161,7 +173,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 534px;
-    height: 562px;
+    height: 490px;
     z-index: 1000;
     border: 2px solid #16A3EA;
     background-color: rgba(13, 127, 205, 0.1);
