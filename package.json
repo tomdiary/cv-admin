@@ -11,7 +11,9 @@
     "echarts": "^5.2.0",
     "element-plus": "^1.1.0-beta.9",
     "js-base64": "^3.7.2",
+    "js-md5": "^0.7.3",
     "mockjs": "^1.1.0",
+    "unplugin-vue-components": "^0.15.3",
     "vue": "^3.2.6",
     "vue-router": "4",
     "vuex": "^4.0.2"

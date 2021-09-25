@@ -122,6 +122,14 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@rollup/pluginutils@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.nlark.com/@rollup/pluginutils/download/@rollup/pluginutils-4.1.1.tgz?cache=0&sync_timestamp=1626393703548&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40rollup%2Fpluginutils%2Fdownload%2F%40rollup%2Fpluginutils-4.1.1.tgz#1d4da86dd4eded15656a57d933fda2b9a08d47ec"
+  integrity sha1-HU2obdTt7RVlalfZM/2iuaCNR+w=
+  dependencies:
+    estree-walker "^2.0.1"
+    picomatch "^2.2.2"
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.nlark.com/@types/estree/download/@types/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
@@ -1084,7 +1092,7 @@ estree-walker@^1.0.1:
   resolved "https://registry.npm.taobao.org/estree-walker/download/estree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"
   integrity sha1-MbxdYSyWtwQQa0d+bdXYqhOMtwA=
 
-estree-walker@^2.0.2:
+estree-walker@^2.0.1, estree-walker@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/estree-walker/download/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha1-UvAQF4wqTBF6d1fP6UKtt9LaTKw=
@@ -1349,6 +1357,11 @@ has-flag@^4.0.0:
   version "4.0.0"
   resolved "https://registry.nlark.com/has-flag/download/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha1-lEdx/ZyByBJlxNaUGGDaBrtZR5s=
+
+has-pkg@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.nlark.com/has-pkg/download/has-pkg-0.0.1.tgz#f9d9139ed83e2487deae5eb4ac13182a2e903857"
+  integrity sha1-+dkTntg+JIferl60rBMYKi6QOFc=
 
 has-symbols@^1.0.1, has-symbols@^1.0.2:
   version "1.0.2"
@@ -1707,6 +1720,11 @@ js-base64@^3.7.2:
   version "3.7.2"
   resolved "https://registry.npmmirror.com/js-base64/download/js-base64-3.7.2.tgz#816d11d81a8aff241603d19ce5761e13e41d7745"
   integrity sha1-gW0R2BqK/yQWA9Gc5XYeE+Qdd0U=
+
+js-md5@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.nlark.com/js-md5/download/js-md5-0.7.3.tgz#b4f2fbb0b327455f598d6727e38ec272cd09c3f2"
+  integrity sha1-tPL7sLMnRV9ZjWcn447Ccs0Jw/I=
 
 js-tokens@^4.0.0:
   version "4.0.0"
@@ -2930,6 +2948,28 @@ unpipe@~1.0.0:
   resolved "https://registry.npm.taobao.org/unpipe/download/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
 
+unplugin-vue-components@^0.15.3:
+  version "0.15.3"
+  resolved "https://registry.npmmirror.com/unplugin-vue-components/download/unplugin-vue-components-0.15.3.tgz#655a9d511d71b591a2ec2b3374e8ba3c330b9f30"
+  integrity sha1-ZVqdUR1xtZGi7CszdOi6PDMLnzA=
+  dependencies:
+    "@rollup/pluginutils" "^4.1.1"
+    chokidar "^3.5.2"
+    debug "^4.3.2"
+    fast-glob "^3.2.7"
+    has-pkg "^0.0.1"
+    magic-string "^0.25.7"
+    minimatch "^3.0.4"
+    resolve "^1.20.0"
+    unplugin "^0.2.13"
+
+unplugin@^0.2.13:
+  version "0.2.16"
+  resolved "https://registry.npmmirror.com/unplugin/download/unplugin-0.2.16.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Funplugin%2Fdownload%2Funplugin-0.2.16.tgz#6f34e9f5068ca3ec92a36b016f47b5ad8bb875ca"
+  integrity sha1-bzTp9QaMo+ySo2sBb0e1rYu4dco=
+  dependencies:
+    webpack-virtual-modules "^0.4.3"
+
 unset-value@^1.0.0:
   version "1.0.0"
   resolved "https://registry.nlark.com/unset-value/download/unset-value-1.0.0.tgz#8376873f7d2335179ffb1e6fc3a8ed0dfc8ab559"
@@ -3047,6 +3087,11 @@ vuex@^4.0.2:
   integrity sha1-+Jbb1b8qDpY/AMZ+m2EN50nMrMk=
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.11"
+
+webpack-virtual-modules@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.nlark.com/webpack-virtual-modules/download/webpack-virtual-modules-0.4.3.tgz?cache=0&sync_timestamp=1620993523325&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fwebpack-virtual-modules%2Fdownload%2Fwebpack-virtual-modules-0.4.3.tgz#cd597c6d51d5a5ecb473eea1983a58fa8a17ded9"
+  integrity sha1-zVl8bVHVpey0c+6hmDpY+ooX3tk=
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
