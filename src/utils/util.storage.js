@@ -32,3 +32,7 @@ export const cvSessionStorage = {
     return sessionStorage.clear()
   }
 }
+
+export const getAccessToken = () => cvLocalStorage.get('access_token')
+
+export const getRefreshToken = () => cvLocalStorage.get('refresh_token')

@@ -11,6 +11,15 @@
             <svg-icon icon-class="dashboard" />
             <template #title>仪表盘</template>
           </el-menu-item>
+          <el-sub-menu index="/cvc">
+            <template #title>
+              <svg-icon icon-class="cvc" />
+              <span>组件库</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/cvc/list">组件列表</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
           <el-sub-menu index="/table">
             <template #title>
               <svg-icon icon-class="table" />

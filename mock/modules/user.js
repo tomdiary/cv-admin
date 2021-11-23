@@ -18,7 +18,9 @@ export default [
           accessToken: encode(String(new Date().getTime() + accessTokenTime)),
           refreshToken: encode(String(new Date().getTime() + refreshTokenTime)),
           userInfo: {
-            name: '柒比叁'
+            id: 1,
+            name: '柒比叁',
+            avatar: 'https://i.loli.net/2021/09/26/YtP2Z9BrA3co8Vh.jpg'
           }
         }
       }

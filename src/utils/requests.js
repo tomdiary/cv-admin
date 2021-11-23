@@ -4,6 +4,7 @@
  * @link https://www.7b3.rog or https://github.com/tomdiary
  */
 import axios from 'axios'
+import { getAccessToken, getRefreshToken } from '@/utils/util.storage'
 // import { ElMessage } from 'element-plus'
 
 const requests = axios.create({
@@ -15,7 +16,13 @@ const requests = axios.create({
 })
 
 // 请求体拦截器
-requests.interceptors.request.use(request => request, error => Promise.reject(error))
+requests.interceptors.request.use(request => {
+  // 携带token
+  if (getAccessToken() && getRefreshToken()) {
+    request.headers.Authorization = `bearer ${getAccessToken()}`
+  }
+  return request
+}, error => Promise.reject(error))
 
 // 响应体拦截器
 requests.interceptors.response.use(response => response, error => Promise.reject(error))

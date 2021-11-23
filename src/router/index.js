@@ -11,7 +11,10 @@ const routes = [
     name: 'Login',
     meta: { title: '登录' },
     component: () => import('@views/login/index.vue')
-  },
+  }
+]
+
+const authorityRoutes = [
   {
     path: '/',
     redirect: 'dashboard',
@@ -58,12 +61,26 @@ const routes = [
         component: () => import('@views/map/default/index.vue')
       }
     ]
+  },
+  {
+    path: '/cvc',
+    redirect: '/cvc/list',
+    component: () => import('@lay/index.vue'),
+    meta: { title: '组件库', icon: 'cvc' },
+    children: [
+      {
+        path: 'list',
+        name: 'CvcList',
+        meta: { title: '组件列表' },
+        component: () => import('@views/cvc/list/index.vue')
+      }
+    ]
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes: [...routes, ...authorityRoutes]
 })
 
 export default router

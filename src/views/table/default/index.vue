@@ -43,6 +43,12 @@ export default {
 
     onMounted(() => {
       baseInitData()
+      const request = indexedDB.open('cv-admin', 1)
+      request.onsuccess = (event) => {
+        console.log(request.result)
+        console.log('数据库打开成功')
+      }
+      $api.getTableDefaultList()
     })
 
     const baseInitData = () => {
