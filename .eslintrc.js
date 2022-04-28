@@ -23,7 +23,8 @@ module.exports = {
   globals: {
     $api: true,
     AMap: true,
-    AMapUI: true
+    AMapUI: true,
+    defineProps: true
   },
   rules: {
     'vue/max-attributes-per-line': [2, {

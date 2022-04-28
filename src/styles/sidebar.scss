@@ -20,9 +20,9 @@
         align-items: center;
         color: $sidebar-text-color;
 
-        .svg-icon {
-          margin-right: 8px;
-        }
+        // .svg-icon {
+        //   margin-right: 8px;
+        // }
       }
 
       & > .el-menu-item.is-active {
@@ -52,9 +52,9 @@
             color: $sidebar-text-color;
           }
 
-          .svg-icon {
-            margin-right: 8px;
-          }
+          // .svg-icon {
+          //   margin-right: 8px;
+          // }
         }
 
         & > .el-sub-menu__title:hover {
@@ -95,5 +95,25 @@
         }
       }
     }
+  }
+}
+
+.layout:not(.collapse-open) {
+  .svg-icon {
+    margin-right: 0;
+  }
+
+  .sidebar-menu {
+
+    .el-sub-menu__title,
+    .el-menu-item .el-menu-tooltip__trigger {
+      // justify-content: center;
+    }
+  }
+}
+
+.layout:not(.collapse-close) {
+  .svg-icon {
+    margin-right: 8px;
   }
 }

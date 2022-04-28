@@ -19,7 +19,7 @@ function findSvgFile(dir) {
   })
   for (const dirent of dirEnds) {
     if (dirent.isDirectory()) {
-      svgRes.push(...findSvgFile(dir + dirent.name + '/'))
+      svgRes.push(...findSvgFile(`${dir + dirent.name}/`))
     } else {
       const svg = readFileSync(dir + dirent.name)
         .toString()
@@ -53,10 +53,7 @@ function findSvgFile(dir) {
   return svgRes
 }
 
-export const svgBuilder = (
-    path,
-  perFix = 'icon'
-) => {
+export const svgBuilder = (path, perFix = 'icon') => {
   if (path === '') return
   idPerFix = perFix
   const res = findSvgFile(path)

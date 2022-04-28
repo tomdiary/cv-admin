@@ -4,7 +4,7 @@
  * @link https://www.7b3.rog or https://github.com/tomdiary
  */
 import axios from 'axios'
-import { getAccessToken, getRefreshToken } from '@/utils/util.storage'
+import { getAccessToken, getRefreshToken } from '@util/baseStorage'
 // import { ElMessage } from 'element-plus'
 
 const requests = axios.create({

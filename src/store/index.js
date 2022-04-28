@@ -3,14 +3,10 @@
  * @author TomDiary
  * @link https://www.7b3.rog or https://github.com/tomdiary
  */
-import { createStore } from 'vuex'
+import { createPinia } from 'pinia'
 
-import app from './moduels/app'
-import user from './moduels/user'
+const store = createPinia()
 
-export default createStore({
-  modules: {
-    app,
-    user
-  }
-})
+export default function setupStore(app) {
+  app.use(store)
+}

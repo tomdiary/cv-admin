@@ -1,16 +1,52 @@
 <template>
   <div class="nav-bar">
-    <div class="logo">CV-ADMIN</div>
+    <div class="logo">LOGO</div>
     <div class="nav-bar-option">
       <div class="operation-bar-left">
-        1
+        <section class="operation-item" @click="sidebarToggle">
+          <el-icon>
+            <Expand v-if="layoutStore.sidebarStatus" />
+            <Fold v-else />
+          </el-icon>
+        </section>
       </div>
       <div class="operation-bar-right">
-        1
+        <section class="operation-item" @click="settingsToggle">
+          <el-icon>
+            <Operation />
+          </el-icon>
+        </section>
+        <section class="operation-item">
+          <el-icon>
+            <Share />
+          </el-icon>
+        </section>
       </div>
     </div>
+    <el-drawer v-model="state.settingStatus" title="I am the title" :with-header="false">
+      <GloSettings />
+    </el-drawer>
   </div>
 </template>
+
+<script setup>
+import { reactive, onMounted } from 'vue'
+import { useLayoutStore } from '@/store/layout'
+import GloSettings from './GloSettings.vue'
+import { Share, Operation, Fold, Expand } from '@element-plus/icons-vue'
+
+const state = reactive({
+  settingStatus: false
+})
+const layoutStore = useLayoutStore()
+
+const settingsToggle = () => state.settingStatus = !state.settingStatus
+const sidebarToggle = () => layoutStore.asSidebarStatus(layoutStore.sidebarStatus)
+
+onMounted(() => {
+  console.log(layoutStore.sidebarStatus)
+})
+</script>
 
 <style scoped lang="scss">
 .nav-bar {
@@ -22,25 +58,43 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $sidebar-width;
+    width: $sidebar-sm-width;
     height: 100%;
-    color: #FFF;
     font-size: 20px;
     letter-spacing: 1px;
   }
 
   .nav-bar-option {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    width: calc(100% - #{$sidebar-width});
+    width: calc(100% - #{$sidebar-sm-width});
     height: 100%;
 
-    .operation-bar-left {
-
+    .operation-bar-left,
+    .operation-bar-right {
+      display: flex;
     }
 
-    .operation-bar-right {
+    .operation-bar-right  {
+      padding-right: 20px;
+    }
 
+    .operation-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: $operation-hei;
+      height: $operation-hei;
+      cursor: pointer;
+
+      .el-icon {
+        font-size: 20px;
+      }
+    }
+
+    .operation-item:hover {
+      background-color: #CCC;
     }
   }
 }

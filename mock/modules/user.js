@@ -1,4 +1,4 @@
-import { accessTokenTime, refreshTokenTime } from '../config'
+import { accessTokenTime, refreshTokenTime } from '../_config'
 import { encode } from 'js-base64'
 
 export default [

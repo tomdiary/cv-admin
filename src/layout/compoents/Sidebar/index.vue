@@ -5,6 +5,7 @@
         <el-menu
             :router="true"
             :unique-opened="true"
+            :collapse="layoutStore.sidebarStatus"
             :default-active="defaultRouter"
             class="sidebar-menu">
           <el-menu-item index="/dashboard">
@@ -45,17 +46,14 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    defaultRouter: {
-      defaults: '/',
-      type: String
-    },
-    layoutSidebar: {
-      defaults: true,
-      type: Boolean
-    }
+<script setup>
+import { useLayoutStore } from '@/store/layout'
+
+const props = defineProps({
+  defaultRouter: {
+    default: '/',
+    type: String
   }
-}
+})
+const layoutStore = useLayoutStore()
 </script>

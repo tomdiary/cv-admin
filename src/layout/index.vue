@@ -1,46 +1,37 @@
 <template>
-  <div class="layout">
+  <div class="layout" :class="[layoutStore.sidebarStatus ? 'collapse-close' : 'collapse-open']">
     <div class="layout-container">
       <header class="layout-header">
-        <nav-bar />
+        <NavBar />
       </header>
       <div class="layout-wrapper">
         <div class="layout-sidebar">
-          <sidebar :default-router="defaultRouter" />
+          <Sidebar :defaultRouter="defaultRouter" />
         </div>
         <div class="layout-main">
-          <tags-view />
-          <app-main />
+          <TagsView />
+          <AppMain />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { watch, ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useLayoutStore } from '@/store/layout'
 import { AppMain, Sidebar, NavBar, TagsView } from './compoents'
 
-export default {
-  data() {
-    return {
-      defaultRouter: '/'
-    }
-  },
-  components: {
-    AppMain,
-    Sidebar,
-    NavBar,
-    TagsView
-  },
-  watch: {
-    $route: {
-      handler(route) {
-        this.defaultRouter = route.path || '/'
-      },
-      immediate: true
-    }
-  }
-}
+const route = useRoute()
+const defaultRouter = ref('/')
+const layoutStore = useLayoutStore()
+
+watch(route, (newVal, oldVal) => defaultRouter.value = newVal.path || '/')
+
+onMounted(() => {
+  defaultRouter.value = route.path
+})
 </script>
 
 <style scoped lang="scss">
@@ -55,7 +46,7 @@ export default {
 
   .layout-header {
     height: $header-hei;
-    background-color: $main-color;
+    background-color: $header-bgc;
   }
 
   .layout-wrapper {
@@ -67,8 +58,7 @@ export default {
       left: 0;
       top: 0;
       bottom: 0;
-      width: $sidebar-width;
-      background-color: $main-color;
+      background-color: $sidebar-bgc;
     }
 
     .layout-main {
@@ -76,8 +66,31 @@ export default {
       right: 0;
       top: 0;
       bottom: 0;
-      left: $sidebar-width;
     }
+  }
+}
+
+.layout:not(.collapse-open) {
+  .layout-sidebar {
+    width: $sidebar-sm-width;
+  }
+
+  .layout-main {
+    left: $sidebar-sm-width;
+  }
+
+  .svg-icon {
+    margin-right: 0;
+  }
+}
+
+.layout:not(.collapse-close) {
+  .layout-sidebar {
+    width: $sidebar-width;
+  }
+
+  .layout-main {
+    left: $sidebar-width;
   }
 }
 </style>

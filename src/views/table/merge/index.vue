@@ -26,99 +26,133 @@
   </div>
 </template>
 
-<script>
-import { reactive, toRefs, onMounted } from 'vue'
+<script setup>
+import { reactive, onMounted, ref } from 'vue'
 import PageLayout from '@lay/PageLayout'
 
-export default {
-  components: {
-    PageLayout
+const state = reactive({
+  rowList: [],
+  spanArr: [],
+  position: 0,
+  tableData: [
+    {
+      id: 1,
+      name: '亚马逊',
+      code: 'MZ2424O24P2423',
+      email: '345345@amazon.com',
+      phone: '+86-999-10928942'
+    },
+    {
+      id: 2,
+      name: '亚马逊',
+      code: 'MZ2424O24P2423',
+      email: '235354534@amazon.com',
+      phone: '+86-999-10929242'
+    },
+    {
+      id: 3,
+      name: '亚马逊',
+      code: 'MZ2424O24P2423',
+      email: '24342523@amazon.com',
+      phone: '+86-999-19823942'
+    },
+    {
+      id: 4,
+      name: '苹果',
+      code: 'OZ2421824JA423',
+      email: '235235345@iclod.com',
+      phone: '+86-999-19829842'
+    },
+    {
+      id: 5,
+      name: '微软',
+      code: 'EW222RT424Z243',
+      email: 'mkhu23fsa@microsoft.com',
+      phone: '+86-999-19837298'
+    },
+    {
+      id: 6,
+      name: '微软',
+      code: 'EW222RT424Z243',
+      email: 'mnzc23e@microsoft.com',
+      phone: '+86-999-98278272'
+    }
+  ]
+})
+const rowList = ref([])
+const spanArr = ref([])
+const position = ref(0)
+const tableData = ref([
+  {
+    id: 1,
+    name: '亚马逊',
+    code: 'MZ2424O24P2423',
+    email: '345345@amazon.com',
+    phone: '+86-999-10928942'
   },
-  setup() {
-    const state = reactive({
-      rowList: [],
-      spanArr: [],
-      position: 0,
-      tableData: [
-        {
-          id: 1,
-          name: '亚马逊',
-          code: 'MZ2424O24P2423',
-          email: '345345@amazon.com',
-          phone: '+86-999-10928942'
-        },
-        {
-          id: 2,
-          name: '亚马逊',
-          code: 'MZ2424O24P2423',
-          email: '235354534@amazon.com',
-          phone: '+86-999-10929242'
-        },
-        {
-          id: 3,
-          name: '亚马逊',
-          code: 'MZ2424O24P2423',
-          email: '24342523@amazon.com',
-          phone: '+86-999-19823942'
-        },
-        {
-          id: 4,
-          name: '苹果',
-          code: 'OZ2421824JA423',
-          email: '235235345@iclod.com',
-          phone: '+86-999-19829842'
-        },
-        {
-          id: 5,
-          name: '微软',
-          code: 'EW222RT424Z243',
-          email: 'mkhu23fsa@microsoft.com',
-          phone: '+86-999-19837298'
-        },
-        {
-          id: 6,
-          name: '微软',
-          code: 'EW222RT424Z243',
-          email: 'mnzc23e@microsoft.com',
-          phone: '+86-999-98278272'
-        }
-      ]
-    })
+  {
+    id: 2,
+    name: '亚马逊',
+    code: 'MZ2424O24P2423',
+    email: '235354534@amazon.com',
+    phone: '+86-999-10929242'
+  },
+  {
+    id: 3,
+    name: '亚马逊',
+    code: 'MZ2424O24P2423',
+    email: '24342523@amazon.com',
+    phone: '+86-999-19823942'
+  },
+  {
+    id: 4,
+    name: '苹果',
+    code: 'OZ2421824JA423',
+    email: '235235345@iclod.com',
+    phone: '+86-999-19829842'
+  },
+  {
+    id: 5,
+    name: '微软',
+    code: 'EW222RT424Z243',
+    email: 'mkhu23fsa@microsoft.com',
+    phone: '+86-999-19837298'
+  },
+  {
+    id: 6,
+    name: '微软',
+    code: 'EW222RT424Z243',
+    email: 'mnzc23e@microsoft.com',
+    phone: '+86-999-98278272'
+  }
+])
 
-    onMounted(() => {
-      baseInitData()
-    })
+onMounted(() => {
+  baseInitData()
+})
 
-    const baseInitData = () => {
-      state.tableData.forEach((item, index) => {
-        if (index === 0) {
-          state.spanArr.push(1)
-          state.position = 0
-        } else if (state.tableData[index].code === state.tableData[index - 1].code) {
-          state.spanArr[state.position] += 1
-          state.spanArr.push(0)
-        } else {
-          state.spanArr.push(1)
-          state.position = index
-        }
-      })
+const baseInitData = () => {
+  state.tableData.forEach((item, index) => {
+    if (index === 0) {
+      state.spanArr.push(1)
+      state.position = 0
+    } else if (state.tableData[index].code === state.tableData[index - 1].code) {
+      state.spanArr[state.position] += 1
+      state.spanArr.push(0)
+    } else {
+      state.spanArr.push(1)
+      state.position = index
     }
+  })
+}
 
-    const tableSpanMethod = ({ row, column, rowIndex, columnIndex }) => {
-      if (columnIndex < 3) {
-        const _row = state.spanArr[rowIndex]
-        const _col = _row > 0 ? 1 : 0
-        return {
-          rowspan: _row,
-          colspan: _col
-        }
-      }
-    }
-
+const tableSpanMethod = ({ row, column, rowIndex, columnIndex }) => {
+  if (columnIndex < 3) {
+    const _row = state.spanArr[rowIndex]
+    const _col = _row > 0 ? 1 : 0
     return {
-      ...toRefs(state),
-      baseInitData,
-      tableSpanMethod
+      rowspan: _row,
+      colspan: _col
     }
   }
 }

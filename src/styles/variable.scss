@@ -8,14 +8,18 @@ $secondary-color: #E84545;    // https://colorhunt.co/palette/2b2e4ae84545903749
 
 // header
 $header-hei: 52px;
+$header-bgc: #FFF;
+$operation-hei: 52px;
 
 // sidebar
 $sidebar-width: 260px;
+$sidebar-sm-width: 64px;
 $sidebar-hei: 56px;
+$sidebar-bgc: #FFF;
 $sidebar-text-color: #FFF;
-$sidebar-menu-group-color: #1f2136;
-$sidebar-menu-item-hover-color: rgba(31, 33, 54, .6);
-$sidebar-menu-group-item-hover-color: rgba(43, 46, 74, .6);
+$sidebar-menu-group-color: #FFF;
+$sidebar-menu-item-hover-color: #FFF;
+$sidebar-menu-group-item-hover-color: #FFF;
 
 // tagsView
 $tags-view-hei: 44px;

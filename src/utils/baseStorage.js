@@ -1,7 +1,7 @@
 /**
  * @description 公共Storage
  * @author TomDiary
- * @link https://www.7b3.rog or https://github.com/tomdiary
+ * @link https://github.com/tomdiary
  */
 export const cvLocalStorage = {
   get(type) {
@@ -36,3 +36,7 @@ export const cvSessionStorage = {
 export const getAccessToken = () => cvLocalStorage.get('access_token')
 
 export const getRefreshToken = () => cvLocalStorage.get('refresh_token')
+
+export const getSidebarStatus = () => cvLocalStorage.get('sidebar_status')
+
+export const setSidebarStatus = status => cvLocalStorage.set('sidebar_status', status)
