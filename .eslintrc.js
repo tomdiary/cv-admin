@@ -27,11 +27,13 @@ module.exports = {
     defineProps: true
   },
   rules: {
+    // https://eslint.vuejs.org/rules/max-attributes-per-line.html
     'vue/max-attributes-per-line': [2, {
-      singleline: 10,
+      singleline: {
+        max: 10
+      },
       multiline: {
-        max: 1,
-        allowFirstLine: false
+        max: 2
       }
     }],
     'vue/singleline-html-element-content-newline': 'off',

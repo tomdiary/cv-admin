@@ -23,29 +23,28 @@
         </section>
       </div>
     </div>
-    <el-drawer v-model="state.settingStatus" title="I am the title" :with-header="false">
+    <el-drawer
+        v-model="state.settingStatus"
+        custom-class="global-settings"
+        :with-header="false">
       <GloSettings />
     </el-drawer>
   </div>
 </template>
 
 <script setup>
-import { reactive, onMounted } from 'vue'
+import { reactive } from 'vue'
 import { useLayoutStore } from '@/store/layout'
 import GloSettings from './GloSettings.vue'
 import { Share, Operation, Fold, Expand } from '@element-plus/icons-vue'
 
 const state = reactive({
-  settingStatus: false
+  settingStatus: true
 })
 const layoutStore = useLayoutStore()
 
 const settingsToggle = () => state.settingStatus = !state.settingStatus
 const sidebarToggle = () => layoutStore.asSidebarStatus(layoutStore.sidebarStatus)
-
-onMounted(() => {
-  console.log(layoutStore.sidebarStatus)
-})
 </script>
 
 <style scoped lang="scss">

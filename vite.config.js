@@ -39,13 +39,13 @@ export default defineConfig({
     svgBuilder('./src/icons/svg/')
   ],
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@views': path.resolve(__dirname, 'src/views'),
-      '@util': path.resolve(__dirname, 'src/utils'),
-      '@com': path.resolve(__dirname, 'src/components'),
-      '@lay': path.resolve(__dirname, 'src/layout')
-    },
+    alias: [
+      { find: '@', replacement: path.resolve(__dirname, './src') },
+      { find: '@views', replacement: path.resolve(__dirname, './src/views') },
+      { find: '@util', replacement: path.resolve(__dirname, './src/utils') },
+      { find: '@com', replacement: path.resolve(__dirname, './src/components') },
+      { find: '@lay', replacement: path.resolve(__dirname, './src/layout') }
+    ],
     // 不推荐省略后缀 https://github.com/vitejs/vite/issues/178#issuecomment-630138450
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },

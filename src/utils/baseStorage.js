@@ -33,10 +33,18 @@ export const cvSessionStorage = {
   }
 }
 
+// access_token
 export const getAccessToken = () => cvLocalStorage.get('access_token')
 
+// refresh_token
 export const getRefreshToken = () => cvLocalStorage.get('refresh_token')
 
+// sidebar 状态
 export const getSidebarStatus = () => cvLocalStorage.get('sidebar_status')
 
 export const setSidebarStatus = status => cvLocalStorage.set('sidebar_status', status)
+
+// 主题模式
+export const getThemeMode = () => cvLocalStorage.get('mode')
+
+export const setThemeMode = mode => cvLocalStorage.get('mode', mode)

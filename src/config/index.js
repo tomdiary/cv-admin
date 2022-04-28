@@ -1,4 +1,5 @@
 export default {
-  title: 'CV-ADMIN',
-  interval: 12 // 间隔
+  title: 'CV-ADMIN', // 标题
+  interval: 12, // 间隔
+  themeMode: 'auto' // 主题模式
 }

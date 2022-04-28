@@ -73,6 +73,12 @@ const authorityRoutes = [
         name: 'CvcList',
         meta: { title: '组件列表' },
         component: () => import('@views/cvc/list/index.vue')
+      },
+      {
+        path: 'dialog',
+        name: 'CvcDialog',
+        meta: { title: '对话框' },
+        component: () => import('@views/cvc/dialog/index.vue')
       }
     ]
   }

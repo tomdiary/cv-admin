@@ -19,6 +19,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/cvc/list">组件列表</el-menu-item>
+              <el-menu-item index="/cvc/dialog">对话框</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
           <el-sub-menu index="/table">
