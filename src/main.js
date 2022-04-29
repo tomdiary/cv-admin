@@ -31,7 +31,9 @@ async function bootstrap() {
   app.component('svg-icon', SvgIcon)
 
   initStore(app)
+
   initConfig(app)
+
   initDirective(app)
 
   app.mount('#cv-admin')

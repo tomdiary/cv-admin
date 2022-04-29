@@ -3,23 +3,3 @@
 @import "./transition";
 @import "./customize";
 @import "./sidebar";
-
-html {
-
-  body {
-    font-size: $main-size;
-    color: $main-color;
-    background: $main-bgc;
-    letter-spacing: .1px;
-  }
-
-  body,
-  #cv-admin,
-  #app {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-}

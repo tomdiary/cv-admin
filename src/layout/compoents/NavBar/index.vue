@@ -5,7 +5,7 @@
       <div class="operation-bar-left">
         <section class="operation-item" @click="sidebarToggle">
           <el-icon>
-            <Expand v-if="layoutStore.sidebarStatus" />
+            <Expand v-if="layoutStore.gtSidebarStatus" />
             <Fold v-else />
           </el-icon>
         </section>
@@ -44,7 +44,7 @@ const state = reactive({
 const layoutStore = useLayoutStore()
 
 const settingsToggle = () => state.settingStatus = !state.settingStatus
-const sidebarToggle = () => layoutStore.asSidebarStatus(layoutStore.sidebarStatus)
+const sidebarToggle = () => layoutStore.asSidebarStatus()
 </script>
 
 <style scoped lang="scss">

@@ -48,15 +48,15 @@ import {
   themeSizeList,
   languageList
 } from '@/config/dataSource'
+import { useLayoutStore } from '@/store/layout'
 
+const layoutStore = useLayoutStore()
 const formData = ref({
-  themeMode: 'auto',
-  themeSize: 'default',
-  language: 'cn'
+  themeMode: layoutStore.themeMode,
+  themeSize: layoutStore.themeSize,
+  language: layoutStore.themeLanguage
 })
 
-const themeModeChange = e => {
-  console.log(e)
-}
+const themeModeChange = e => layoutStore.asThemeMode(e)
 </script>
 

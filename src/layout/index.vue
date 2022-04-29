@@ -1,5 +1,5 @@
 <template>
-  <div class="layout" :class="[layoutStore.sidebarStatus ? 'collapse-close' : 'collapse-open']">
+  <div class="layout" :class="[layoutStore.gtSidebarStatus ? 'collapse-close' : 'collapse-open']">
     <div class="layout-container">
       <header class="layout-header">
         <NavBar />

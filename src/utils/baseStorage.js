@@ -45,6 +45,16 @@ export const getSidebarStatus = () => cvLocalStorage.get('sidebar_status')
 export const setSidebarStatus = status => cvLocalStorage.set('sidebar_status', status)
 
 // 主题模式
-export const getThemeMode = () => cvLocalStorage.get('mode')
+export const getThemeMode = () => cvLocalStorage.get('theme_mode')
 
-export const setThemeMode = mode => cvLocalStorage.get('mode', mode)
+export const setThemeMode = mode => cvLocalStorage.set('theme_mode', mode)
+
+// 主题大小
+export const getThemeSize = () => cvLocalStorage.get('theme_size')
+
+export const setThemeSize = size => cvLocalStorage.set('theme_size', size)
+
+// 国际化
+export const getThemeLanguage = () => cvLocalStorage.get('theme_language')
+
+export const setThemeLanguage = language => cvLocalStorage.set('theme_language', language)

@@ -5,7 +5,7 @@
         <el-menu
             :router="true"
             :unique-opened="true"
-            :collapse="layoutStore.sidebarStatus"
+            :collapse="layoutStore.gtSidebarStatus"
             :default-active="defaultRouter"
             class="sidebar-menu">
           <el-menu-item index="/dashboard">

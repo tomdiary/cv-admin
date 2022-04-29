@@ -4,8 +4,10 @@
  * @link https://www.7b3.rog or https://github.com/tomdiary
  */
 import { createPinia } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persist'
 
 const store = createPinia()
+store.use(piniaPluginPersist)
 
 export default function initStore(app) {
   app.use(store)
