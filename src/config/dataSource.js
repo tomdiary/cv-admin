@@ -16,3 +16,8 @@ export const languageList = [
   { label: 'English', value: 'en' },
   { label: '日本語', value: 'ja' }
 ]
+
+export const fontFamilyList = [
+  { label: '思源黑体-常规', value: 'siyuan-black-body-conventional' },
+  { label: '普惠体-Regular', value: 'inclusive-body-regular' }
+]

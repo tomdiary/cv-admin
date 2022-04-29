@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import config from '@/config'
+import moment from 'moment'
 
 export const useLayoutStore = defineStore('layoutStore', {
   persist: {
@@ -12,6 +13,7 @@ export const useLayoutStore = defineStore('layoutStore', {
           'sidebarStatus',
           'themeMode',
           'themeSize',
+          'themeFont',
           'themeLanguage'
         ]
       }
@@ -21,6 +23,7 @@ export const useLayoutStore = defineStore('layoutStore', {
     sidebarStatus: null,
     themeMode: null,
     themeSize: null,
+    fontFamily: null,
     themeLanguage: null
   }),
   getters: {
@@ -29,12 +32,15 @@ export const useLayoutStore = defineStore('layoutStore', {
   actions: {
     // 初始化主题配置
     asInitThemeConfig() {
-      if (!this.themeMode) {
+      if ((!this.themeMode && config.themeMode === 'auto') || this.themeMode === 'auto') {
+        this.asThemeModeAuto()
+      } else if (!this.themeMode && config.themeMode !== 'auto') {
         this.themeMode = config.themeMode
         document.documentElement.dataset.mode = config.themeMode
       } else {
         document.documentElement.dataset.mode = this.themeMode
       }
+      if (!this.fontFamily) this.asFontFamilyChange(config.fontFamily)
       if (!this.themeSize) this.themeSize = config.themeSize
       if (!this.themeLanguage) this.themeLanguage = config.themeLanguage
       if (!this.sidebarStatus) this.sidebarStatus = config.sidebarStatus
@@ -43,8 +49,21 @@ export const useLayoutStore = defineStore('layoutStore', {
       this.sidebarStatus = this.sidebarStatus === 'close' ? 'open' : 'close'
     },
     asThemeMode(mode) {
-      this.themeMode = mode
+      if (mode === 'auto') return this.asThemeModeAuto()
       document.documentElement.dataset.mode = mode
+      this.themeMode = mode
+    },
+    asFontFamilyChange(fontFamily) {
+      this.fontFamily = fontFamily
+      document.body.setAttribute('style', `font-family: '${fontFamily}' !important`)
+    },
+    asThemeModeAuto() {
+      const currentTime = moment().valueOf()
+      const lightTime = moment(config.lightTime, 'HH:mm:ss').valueOf()
+      const darkTime = moment(config.darkTime, 'HH:mm:ss').valueOf()
+      this.themeMode = 'auto'
+      if (currentTime < lightTime || currentTime > darkTime) document.documentElement.dataset.mode = 'dark'
+      else document.documentElement.dataset.mode = 'light'
     }
   }
 })

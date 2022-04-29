@@ -14,6 +14,16 @@
         />
       </el-select>
     </el-form-item>
+    <el-form-item label="字体设置">
+      <el-select v-model="formData.fontFamily" @change="fontFamilyChange" placeholder="请选择">
+        <el-option
+            v-for="item in fontFamilyList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+        />
+      </el-select>
+    </el-form-item>
     <el-form-item label="主题大小">
       <el-select v-model="formData.themeSize" placeholder="请选择">
         <el-option
@@ -46,7 +56,8 @@ import { ref } from 'vue'
 import {
   themeModeList,
   themeSizeList,
-  languageList
+  languageList,
+  fontFamilyList
 } from '@/config/dataSource'
 import { useLayoutStore } from '@/store/layout'
 
@@ -54,9 +65,11 @@ const layoutStore = useLayoutStore()
 const formData = ref({
   themeMode: layoutStore.themeMode,
   themeSize: layoutStore.themeSize,
+  fontFamily: layoutStore.fontFamily,
   language: layoutStore.themeLanguage
 })
 
 const themeModeChange = e => layoutStore.asThemeMode(e)
+const fontFamilyChange = e => layoutStore.asFontFamilyChange(e)
 </script>
 

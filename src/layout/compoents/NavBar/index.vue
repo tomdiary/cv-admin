@@ -43,7 +43,7 @@ const state = reactive({
 })
 const layoutStore = useLayoutStore()
 
-const settingsToggle = () => state.settingStatus = !state.settingStatus
+const settingsToggle = () => (state.settingStatus = !state.settingStatus)
 const sidebarToggle = () => layoutStore.asSidebarStatus()
 </script>
 

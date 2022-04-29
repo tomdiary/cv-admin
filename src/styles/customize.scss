@@ -2,8 +2,8 @@ html {
 
   body {
     font-size: $main-size;
-    color: $main-color;
-    background: $main-bgc;
+    //color: $main-color;
+    //background: $main-bgc;
     letter-spacing: .1px;
   }
 
@@ -15,6 +15,13 @@ html {
     bottom: 0;
     left: 0;
     right: 0;
+  }
+}
+
+html[data-mode*="dark"] {
+  body {
+    //@include bgColor('color');
+    @include bgColor('bgColr');
   }
 }
 

@@ -23,3 +23,34 @@ $sidebar-menu-group-item-hover-color: #FFF;
 
 // tagsView
 $tags-view-hei: 44px;
+
+$themes: (
+  light: (
+    bgc: '#EBECF0',
+    color: '#2B2E4A'
+  ),
+  dark: (
+    bgc: '#171717',
+    color: '#d4d4d5'
+  )
+);
+
+@mixin themeIfy {
+  @each $theme-name,
+  $theme-map in $themes {
+    $theme-map: $theme-map !global;
+    [data-mode="#{$theme-name}"] & {
+      @content
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key)
+}
+
+@mixin bgColor($color) {
+  @include themeIfy {
+    background-color: themed($color);
+  }
+}
