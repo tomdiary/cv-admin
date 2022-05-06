@@ -24,21 +24,24 @@ $sidebar-menu-group-item-hover-color: #FFF;
 // tagsView
 $tags-view-hei: 44px;
 
+$theme-name: null;
+$theme-map: null;
+
 $themes: (
   light: (
-    bgc: '#EBECF0',
-    color: '#2B2E4A'
+    bgc: #EBECF0,
+    color: #2B2E4A
   ),
   dark: (
-    bgc: '#171717',
-    color: '#d4d4d5'
+    bgc: #171717,
+    color: #d4d4d5
   )
 );
 
-@mixin themeIfy {
-  @each $theme-name,
-  $theme-map in $themes {
-    $theme-map: $theme-map !global;
+@mixin themeIfy() {
+  @each $item-name, $item-list in $themes {
+    $theme-name: $item-name !global;
+    $theme-map: $item-list !global;
     [data-mode="#{$theme-name}"] & {
       @content
     }
@@ -46,11 +49,11 @@ $themes: (
 }
 
 @function themed($key) {
-  @return map-get($theme-map, $key)
+  @return map-get($theme-map, $key);
 }
 
-@mixin bgColor($color) {
-  @include themeIfy {
-    background-color: themed($color);
+@mixin bgColor() {
+  @include themeIfy() {
+    background-color: themed('bgc');
   }
 }

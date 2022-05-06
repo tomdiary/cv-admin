@@ -2,9 +2,10 @@ html {
 
   body {
     font-size: $main-size;
-    //color: $main-color;
+    color: $main-color;
     //background: $main-bgc;
     letter-spacing: .1px;
+    //@include bgColor('bgc');
   }
 
   body,
@@ -18,11 +19,8 @@ html {
   }
 }
 
-html[data-mode*="dark"] {
-  body {
-    //@include bgColor('color');
-    @include bgColor('bgColr');
-  }
+body {
+  @include bgColor();
 }
 
 .global-settings {

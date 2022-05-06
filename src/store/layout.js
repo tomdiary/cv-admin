@@ -14,6 +14,7 @@ export const useLayoutStore = defineStore('layoutStore', {
           'themeMode',
           'themeSize',
           'themeFont',
+          'fontFamily',
           'themeLanguage'
         ]
       }
@@ -40,7 +41,7 @@ export const useLayoutStore = defineStore('layoutStore', {
       } else {
         document.documentElement.dataset.mode = this.themeMode
       }
-      if (!this.fontFamily) this.asFontFamilyChange(config.fontFamily)
+      this.asFontFamilyChange(this.fontFamily)
       if (!this.themeSize) this.themeSize = config.themeSize
       if (!this.themeLanguage) this.themeLanguage = config.themeLanguage
       if (!this.sidebarStatus) this.sidebarStatus = config.sidebarStatus
@@ -54,16 +55,15 @@ export const useLayoutStore = defineStore('layoutStore', {
       this.themeMode = mode
     },
     asFontFamilyChange(fontFamily) {
-      this.fontFamily = fontFamily
-      document.body.setAttribute('style', `font-family: '${fontFamily}' !important`)
+      this.fontFamily = fontFamily || config.fontFamily
+      document.body.setAttribute('style', `font-family: '${this.fontFamily}' !important`)
     },
     asThemeModeAuto() {
+      this.themeMode = 'auto'
       const currentTime = moment().valueOf()
       const lightTime = moment(config.lightTime, 'HH:mm:ss').valueOf()
       const darkTime = moment(config.darkTime, 'HH:mm:ss').valueOf()
-      this.themeMode = 'auto'
-      if (currentTime < lightTime || currentTime > darkTime) document.documentElement.dataset.mode = 'dark'
-      else document.documentElement.dataset.mode = 'light'
+      document.documentElement.dataset.mode = currentTime < lightTime || currentTime > darkTime ? 'dark' : 'light'
     }
   }
 })
