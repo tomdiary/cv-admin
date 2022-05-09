@@ -21,3 +21,26 @@ export const fontFamilyList = [
   { label: '思源黑体-常规', value: 'siyuan-black-body-conventional' },
   { label: '普惠体-Regular', value: 'inclusive-body-regular' }
 ]
+
+export const predefineColors = [
+  '#006E7F',
+  '#005555',
+  '#001E6C',
+  '#125B50',
+  '#40DFEF',
+  '#06113C',
+  '#FFD36E',
+  '#FD5D5D',
+  '#332FD0',
+  '#4D77FF',
+  '#019267',
+  '#EB5353',
+  '#764AF1',
+  '#541690',
+  '#00B8A9',
+  '#E23E57',
+  '#A1EAFB',
+  '#3EC1D3',
+  '#BE9FE1',
+  '#1FAB89'
+]

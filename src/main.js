@@ -22,10 +22,6 @@ window.$api = api
 async function bootstrap() {
   const app = createApp(App)
 
-  app.config.globalProperties.$ELEMENT = {
-    size: 'small'
-  }
-
   app.use(router)
 
   app.component('svg-icon', SvgIcon)

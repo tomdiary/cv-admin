@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import config from '@/config'
 import moment from 'moment'
+import { calculateWeightColor } from '@/utils'
 
 export const useLayoutStore = defineStore('layoutStore', {
   persist: {
@@ -15,6 +16,7 @@ export const useLayoutStore = defineStore('layoutStore', {
           'themeSize',
           'themeFont',
           'fontFamily',
+          'themeColor',
           'themeLanguage'
         ]
       }
@@ -25,14 +27,15 @@ export const useLayoutStore = defineStore('layoutStore', {
     themeMode: null,
     themeSize: null,
     fontFamily: null,
-    themeLanguage: null
+    themeLanguage: null,
+    themeColor: null
   }),
   getters: {
     gtSidebarStatus: state => state.sidebarStatus !== 'open'
   },
   actions: {
     // 初始化主题配置
-    asInitThemeConfig() {
+    asInitThemeConfig(app) {
       if ((!this.themeMode && config.themeMode === 'auto') || this.themeMode === 'auto') {
         this.asThemeModeAuto()
       } else if (!this.themeMode && config.themeMode !== 'auto') {
@@ -42,21 +45,35 @@ export const useLayoutStore = defineStore('layoutStore', {
         document.documentElement.dataset.mode = this.themeMode
       }
       this.asFontFamilyChange(this.fontFamily)
-      if (!this.themeSize) this.themeSize = config.themeSize
+      this.asThemeColorChange(this.themeColor)
+      this.asThemeSizeChange(this.themeSize)
       if (!this.themeLanguage) this.themeLanguage = config.themeLanguage
       if (!this.sidebarStatus) this.sidebarStatus = config.sidebarStatus
     },
     asSidebarStatus() {
       this.sidebarStatus = this.sidebarStatus === 'close' ? 'open' : 'close'
     },
+    asThemeSizeChange(size) {
+      this.themeSize = size || config.themeSize
+    },
     asThemeMode(mode) {
       if (mode === 'auto') return this.asThemeModeAuto()
       document.documentElement.dataset.mode = mode
       this.themeMode = mode
     },
+    asThemeColorChange(color) {
+      this.themeColor = color || config.themeColor
+      document.body.style.setProperty('--el-color-primary', this.themeColor)
+      document.body.style.setProperty('--el-color-primary-light-3', calculateWeightColor(this.themeColor, '#FFFFFF', 0.3))
+      document.body.style.setProperty('--el-color-primary-light-5', calculateWeightColor(this.themeColor, '#FFFFFF', 0.5))
+      document.body.style.setProperty('--el-color-primary-light-7', calculateWeightColor(this.themeColor, '#FFFFFF', 0.7))
+      document.body.style.setProperty('--el-color-primary-light-8', calculateWeightColor(this.themeColor, '#FFFFFF', 0.8))
+      document.body.style.setProperty('--el-color-primary-light-9', calculateWeightColor(this.themeColor, '#FFFFFF', 0.9))
+      document.body.style.setProperty('--el-color-primary-dark-2', calculateWeightColor(this.themeColor, '#000000', 0.2))
+    },
     asFontFamilyChange(fontFamily) {
       this.fontFamily = fontFamily || config.fontFamily
-      document.body.setAttribute('style', `font-family: '${this.fontFamily}' !important`)
+      document.body.style.fontFamily = this.fontFamily
     },
     asThemeModeAuto() {
       this.themeMode = 'auto'

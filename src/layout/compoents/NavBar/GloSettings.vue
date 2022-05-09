@@ -7,11 +7,11 @@
     <el-form-item label="主题模式">
       <el-select v-model="formData.themeMode" @change="themeModeChange" placeholder="请选择">
         <el-option
-          v-for="item in themeModeList"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+            v-for="item in themeModeList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+        </el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="字体设置">
@@ -20,18 +20,21 @@
             v-for="item in fontFamilyList"
             :key="item.value"
             :label="item.label"
-            :value="item.value"
-        />
+            :value="item.value">
+        </el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="主题大小">
-      <el-select v-model="formData.themeSize" placeholder="请选择">
+      <el-select
+          v-model="formData.themeSize"
+          @change="themeItemChange('asThemeSizeChange', $event)"
+          placeholder="请选择">
         <el-option
             v-for="item in themeSizeList"
             :key="item.value"
             :label="item.label"
-            :value="item.value"
-        />
+            :value="item.value">
+        </el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="国际化">
@@ -40,13 +43,19 @@
             v-for="item in languageList"
             :key="item.value"
             :label="item.label"
-            :value="item.value"
-        />
+            :value="item.value">
+        </el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="主题颜色">
+      <el-color-picker
+          v-model="formData.themeColor"
+          :predefine="predefineColors"
+          @change="themeColorChange">
+      </el-color-picker>
     </el-form-item>
     <el-form-item label="面包屑">
+      <el-button type="primary">Primary</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -57,7 +66,8 @@ import {
   themeModeList,
   themeSizeList,
   languageList,
-  fontFamilyList
+  fontFamilyList,
+  predefineColors
 } from '@/config/dataSource'
 import { useLayoutStore } from '@/store/layout'
 
@@ -66,10 +76,13 @@ const formData = ref({
   themeMode: layoutStore.themeMode,
   themeSize: layoutStore.themeSize,
   fontFamily: layoutStore.fontFamily,
-  language: layoutStore.themeLanguage
+  language: layoutStore.themeLanguage,
+  themeColor: layoutStore.themeColor
 })
 
 const themeModeChange = e => layoutStore.asThemeMode(e)
 const fontFamilyChange = e => layoutStore.asFontFamilyChange(e)
+const themeColorChange = e => layoutStore.asThemeColorChange(e)
+const themeItemChange = (themeItem, e) => layoutStore[themeItem](e)
 </script>
 

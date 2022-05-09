@@ -43,7 +43,7 @@ export default {
       mainHeight: 0
     })
 
-    onMounted(() => {
+    unted(() => {
       nextTick(() => {
         setTimeout(() => {
           calculateSize()

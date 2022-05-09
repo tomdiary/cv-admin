@@ -52,7 +52,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "@/styles/variable.scss";'
+        // 不推荐使用 import 引入，Sass 官方会在接下来几年逐步淘汰 import，详情：https://sass-lang.com/documentation/at-rules/import
+        additionalData: `@use "@/styles/variable.scss" as *;`
       }
     }
   }

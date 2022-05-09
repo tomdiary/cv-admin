@@ -1,9 +1,11 @@
+@use "element" as *;
+
 /* scss变量 */
 $main-padding: 12px;
 $main-interval: 12px;
 $main-size: 16px;
 $main-bgc: #EBECF0;
-$main-color: #2B2E4A;         // https://colorhunt.co/palette/2b2e4ae8454590374953354a
+$main-color: var(--el-color-primary, #E84545);         // https://colorhunt.co/palette/2b2e4ae8454590374953354a
 $secondary-color: #E84545;    // https://colorhunt.co/palette/2b2e4ae8454590374953354a
 
 // header
@@ -50,6 +52,10 @@ $themes: (
 
 @function themed($key) {
   @return map-get($theme-map, $key);
+}
+
+@function color($key) {
+  @return map-get($colors, $key, 'base')
 }
 
 @mixin bgColor() {
