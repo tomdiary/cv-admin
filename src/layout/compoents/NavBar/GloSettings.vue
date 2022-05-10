@@ -55,7 +55,6 @@
       </el-color-picker>
     </el-form-item>
     <el-form-item label="面包屑">
-      <el-button type="primary">Primary</el-button>
     </el-form-item>
   </el-form>
 </template>

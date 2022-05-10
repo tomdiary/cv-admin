@@ -18,56 +18,47 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import {
-  toRefs,
-  reactive,
+  ref,
   nextTick,
   onMounted
 } from 'vue'
 import config from '@/config'
 
-export default {
-  props: {
-    isFooter: {
-      default: true,
-      type: Boolean
-    },
-    footerDirection: {
-      default: 'right',
-      type: String
-    }
+const props = defineProps({
+  isFooter: {
+    default: true,
+    type: Boolean
   },
-  setup(props) {
-    const state = reactive({
-      mainHeight: 0
-    })
-
-    unted(() => {
-      nextTick(() => {
-        setTimeout(() => {
-          calculateSize()
-        }, 300)
-      })
-      window.onresize = () => {
-        calculateSize()
-      }
-    })
-
-    const calculateSize = () => {
-      const layoutHeaderMarginBottom = config.interval
-      const layoutHeader = document.querySelector('.page-layout-header')
-      const layoutMain = document.querySelector('.page-layout-main')
-      const layoutFooter = document.querySelector('.page-layout-footer')
-      layoutMain.setAttribute(
-        'style',
-        `height: calc(100% - ${layoutHeader.offsetHeight + layoutHeaderMarginBottom + (props.isFooter ? layoutFooter.offsetHeight : 0)}px)`
-      )
-      state.mainHeight = layoutMain.offsetHeight
-    }
-
-    return { ...toRefs(state) }
+  footerDirection: {
+    default: 'right',
+    type: String
   }
+})
+const mainHeight = ref(0)
+
+onMounted(() => {
+  nextTick(() => {
+    setTimeout(() => {
+      calculateSize()
+    }, 300)
+  })
+  window.onresize = () => {
+    calculateSize()
+  }
+})
+
+const calculateSize = () => {
+  const layoutHeaderMarginBottom = config.interval
+  const layoutHeader = document.querySelector('.page-layout-header')
+  const layoutMain = document.querySelector('.page-layout-main')
+  const layoutFooter = document.querySelector('.page-layout-footer')
+  layoutMain.setAttribute(
+    'style',
+    `height: calc(100% - ${layoutHeader.offsetHeight + layoutHeaderMarginBottom + (props.isFooter ? layoutFooter.offsetHeight : 0)}px)`
+  )
+  mainHeight.value = layoutMain.offsetHeight
 }
 </script>
 
@@ -82,7 +73,7 @@ export default {
     margin-bottom: $main-interval;
     padding: $main-interval;
     border-radius: 4px;
-    background-color: #FFF;
+    background-color: $main-bgc;
   }
 
   .page-layout-main {}
@@ -92,7 +83,7 @@ export default {
     align-items: center;
     padding: $main-interval;
     border-radius: 4px;
-    background-color: #FFF;
+    background-color: $main-bgc;
   }
 
   .page-layout-footer-left {

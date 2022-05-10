@@ -2,9 +2,10 @@ html {
 
   body {
     font-size: $main-size;
-    color: $main-color;
+    font-weight: 400;
+    color: $main-text-color;
     letter-spacing: .1px;
-    //@include bgColor('bgc');
+    background-color: $main-bgc;
   }
 
   body,
@@ -18,9 +19,9 @@ html {
   }
 }
 
-body {
-  @include bgColor();
-}
+//body {
+//  @include bgColor();
+//}
 
 .global-settings {
   width: 16vw !important;

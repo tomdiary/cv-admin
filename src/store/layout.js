@@ -40,9 +40,9 @@ export const useLayoutStore = defineStore('layoutStore', {
         this.asThemeModeAuto()
       } else if (!this.themeMode && config.themeMode !== 'auto') {
         this.themeMode = config.themeMode
-        document.documentElement.dataset.mode = config.themeMode
+        document.documentElement.classList.add(config.themeMode)
       } else {
-        document.documentElement.dataset.mode = this.themeMode
+        document.documentElement.classList.add(this.themeMode)
       }
       this.asFontFamilyChange(this.fontFamily)
       this.asThemeColorChange(this.themeColor)
@@ -58,7 +58,8 @@ export const useLayoutStore = defineStore('layoutStore', {
     },
     asThemeMode(mode) {
       if (mode === 'auto') return this.asThemeModeAuto()
-      document.documentElement.dataset.mode = mode
+      document.documentElement.classList.remove(mode === 'dark' ? 'light' : 'dark')
+      document.documentElement.classList.add(mode)
       this.themeMode = mode
     },
     asThemeColorChange(color) {
@@ -80,7 +81,9 @@ export const useLayoutStore = defineStore('layoutStore', {
       const currentTime = moment().valueOf()
       const lightTime = moment(config.lightTime, 'HH:mm:ss').valueOf()
       const darkTime = moment(config.darkTime, 'HH:mm:ss').valueOf()
-      document.documentElement.dataset.mode = currentTime < lightTime || currentTime > darkTime ? 'dark' : 'light'
+      if (document.documentElement.classList.contains('dark')) document.documentElement.classList.remove('dark')
+      if (document.documentElement.classList.contains('light')) document.documentElement.classList.remove('light')
+      document.documentElement.classList.add(currentTime < lightTime || currentTime > darkTime ? 'dark' : 'light')
     }
   }
 })

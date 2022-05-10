@@ -39,7 +39,7 @@ import GloSettings from './GloSettings.vue'
 import { Share, Operation, Fold, Expand } from '@element-plus/icons-vue'
 
 const state = reactive({
-  settingStatus: true
+  settingStatus: false
 })
 const layoutStore = useLayoutStore()
 

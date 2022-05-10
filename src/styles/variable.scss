@@ -1,12 +1,16 @@
 @use "element" as *;
 
-/* scss变量 */
+/**
+ * 公共变量，更多色彩搭配请参考下面的链接
+ * @link https://colorhunt.co/palette/2b2e4ae8454590374953354a
+ */
 $main-padding: 12px;
 $main-interval: 12px;
 $main-size: 16px;
-$main-bgc: #EBECF0;
-$main-color: var(--el-color-primary, #E84545);         // https://colorhunt.co/palette/2b2e4ae8454590374953354a
-$secondary-color: #E84545;    // https://colorhunt.co/palette/2b2e4ae8454590374953354a
+$main-text-color: var(--el-text-color-primary);
+$main-bgc: var(--el-bg-color);
+$main-color: var(--el-color-primary, #E84545);
+$secondary-color: #E84545;
 
 // header
 $header-hei: 52px;
@@ -44,7 +48,7 @@ $themes: (
   @each $item-name, $item-list in $themes {
     $theme-name: $item-name !global;
     $theme-map: $item-list !global;
-    [data-mode="#{$theme-name}"] & {
+    [class="#{$theme-name}"] & {
       @content
     }
   }
