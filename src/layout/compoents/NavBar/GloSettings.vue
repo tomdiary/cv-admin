@@ -68,7 +68,7 @@ import {
   fontFamilyList,
   predefineColors
 } from '@/config/dataSource'
-import { useLayoutStore } from '@/store/layout'
+import useLayoutStore from '@/store/layout'
 
 const layoutStore = useLayoutStore()
 const formData = ref({

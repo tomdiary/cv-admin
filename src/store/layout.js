@@ -3,7 +3,7 @@ import config from '@/config'
 import moment from 'moment'
 import { calculateWeightColor } from '@/utils'
 
-export const useLayoutStore = defineStore('layoutStore', {
+const useLayoutStore = defineStore('layoutStore', {
   persist: {
     enabled: true,
     strategies: [
@@ -31,7 +31,8 @@ export const useLayoutStore = defineStore('layoutStore', {
     themeColor: null
   }),
   getters: {
-    gtSidebarStatus: state => state.sidebarStatus !== 'open'
+    gtSidebarStatus: state => state.sidebarStatus !== 'open',
+    gtThemeMode: state => state.themeMode
   },
   actions: {
     // 初始化主题配置
@@ -73,8 +74,8 @@ export const useLayoutStore = defineStore('layoutStore', {
       document.body.style.setProperty('--el-color-primary-dark-2', calculateWeightColor(this.themeColor, '#000000', 0.2))
     },
     asFontFamilyChange(fontFamily) {
-      this.fontFamily = fontFamily || config.fontFamily
-      document.body.style.fontFamily = this.fontFamily
+      // this.fontFamily = fontFamily || config.fontFamily
+      // document.body.style.fontFamily = this.fontFamily
     },
     asThemeModeAuto() {
       this.themeMode = 'auto'
@@ -87,3 +88,5 @@ export const useLayoutStore = defineStore('layoutStore', {
     }
   }
 })
+
+export default useLayoutStore

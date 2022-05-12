@@ -34,7 +34,7 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { useLayoutStore } from '@/store/layout'
+import useLayoutStore from '@/store/layout'
 import GloSettings from './GloSettings.vue'
 import { Share, Operation, Fold, Expand } from '@element-plus/icons-vue'
 
@@ -93,7 +93,7 @@ const sidebarToggle = () => layoutStore.asSidebarStatus()
     }
 
     .operation-item:hover {
-      background-color: #CCC;
+      background-color: $cv-fill-color-light;
     }
   }
 }

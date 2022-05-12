@@ -1,6 +1,9 @@
-@import 'element-plus/theme-chalk/dark/css-vars.css';
+@import "element-plus/theme-chalk/dark/css-vars.css";
+@import "fontisto/css/fontisto/fontisto.min.css";
+@import "nprogress/nprogress.css";
+@import "normalize.css";
 @import "./variable";
-@import "./normalize";
+@import "./basic";
 @import "./transition";
 @import "./customize";
 @import "./sidebar";

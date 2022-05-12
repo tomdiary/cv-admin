@@ -20,7 +20,7 @@
 <script setup>
 import { watch, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useLayoutStore } from '@/store/layout'
+import useLayoutStore from '@/store/layout'
 import { AppMain, Sidebar, NavBar, TagsView } from './compoents'
 
 const route = useRoute()

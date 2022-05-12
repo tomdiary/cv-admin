@@ -3,7 +3,9 @@
  * @author TomDiary
  * @link https://www.7b3.rog or https://github.com/tomdiary
  */
+import NProgress from 'nprogress'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { getPageTitle } from '@/utils'
 
 const routes = [
   {
@@ -63,6 +65,20 @@ const authorityRoutes = [
     ]
   },
   {
+    path: '/echarts',
+    redirect: '/echarts/default',
+    component: () => import('@lay/index.vue'),
+    meta: { title: 'ECharts', icon: 'echarts' },
+    children: [
+      {
+        path: 'default',
+        name: 'EChartsDefault',
+        meta: { title: '默认ECharts' },
+        component: () => import('@/views/echarts/default/index.vue')
+      }
+    ]
+  },
+  {
     path: '/cvc',
     redirect: '/cvc/list',
     component: () => import('@lay/index.vue'),
@@ -79,6 +95,12 @@ const authorityRoutes = [
         name: 'CvcDialog',
         meta: { title: '对话框' },
         component: () => import('@views/cvc/dialog/index.vue')
+      },
+      {
+        path: 'icons',
+        name: 'CvcIcons',
+        meta: { title: '图标' },
+        component: () => import('@views/cvc/icons/index.vue')
       }
     ]
   }
@@ -87,6 +109,17 @@ const authorityRoutes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...routes, ...authorityRoutes]
+})
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  document.title = getPageTitle(to.meta.title)
+  next()
+})
+
+router.afterEach((to) => {
+  NProgress.done()
+  document.title = getPageTitle(to.meta.title)
 })
 
 export default router

@@ -22,6 +22,7 @@ module.exports = {
   ],
   globals: {
     $api: true,
+    $CvEcharts: true,
     AMap: true,
     AMapUI: true,
     defineProps: true

@@ -1,9 +1,9 @@
-import { accessTokenTime, refreshTokenTime } from '../_config'
+import { accessTokenTime, refreshTokenTime, urlMark } from '../_config'
 import { encode } from 'js-base64'
 
 export default [
   {
-    url: '/mock-api/user/login',
+    url: `${urlMark}user/login`,
     method: 'POST',
     response: res => {
       if (res.body.username !== 'admin' || res.body.password !== '123456') {
@@ -27,7 +27,7 @@ export default [
     }
   },
   {
-    url: '/mock-api/user/logout',
+    url: `${urlMark}user/logout`,
     method: 'POST',
     response: () => ({
       code: 0,

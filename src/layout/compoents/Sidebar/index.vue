@@ -20,6 +20,16 @@
             <el-menu-item-group>
               <el-menu-item index="/cvc/list">组件列表</el-menu-item>
               <el-menu-item index="/cvc/dialog">对话框</el-menu-item>
+              <el-menu-item index="/cvc/icons">图标</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
+          <el-sub-menu index="/echarts">
+            <template #title>
+              <svg-icon icon-class="echarts" />
+              <span>ECharts</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/echarts/default">默认ECharts</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
           <el-sub-menu index="/table">
@@ -48,7 +58,7 @@
 </template>
 
 <script setup>
-import { useLayoutStore } from '@/store/layout'
+import useLayoutStore from '@/store/layout'
 
 const props = defineProps({
   defaultRouter: {

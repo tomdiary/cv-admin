@@ -5,11 +5,11 @@
  */
 import { createApp } from 'vue'
 import initStore from '@/store'
+import initComponents from '@/components/init'
 import initDirective from '@/directive'
 import initConfig from '@/config/init'
 import router from '@/router'
 import App from '@/App.vue'
-import { SvgIcon } from '@com'
 import api from '@/api'
 
 // style
@@ -24,7 +24,7 @@ async function bootstrap() {
 
   app.use(router)
 
-  app.component('svg-icon', SvgIcon)
+  initComponents(app)
 
   initStore(app)
 

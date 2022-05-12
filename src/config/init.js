@@ -1,4 +1,4 @@
-import { useLayoutStore } from '@/store/layout'
+import useLayoutStore from '@/store/layout'
 import moment from 'moment'
 
 export default app => {

@@ -3,6 +3,7 @@
  * @author TomDiary
  * @link https://github.com/tomdiary
  */
+import config from '@/config'
 
 /**
  * 计算颜色
@@ -27,4 +28,16 @@ export const calculateWeightColor = (color1, color2, weight) => {
   gColor = (`0${(gColor || 0).toString(16)}`).slice(-2)
   bColor = (`0${(bColor || 0).toString(16)}`).slice(-2)
   return `#${rColor}${gColor}${bColor}`
+}
+
+/**
+ * 获取标题
+ * @param {*} pageTitle
+ * @returns
+ */
+export const getPageTitle = (pageTitle) => {
+  if (pageTitle) {
+    return `${pageTitle} - ${config.title}`
+  }
+  return `${config.title}`
 }
