@@ -27,7 +27,7 @@ const route = useRoute()
 const defaultRouter = ref('/')
 const layoutStore = useLayoutStore()
 
-watch(route, (newVal, oldVal) => defaultRouter.value = newVal.path || '/')
+watch(route, (newVal, oldVal) => (defaultRouter.value = newVal.path || '/'))
 
 onMounted(() => {
   defaultRouter.value = route.path
@@ -58,6 +58,7 @@ onMounted(() => {
       left: 0;
       top: 0;
       bottom: 0;
+      z-index: 100;
       background-color: $main-bgc;
     }
 

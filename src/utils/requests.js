@@ -4,11 +4,11 @@
  * @link https://www.7b3.rog or https://github.com/tomdiary
  */
 import axios from 'axios'
-import { getAccessToken, getRefreshToken } from '@util/baseStorage'
+import { useUserStore } from '@/store/user'
 // import { ElMessage } from 'element-plus'
 
 const requests = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
@@ -17,9 +17,10 @@ const requests = axios.create({
 
 // 请求体拦截器
 requests.interceptors.request.use(request => {
+  const userStore = useUserStore()
   // 携带token
-  if (getAccessToken() && getRefreshToken()) {
-    request.headers.Authorization = `bearer ${getAccessToken()}`
+  if (userStore.accessToken && userStore.refreshToken) {
+    request.headers.Authorization = `bearer ${userStore.accessToken}`
   }
   return request
 }, error => Promise.reject(error))

@@ -16,7 +16,7 @@
                 v-model="formData.username"
                 placeholder="用户名"
                 clearable>
-              <svg-icon slot="prefix" icon-class="username" />
+              <!-- <svg-icon slot="prefix" icon-class="username" /> -->
             </el-input>
           </el-form-item>
           <el-form-item prop="password">
@@ -26,7 +26,7 @@
                 v-model="formData.password"
                 placeholder="密码"
                 clearable>
-              <svg-icon slot="prefix" icon-class="password" />
+              <!-- <svg-icon slot="prefix" icon-class="password" /> -->
             </el-input>
           </el-form-item>
           <el-form-item>
@@ -41,54 +41,42 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref } from 'vue'
-import { useStore } from 'vuex'
+import { useUserStore } from '@/store/user'
 
-export default {
-  setup(props) {
-    const store = useStore()
-    const formData = reactive({
-      username: 'admin',
-      password: '123456',
-      isPasswd: false
-    })
-    const formRef = ref(null)
-    const loading = ref(false)
-    const formRules = reactive({
-      username: [
-        { required: true, message: '请填写账号', trigger: 'blur' },
-        { min: 5, max: 10, message: '长度在 5 到 10 个字符', trigger: 'blur' }
-      ],
-      password: [
-        { required: true, message: '请填写密码', trigger: 'blur' },
-        { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
-      ]
-    })
+const store = useUserStore()
+const formData = reactive({
+  username: 'admin',
+  password: '123456',
+  isPasswd: false
+})
+const formRef = ref(null)
+const loading = ref(false)
+const formRules = reactive({
+  username: [
+    { required: true, message: '请填写账号', trigger: 'blur' },
+    { min: 5, max: 10, message: '长度在 5 到 10 个字符', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '请填写密码', trigger: 'blur' },
+    { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
+  ]
+})
 
-    const onSubmit = () => {
-      formRef.value.validate((valid) => {
-        if (!valid) return false
-        loading.value = true
-        const userInfo = {
-          username: formData.username,
-          password: formData.password
-        }
-        store.dispatch('user/atUserLogin', userInfo).then(res => {
-          loading.value = false
-          console.log(store.state.user)
-        })
-      })
+const onSubmit = () => {
+  formRef.value.validate((valid) => {
+    if (!valid) return false
+    loading.value = true
+    const userInfo = {
+      username: formData.username,
+      password: formData.password
     }
-
-    return {
-      formRef,
-      formData,
-      formRules,
-      loading,
-      onSubmit
-    }
-  }
+    store.atUserLogin(userInfo)
+    // store.atUserLogin(userInfo).then(res => {
+    //   loading.value = false
+    // })
+  })
 }
 </script>
 
@@ -99,7 +87,7 @@ export default {
 
     .el-input__inner {
       padding: 26px 20px 26px 50px !important;
-      color: #FFF !important;
+      // color: #FFF !important;
       font-size: 18px !important;
       background-color: transparent !important;
       border: 2px solid #16A3EA;
