@@ -21,22 +21,34 @@
 <script setup>
 import {
   ref,
+  watch,
   nextTick,
   onMounted
 } from 'vue'
 import config from '@/config'
+import useLayoutStore from '@/store/layout'
 
 const props = defineProps({
+  // 是否需要底部操作栏
   isFooter: {
     default: true,
     type: Boolean
   },
+  // 是否需要滚动条
+  isScrollY: {
+    default: false,
+    type: Boolean
+  },
+  // 控制底部操作栏水平位置：left/right
   footerDirection: {
     default: 'right',
     type: String
   }
 })
 const mainHeight = ref(0)
+const layoutState = useLayoutStore()
+
+watch(() => layoutState.themeSize, () => calculateSize())
 
 onMounted(() => {
   nextTick(() => {
