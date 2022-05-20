@@ -20,7 +20,7 @@ requests.interceptors.request.use(request => {
   const userStore = useUserStore()
   // 携带token
   if (userStore.accessToken && userStore.refreshToken) {
-    request.headers.Authorization = `bearer ${userStore.accessToken}`
+    request.headers.Authorization = `Bearer ${userStore.accessToken}`
   }
   return request
 }, error => Promise.reject(error))

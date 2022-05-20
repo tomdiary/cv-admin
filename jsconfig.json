@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@com/*": ["src/components/*"],
+      "@util/*": ["src/utils/*"],
+      "@lay/*": ["src/layout/*"],
+      "@views/*": ["src/views/*"]
+    },
+    "target": "ES6",
+    "module": "CommonJS"
+  },
+  "exclude": ["node_modules"]
+}

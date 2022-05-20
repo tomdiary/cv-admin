@@ -1,27 +1,45 @@
-import { accessTokenTime, refreshTokenTime, urlMark } from '../_config'
-import { encode } from 'js-base64'
+import { urlMark } from '../_config'
+import { encryptAccessToken, encryptRefreshToken } from '../_utils'
+
+const user = {
+  admin: {
+    id: 1,
+    name: '超级管理员',
+    username: 'admin',
+    password: 'e10adc3949ba59abbe56e057f20f883e',
+    avatar: 'https://i.loli.net/2021/09/26/YtP2Z9BrA3co8Vh.jpg'
+  },
+  test: {
+    id: 2,
+    name: '测试员',
+    username: 'test',
+    password: 'e10adc3949ba59abbe56e057f20f883e',
+    avatar: 'https://i.loli.net/2021/09/26/YtP2Z9BrA3co8Vh.jpg'
+  },
+  dev: {
+    id: 3,
+    name: '开发员',
+    username: 'dev',
+    password: 'e10adc3949ba59abbe56e057f20f883e',
+    avatar: 'https://i.loli.net/2021/09/26/YtP2Z9BrA3co8Vh.jpg'
+  }
+}
 
 export default [
   {
     url: `${urlMark}user/login`,
     method: 'POST',
     response: res => {
-      if (res.body.username !== 'admin' || res.body.password !== '123456') {
-        return {
-          code: 1,
-          msg: '账户或密码错误'
-        }
-      }
+      const { username, password } = res.body
+      const userlist = Object.keys(user)
+      if (!userlist.includes(username)) return { code: 50001, msg: '账户或密码错误' }
+      if (user[username].password !== password) return { code: 50001, msg: '账户或密码错误' }
       return {
-        code: 0,
+        code: 200,
         data: {
-          accessToken: encode(String(new Date().getTime() + accessTokenTime)),
-          refreshToken: encode(String(new Date().getTime() + refreshTokenTime)),
-          userInfo: {
-            id: 1,
-            name: '柒比叁',
-            avatar: 'https://i.loli.net/2021/09/26/YtP2Z9BrA3co8Vh.jpg'
-          }
+          accessToken: encryptAccessToken(user.admin),
+          refreshToken: encryptRefreshToken(user.admin),
+          userInfo: user.admin
         }
       }
     }

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { useRouter } from 'vue-router'
-import { ElNotification } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
 
 export const useUserStore = defineStore('userStore', {
   persist: {
@@ -27,17 +27,16 @@ export const useUserStore = defineStore('userStore', {
     atUserLogin(formData) {
       return new Promise((resolve, reject) => {
         $api.userLogin(formData).then(response => {
-          const { data } = response
-          if (!data.code) {
-            ElNotification.success('登录成功')
-            this.accessToken = data.data.accessToken
-            this.refreshToken = data.data.refreshToken
-            this.userInfo = data.data.userInfo
-            useRouter.push({ path: '/' })
-            resolve(data)
+          const { accessToken, refreshToken, userInfo } = response.data
+          if (response.code === 200) {
+            resolve(response.data)
+            ElMessage.success('登录成功')
+            this.accessToken = accessToken
+            this.refreshToken = refreshToken
+            this.userInfo = userInfo
           } else {
-            ElNotification.warning(data.msg)
-            resolve(data)
+            ElMessage.warning(response.msg)
+            resolve(response.data)
           }
         }).catch(error => reject(error))
       })

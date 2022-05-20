@@ -37,6 +37,7 @@ module.exports = {
         max: 2
       }
     }],
+    'vue/multi-word-component-names': 0,
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
     'vue/name-property-casing': ['error', 'PascalCase'],

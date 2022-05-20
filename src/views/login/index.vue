@@ -43,8 +43,11 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
+import md5 from 'md5'
 
+const router = useRouter()
 const store = useUserStore()
 const formData = reactive({
   username: 'admin',
@@ -70,12 +73,18 @@ const onSubmit = () => {
     loading.value = true
     const userInfo = {
       username: formData.username,
-      password: formData.password
+      password: md5(formData.password)
     }
-    store.atUserLogin(userInfo)
-    // store.atUserLogin(userInfo).then(res => {
-    //   loading.value = false
-    // })
+    store.atUserLogin(userInfo).then(res => {
+      if (res.code === 200) {
+        setInterval(() => {
+          loading.value = false
+          router.push({ path: '/' })
+        }, 2500)
+      } else {
+        setInterval(() => (loading.value = false), 1500)
+      }
+    })
   })
 }
 </script>

@@ -1,11 +1,11 @@
 /**
  * @description 主配置文件
  * @author TomDiary
- * @link https://www.7b3.rog or https://github.com/tomdiary
+ * @link https://github.com/tomdiary
  */
 import { createApp } from 'vue'
 import { initStore } from '@/store'
-import initComponents from '@/components/init'
+import { initComponents } from '@/components/init'
 import initDirective from '@/directive'
 import initConfig from '@/config/init'
 import router from '@/router'

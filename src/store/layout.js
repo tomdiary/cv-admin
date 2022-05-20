@@ -32,7 +32,8 @@ const useLayoutStore = defineStore('layoutStore', {
   }),
   getters: {
     gtSidebarStatus: state => state.sidebarStatus !== 'open',
-    gtThemeMode: state => state.themeMode
+    gtThemeMode: state => state.themeMode,
+    gtThemeSize: state => state.themeSize
   },
   actions: {
     // 初始化主题配置

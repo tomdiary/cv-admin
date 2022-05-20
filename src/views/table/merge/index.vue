@@ -1,34 +1,31 @@
 <template>
-  <div class="table-merge">
-    <page-layout :is-footer="false">
-      <template #header>
-        <el-button type="primary">主要按钮</el-button>
-      </template>
-      <template #default="scope">
-        <el-table
-            stripe
-            border
-            :data="tableData"
-            :height="scope.mainHeight"
-            :span-method="tableSpanMethod"
-            style="width: 100%">
-          <template #empty>
-            <el-empty ref="tableEmpty" :image-size="100"></el-empty>
-          </template>
-          <el-table-column type="selection" width="55" align="center"></el-table-column>
-          <el-table-column prop="name" label="名称" align="center"></el-table-column>
-          <el-table-column prop="code" label="编号" align="center"></el-table-column>
-          <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
-          <el-table-column prop="phone" label="手机号" align="center"></el-table-column>
-        </el-table>
-      </template>
-    </page-layout>
-  </div>
+  <cv-page-layout :is-footer="false">
+    <template #header>
+      <el-button type="primary">主要按钮</el-button>
+    </template>
+    <template #default="scope">
+      <el-table
+          stripe
+          border
+          :data="tableData"
+          :height="scope.mainHeight"
+          :span-method="tableSpanMethod"
+          style="width: 100%">
+        <template #empty>
+          <el-empty ref="tableEmpty" :image-size="100"></el-empty>
+        </template>
+        <el-table-column type="selection" width="55" align="center"></el-table-column>
+        <el-table-column prop="name" label="名称" align="center"></el-table-column>
+        <el-table-column prop="code" label="编号" align="center"></el-table-column>
+        <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
+        <el-table-column prop="phone" label="手机号" align="center"></el-table-column>
+      </el-table>
+    </template>
+  </cv-page-layout>
 </template>
 
 <script setup>
 import { reactive, onMounted, ref } from 'vue'
-import PageLayout from '@lay/PageLayout'
 
 const state = reactive({
   rowList: [],
@@ -157,9 +154,3 @@ const tableSpanMethod = ({ row, column, rowIndex, columnIndex }) => {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.table-merge {
-  height: 100%;
-}
-</style>
