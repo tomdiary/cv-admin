@@ -1,14 +1,9 @@
-import useLayoutStore from '@/store/layout'
 import moment from 'moment'
+import useLayoutStore from '@/store/layout'
 
-export default app => {
+export const initConfig = app => {
   moment.locale('zh-cn')
 
   const layout = useLayoutStore()
   layout.asInitThemeConfig(app)
-
-  // eslint-disable-next-line no-param-reassign
-  app.config.globalProperties.$ELEMENT = {
-    size: layout.themeSize
-  }
 }

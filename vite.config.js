@@ -23,8 +23,8 @@ export default ({ mode }) => {
         logger: true, // 控制台请求日志
         watchFiles: true, // 监视文件更改
         injectCode: `
-          import { setupProdMockServer } from './mock/_createServer.js';
-          setupProdMockServer();
+          import { setupProdMockServer } from '../mock/_createServer.js'
+          setupProdMockServer()
         `,
         localEnabled,
         prodEnabled
