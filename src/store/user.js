@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ElMessage } from 'element-plus'
-import 'element-plus/theme-chalk/el-message.css'
 
 export const useUserStore = defineStore('userStore', {
   persist: {
