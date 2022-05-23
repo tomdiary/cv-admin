@@ -1,6 +1,6 @@
 <template>
   <div class="table-default">
-    <page-layout footer-direction="right">
+    <cv-page-layout footer-direction="right">
       <template #header>
         <el-button type="primary">主要按钮</el-button>
       </template>
@@ -9,64 +9,90 @@
             stripe
             border
             :data="tableData"
-            :height="scope.mainHeight"
-            style="width: 100%">
+            v-loading="tableLoading"
+            :element-loading-text="tableLoadingText"
+            @selection-change="tableSelectionChange"
+            :height="scope.mainHeight">
           <template #empty>
             <el-empty ref="tableEmpty" :image-size="100"></el-empty>
           </template>
-          <el-table-column type="index" label="#" align="center"></el-table-column>
-          <el-table-column prop="date" label="日期" align="center"></el-table-column>
-          <el-table-column prop="name" label="姓名" align="center"></el-table-column>
-          <el-table-column prop="address" label="地址" align="center"></el-table-column>
+          <el-table-column
+            type="index"
+            label="#"
+            align="center">
+          </el-table-column>
+          <el-table-column
+            prop="vin"
+            label="VIN"
+            align="center">
+          </el-table-column>
+          <el-table-column
+            prop="carNum"
+            width="150"
+            label="车牌"
+            align="center">
+          </el-table-column>
+          <el-table-column
+            prop="terminal"
+            width="150"
+            label="终端号"
+            align="center">
+          </el-table-column>
+          <el-table-column
+            prop="createTime"
+            label="创建时间"
+            align="center">
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            show-overflow-tooltip
+            label="地址"
+            align="center">
+          </el-table-column>
+          <el-table-column
+            prop="customerName"
+            label="客户"
+            align="center">
+          </el-table-column>
         </el-table>
       </template>
       <template #footer>
-        <el-pagination background layout="prev, pager, next" :total="pageTotal"></el-pagination>
+        <el-pagination
+          background
+          @size-change="pageSizeChange(requestType.list, $event)"
+          @current-change="pageCurrentChange(requestType.list, $event)"
+          :page-sizes="[10, 20, 30, 40, 50]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :current-page="pageData.page"
+          :page-size="pageData.pageSize"
+          :total="pageTotal">
+        </el-pagination>
       </template>
-    </page-layout>
+    </cv-page-layout>
   </div>
 </template>
 
-<script>
-import { toRefs, reactive, onMounted } from 'vue'
-import PageLayout from '@lay/PageLayout'
+<script setup>
+import { reactive } from 'vue'
+import { crudHooks } from '@/hooks/crud'
 
-export default {
-  components: {
-    PageLayout
-  },
-  setup() {
-    const state = reactive({
-      pageTotal: 232,
-      tableData: []
-    })
-
-    onMounted(() => {
-      baseInitData()
-      const request = indexedDB.open('cv-admin', 1)
-      request.onsuccess = (event) => {
-        console.log(request.result)
-        console.log('数据库打开成功')
-      }
-      $api.getTableDefaultList()
-    })
-
-    const baseInitData = () => {
-      for (let i = 0; i < 26; i++) {
-        state.tableData.push({
-          date: '2021-10-05 12:10:42',
-          name: '柒比叁',
-          address: '江苏省南京市雨花台区'
-        })
-      }
-    }
-
-    return {
-      ...toRefs(state),
-      baseInitData
-    }
-  }
-}
+const requestType = reactive({
+  add: '',
+  edit: '',
+  del: '',
+  list: 'getVehicleList'
+})
+const {
+  tableData,
+  pageData,
+  pageTotal,
+  tableLoading,
+  tableLoadingText,
+  tableSelectionChange,
+  pageCurrentChange,
+  pageSizeChange
+} = crudHooks({ requestType })
+console.log(tableData, pageTotal)
 </script>
 
 <style scoped lang="scss">

@@ -1,11 +1,10 @@
 /**
  * @description 封装axios
  * @author TomDiary
- * @link https://www.7b3.rog or https://github.com/tomdiary
+ * @link https://github.com/tomdiary
  */
 import axios from 'axios'
 import { useUserStore } from '@/store/user'
-// import { ElMessage } from 'element-plus'
 
 const requests = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -26,6 +25,6 @@ requests.interceptors.request.use(request => {
 }, error => Promise.reject(error))
 
 // 响应体拦截器
-requests.interceptors.response.use(response => response, error => Promise.reject(error))
+requests.interceptors.response.use(response => response.data, error => Promise.reject(error))
 
 export default requests
