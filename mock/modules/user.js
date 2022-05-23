@@ -1,4 +1,4 @@
-import { urlMark } from '../_config'
+import { URL_MARK } from '../_config'
 import { encryptAccessToken, encryptRefreshToken } from '../_utils'
 
 const user = {
@@ -27,25 +27,24 @@ const user = {
 
 export default [
   {
-    url: `${urlMark}user/login`,
+    url: `${URL_MARK}user/login`,
     method: 'POST',
     response: res => {
       const { username, password } = res.body
       const userlist = Object.keys(user)
-      if (!userlist.includes(username)) return { code: 50001, msg: '账户或密码错误' }
-      if (user[username].password !== password) return { code: 50001, msg: '账户或密码错误' }
+      if (!userlist.includes(username) || user[username].password !== password) return { code: 50001, msg: '账户或密码错误' }
       return {
         code: 200,
         data: {
-          accessToken: encryptAccessToken(user.admin),
-          refreshToken: encryptRefreshToken(user.admin),
-          userInfo: user.admin
+          accessToken: encryptAccessToken(user[username]),
+          refreshToken: encryptRefreshToken(user[username]),
+          userInfo: user[username]
         }
       }
     }
   },
   {
-    url: `${urlMark}user/logout`,
+    url: `${URL_MARK}user/logout`,
     method: 'POST',
     response: () => ({
       code: 0,
