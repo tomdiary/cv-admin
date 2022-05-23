@@ -1,6 +1,6 @@
 const modules = import.meta.globEager('./**/*.js')
 
-export default function initDirective(app) {
+export const initDirective = app => {
   Object.keys(modules).forEach((key) => {
     if (!key.includes('./modules/')) return
     const fileName = key.split(/\s*(?:.\/modules\/|.js)\s*/)
