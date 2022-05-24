@@ -37,6 +37,8 @@ module.exports = {
         max: 2
       }
     }],
+    'max-len': ['error', { code: 120 }], // https://eslint.org/docs/rules/max-len
+    'no-confusing-arrow': 0, // https://eslint.org/docs/rules/no-confusing-arrow
     'vue/multi-word-component-names': 0,
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
