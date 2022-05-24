@@ -1,4 +1,4 @@
-import { ref, reactive, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 
 export const crudHooks = ({ requestType }) => {
@@ -30,7 +30,6 @@ export const crudHooks = ({ requestType }) => {
     }
     tableLoading.value = false
     tableData.value = data.data
-    console.log(tableData)
     pageTotal.value = data.total
   }
 
@@ -38,13 +37,20 @@ export const crudHooks = ({ requestType }) => {
 
   const editAction = () => {}
 
-  const submitData = () => {}
+  const submitData = (request) => {}
 
-  const queryAction = () => {}
+  const queryAction = () => {
+  }
 
-  const resetAction = () => {}
+  const resetAction = () => {
+    queryForm.value = {}
+    pageData.value = { page: 1, pageSize: 10 }
+    initBaseData(requestType.list, { ...queryForm.value, ...pageData.value })
+  }
 
   const exportAction = () => {}
+
+  const importAction = () => {}
 
   const pageCurrentChange = (request, page) => {
     pageData.value.page = page
@@ -52,7 +58,6 @@ export const crudHooks = ({ requestType }) => {
   }
 
   const pageSizeChange = (request, pageSize) => {
-    console.log(pageSize)
     pageData.value.page = 1
     pageData.value.pageSize = pageSize
     initBaseData(request, { ...queryForm.value, ...pageData.value })
@@ -60,19 +65,25 @@ export const crudHooks = ({ requestType }) => {
 
   /**
    * 表格多选
-   * @param {*} val [{}, {}]
+   * @param {*} val [{}, ...]
    */
-  const tableSelectionChange = val => {
-    multipleSelection.value = val
-  }
+  const tableSelectionChange = val => (multipleSelection.value = val)
 
   return {
     tableData,
     pageData,
+    queryForm,
     pageTotal,
     initBaseData,
+    tableEmptyDes,
     tableLoading,
     tableLoadingText,
+    queryAction,
+    resetAction,
+    editAction,
+    delAction,
+    importAction,
+    exportAction,
     pageSizeChange,
     pageCurrentChange,
     tableSelectionChange

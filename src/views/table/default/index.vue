@@ -2,7 +2,13 @@
   <div class="table-default">
     <cv-page-layout footer-direction="right">
       <template #header>
-        <el-button type="primary">主要按钮</el-button>
+        <el-button type="primary" :icon="Plus" @clcik="editAction(0)">新增</el-button>
+        <el-button type="warning" :icon="Edit" @click="editAction(1)">编辑</el-button>
+        <el-button type="danger" :icon="Delete" @click="delAction">删除</el-button>
+        <el-button type="primary" :icon="Search" @click="queryAction">查询</el-button>
+        <el-button type="info" :icon="Refresh" @click="resetAction">重置</el-button>
+        <el-button type="primary" :icon="Download" @click="exportAction">导出</el-button>
+        <el-button type="primary" :icon="Upload" @click="importAction">导入</el-button>
       </template>
       <template #default="scope">
         <el-table
@@ -14,7 +20,7 @@
             @selection-change="tableSelectionChange"
             :height="scope.mainHeight">
           <template #empty>
-            <el-empty ref="tableEmpty" :image-size="100"></el-empty>
+            <el-empty ref="tableEmpty" :description="tableEmptyDes" :image-size="100"></el-empty>
           </template>
           <el-table-column
             type="index"
@@ -59,6 +65,7 @@
       <template #footer>
         <el-pagination
           background
+          :disabled="tableLoading"
           @size-change="pageSizeChange(requestType.list, $event)"
           @current-change="pageCurrentChange(requestType.list, $event)"
           :page-sizes="[10, 20, 30, 40, 50]"
@@ -75,24 +82,33 @@
 <script setup>
 import { reactive } from 'vue'
 import { crudHooks } from '@/hooks/crud'
+import { Delete, Edit, Download, Search, Plus, Upload, Refresh } from '@element-plus/icons-vue'
 
 const requestType = reactive({
-  add: '',
-  edit: '',
-  del: '',
+  add: 'addVehicle',
+  edit: 'editVehicle',
+  del: 'deleteVehicle',
   list: 'getVehicleList'
 })
+
 const {
   tableData,
   pageData,
+  queryForm,
   pageTotal,
+  tableEmptyDes,
   tableLoading,
   tableLoadingText,
   tableSelectionChange,
   pageCurrentChange,
-  pageSizeChange
+  pageSizeChange,
+  queryAction,
+  resetAction,
+  editAction,
+  delAction,
+  importAction,
+  exportAction
 } = crudHooks({ requestType })
-console.log(tableData, pageTotal)
 </script>
 
 <style scoped lang="scss">
