@@ -1,7 +1,7 @@
 /**
  * @description Vuex主配置文件
  * @author TomDiary
- * @link https://www.7b3.rog or https://github.com/tomdiary
+ * @link https://github.com/tomdiary
  */
 import { createPinia } from 'pinia'
 import piniaPluginPersist from 'pinia-plugin-persist'
