@@ -59,6 +59,7 @@ onMounted(() => {
       top: 0;
       bottom: 0;
       z-index: 100;
+      transition: width 0.28s;
       background-color: $main-bgc;
     }
 
@@ -67,6 +68,7 @@ onMounted(() => {
       right: 0;
       top: 0;
       bottom: 0;
+      transition: left 0.28s;
     }
   }
 }
