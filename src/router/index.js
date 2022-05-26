@@ -79,28 +79,28 @@ const authorityRoutes = [
     ]
   },
   {
-    path: '/cvc',
-    redirect: '/cvc/list',
+    path: '/com',
+    redirect: '/com/list',
     component: () => import('@lay/index.vue'),
-    meta: { title: '组件库', icon: 'cvc' },
+    meta: { title: '组件库', icon: 'com' },
     children: [
       {
         path: 'list',
-        name: 'CvcList',
+        name: 'ComList',
         meta: { title: '组件列表' },
-        component: () => import('@views/cvc/list/index.vue')
+        component: () => import('@views/com/list/index.vue')
       },
       {
         path: 'dialog',
-        name: 'CvcDialog',
+        name: 'ComDialog',
         meta: { title: '对话框' },
-        component: () => import('@views/cvc/dialog/index.vue')
+        component: () => import('@views/com/dialog/index.vue')
       },
       {
         path: 'icons',
-        name: 'CvcIcons',
+        name: 'ComIcons',
         meta: { title: '图标' },
-        component: () => import('@views/cvc/icons/index.vue')
+        component: () => import('@views/com/icons/index.vue')
       }
     ]
   }

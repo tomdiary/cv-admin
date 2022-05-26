@@ -5,6 +5,7 @@
         <el-menu
             :router="true"
             :unique-opened="true"
+            :collapse-transition="false"
             :collapse="layoutStore.gtSidebarStatus"
             :default-active="defaultRouter"
             class="sidebar-menu">
@@ -12,15 +13,15 @@
             <svg-icon icon-class="dashboard" />
             <template #title>仪表盘</template>
           </el-menu-item>
-          <el-sub-menu index="/cvc">
+          <el-sub-menu index="/com">
             <template #title>
-              <svg-icon icon-class="cvc" />
+              <svg-icon icon-class="com" />
               <span>组件库</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/cvc/list">组件列表</el-menu-item>
-              <el-menu-item index="/cvc/dialog">对话框</el-menu-item>
-              <el-menu-item index="/cvc/icons">图标</el-menu-item>
+              <el-menu-item index="/com/list">组件列表</el-menu-item>
+              <el-menu-item index="/com/dialog">对话框</el-menu-item>
+              <el-menu-item index="/com/icons">图标</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
           <el-sub-menu index="/echarts">
