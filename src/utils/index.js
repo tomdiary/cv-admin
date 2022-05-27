@@ -1,5 +1,6 @@
 /**
- * @description 公共工具包
+ * 公共工具包
+ * @description 常用工具封装
  * @author TomDiary
  * @link https://github.com/tomdiary
  */
@@ -33,7 +34,7 @@ export const calculateWeightColor = (color1, color2, weight) => {
 /**
  * 获取标题
  * @param {*} pageTitle
- * @returns
+ * @returns {string}
  */
 export const getPageTitle = (pageTitle) => {
   if (pageTitle) {

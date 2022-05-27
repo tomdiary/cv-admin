@@ -1,15 +1,22 @@
+/**
+ * 数据源
+ * @author TomDiary
+ */
+// 主题模式
 export const themeModeList = [
   { label: '白天', value: 'light' },
   { label: '黑夜', value: 'dark' },
   { label: '自动', value: 'auto' }
 ]
 
+// 主题大小
 export const themeSizeList = [
   { label: '大', value: 'large' },
   { label: '默认', value: 'default' },
   { label: '小', value: 'small' }
 ]
 
+// 国际化
 export const languageList = [
   { label: '简体中文', value: 'zh-CN' },
   { label: '繁体中文', value: 'zh-TW' },
@@ -17,11 +24,13 @@ export const languageList = [
   { label: '日本語', value: 'ja' }
 ]
 
+// 字体
 export const fontFamilyList = [
   { label: '思源黑体-常规', value: 'siyuan-black-body-conventional' },
   { label: '普惠体-Regular', value: 'inclusive-body-regular' }
 ]
 
+// 主题颜色
 export const predefineColors = [
   '#006E7F',
   '#005555',
@@ -44,3 +53,6 @@ export const predefineColors = [
   '#BE9FE1',
   '#1FAB89'
 ]
+
+// 菜单背景颜色
+export const predefineMenuBgColor = ['#06113C', '#005555']
