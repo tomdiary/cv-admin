@@ -14,11 +14,9 @@ import { LabelLayout, UniversalTransition } from 'echarts/features'
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
 import { CanvasRenderer } from 'echarts/renderers'
 // import { ElMessage, ElBadge } from 'element-plus'
-import { SvgIcon } from '@com'
 import PageLayout from '@lay/PageLayout'
 
 export const initComponents = app => {
-  app.component('svg-icon', SvgIcon)
   app.component('cv-page-layout', PageLayout)
 
   // echarts 注册必须的组件
