@@ -1,6 +1,6 @@
 <template>
   <div class="page-layout">
-    <header class="page-layout-header">
+    <header v-if="isFooter" class="page-layout-header">
       <slot name="header"></slot>
     </header>
     <main class="page-layout-main">
@@ -8,8 +8,8 @@
     </main>
     <footer
       v-if="isFooter"
+      class="page-layout-footer"
       :class="{
-        'page-layout-footer': true,
         'page-layout-footer-right': footerDirection === 'right',
         'page-layout-footer-left': footerDirection === 'left'
       }">
@@ -31,6 +31,11 @@ import useLayoutStore from '@/store/layout'
 const props = defineProps({
   // 是否需要底部操作栏
   isFooter: {
+    default: true,
+    type: Boolean
+  },
+  // 是否需要头部操作栏
+  isHeader: {
     default: true,
     type: Boolean
   },
@@ -66,9 +71,11 @@ const calculateSize = () => {
   const layoutHeader = document.querySelector('.page-layout-header')
   const layoutMain = document.querySelector('.page-layout-main')
   const layoutFooter = document.querySelector('.page-layout-footer')
+  const calculateHooterHei = props.isHeader ? layoutHeader.offsetHeight + layoutHeaderMarginBottom : 0
+  const calculateFooterHei = props.isFooter ? layoutFooter.offsetHeight : 0
   layoutMain.setAttribute(
     'style',
-    `height: calc(100% - ${layoutHeader.offsetHeight + layoutHeaderMarginBottom + (props.isFooter ? layoutFooter.offsetHeight : 0)}px)`
+    `height: calc(100% - ${calculateHooterHei + calculateFooterHei}px)`
   )
   mainHeight.value = layoutMain.offsetHeight
 }
