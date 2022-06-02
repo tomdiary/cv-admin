@@ -20,7 +20,9 @@ onUnmounted(() => console.log(map)) // 待优化，需要增加销毁地图功�
 
 const initBaseMap = () => {
   lazyAMapApiLoaderInstance.then(() => {
-    map.value = new AMap.Map('container')
+    map.value = new AMap.Map('container', {
+      mapStyle: import.meta.env.VITE_AMAP_DARK_STYLES
+    })
   })
 }
 </script>
