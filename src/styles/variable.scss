@@ -23,9 +23,10 @@ $operation-hei: 52px;
 $sidebar-width: 260px;
 $sidebar-sm-width: 64px;
 $sidebar-hei: 56px;
-$sidebar-bgc: #FFF;
-$sidebar-text-color: #FFF;
-$sidebar-menu-group-color: #FFF;
+$sidebar-bgc: var(--el-menu-bg-color);
+$sidebar-text-color: var(--el-menu-text-color);
+$sidebar-menu-group-color: var(--el-menu-bg-color);
+$sidebar-menu-hover-bg-color: var(--el-menu-hover-bg-color);
 $sidebar-menu-item-hover-color: #FFF;
 $sidebar-menu-group-item-hover-color: #FFF;
 

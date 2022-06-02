@@ -60,7 +60,7 @@ onMounted(() => {
       bottom: 0;
       z-index: 100;
       transition: width 0.28s;
-      background-color: $main-bgc;
+      background-color: $sidebar-bgc;
     }
 
     .layout-main {

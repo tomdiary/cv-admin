@@ -9,24 +9,26 @@
 
     .sidebar-menu {
       border-right: none;
-      //background-color: $main-color;
 
       .svg-icon {
-        //color: $sidebar-text-color;
+        color: $sidebar-text-color;
       }
 
-      & > .el-menu-item {
-        display: flex;
-        align-items: center;
+      & .el-menu-item {
+        // display: flex;
+        // align-items: center;
         //color: $sidebar-text-color;
+        border-left: 4px solid transparent;
 
         // .svg-icon {
         //   margin-right: 8px;
         // }
       }
 
-      & > .el-menu-item.is-active {
-        //color: $secondary-color;
+      & .el-menu-item.is-active {
+        color: $sidebar-text-color;
+        background-color: $main-color;
+        border-color: red;
 
         .svg-icon {
           //color: $secondary-color;
@@ -45,8 +47,8 @@
       & > .el-sub-menu {
 
         & > .el-sub-menu__title {
-          display: flex;
-          align-items: center;
+          // display: flex;
+          // align-items: center;
 
           span {
             //color: $sidebar-text-color;
@@ -107,7 +109,7 @@
 
     .el-sub-menu__title,
     .el-menu-item .el-menu-tooltip__trigger {
-      // justify-content: center;
+      justify-content: center;
     }
   }
 }
