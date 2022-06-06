@@ -52,3 +52,31 @@ a {
     border-left-color: $main-color !important;
   }
 }
+
+/* 电子围栏 - 地图关键字搜索 */
+.search-map-select {
+  width: 260px;
+
+  .el-select-dropdown__item {
+    height: 68px !important;
+  }
+
+  .address {
+    display: flex;
+    flex-direction: column;
+
+    .address-top {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .address-bottom {
+      color: #8492a6;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

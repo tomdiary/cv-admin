@@ -6,6 +6,8 @@
             :router="true"
             :unique-opened="true"
             :collapse-transition="false"
+            :background-color="layoutStore.menuBgColor"
+            :text-color="layoutStore.menuFontColor"
             :collapse="layoutStore.gtSidebarStatus"
             :default-active="defaultRouter"
             class="sidebar-menu">
@@ -50,6 +52,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/map/default">默认地图</el-menu-item>
+              <el-menu-item index="/map/electric-fence">电子围栏</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
         </el-menu>
@@ -61,7 +64,7 @@
 <script setup>
 import useLayoutStore from '@/store/layout'
 
-const props = defineProps({
+defineProps({
   defaultRouter: {
     default: '/',
     type: String

@@ -27,6 +27,7 @@ layoutState.$subscribe((newVal, oldVal) => {
 const initBaseMap = () => {
   lazyAMapApiLoaderInstance.then(() => {
     map.value = new AMap.Map('container', {
+      // eslint-disable-next-line max-len
       mapStyle: layoutState.themeMode === 'light' ? import.meta.env.VITE_AMAP_LIGHT_STYLES : import.meta.env.VITE_AMAP_DARK_STYLES
     })
   })

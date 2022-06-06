@@ -61,6 +61,12 @@ const authorityRoutes = [
         name: 'MapDefault',
         meta: { title: '默认表格' },
         component: () => import('@views/map/default/index.vue')
+      },
+      {
+        path: 'electric-fence',
+        name: 'MapElectricFence',
+        meta: { title: '电子围栏' },
+        component: () => import('@views/map/electricFence/index.vue')
       }
     ]
   },

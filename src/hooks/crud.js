@@ -6,6 +6,7 @@ export const crudHooks = ({ requestType }) => {
   const tableLoadingText = ref('拼命加载中') // 表格加载文字
   const tableEmptyDes = ref('暂无数据') // 表格空数据描述
   const fullscreenLoading = ref(false) // 提交按钮状态
+  const dialogCrudTitle = ref('添加/标记') // dialog标题
   const dialogCrudStatus = ref(false) // dialog新增/编辑状态
   const tableLoading = ref(false) // 表格loadding
   const tableSourceData = ref([]) // 自定义分页数据源
@@ -35,7 +36,10 @@ export const crudHooks = ({ requestType }) => {
 
   const delAction = () => {}
 
-  const editAction = () => {}
+  const editAction = (type = 1) => {
+    dialogCrudStatus.value = true
+    dialogCrudTitle.value = type ? '编辑' : '新增'
+  }
 
   const submitData = (request) => {}
 
@@ -64,6 +68,14 @@ export const crudHooks = ({ requestType }) => {
   }
 
   /**
+   * 检测是否符合单选/多选
+   * @param {*} type number，0-单选，1-多选
+   * @returns Boolean
+   */
+  // eslint-disable-next-line max-len
+  const actionStatusDisabled = (type = 0) => (!type ? multipleSelection.value.length > 1 || !multipleSelection.value.length : !multipleSelection.value.length)
+
+  /**
    * 表格多选
    * @param {*} val [{}, ...]
    */
@@ -78,6 +90,8 @@ export const crudHooks = ({ requestType }) => {
     tableEmptyDes,
     tableLoading,
     tableLoadingText,
+    dialogCrudStatus,
+    dialogCrudTitle,
     queryAction,
     resetAction,
     editAction,
@@ -86,6 +100,7 @@ export const crudHooks = ({ requestType }) => {
     exportAction,
     pageSizeChange,
     pageCurrentChange,
-    tableSelectionChange
+    tableSelectionChange,
+    actionStatusDisabled
   }
 }
