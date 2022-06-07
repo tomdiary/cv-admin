@@ -51,10 +51,16 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { shallowRef } from '@vue/reactivity'
 import { lazyAMapApiLoaderInstance } from '@vuemap/vue-amap'
 
-const map = ref(null)
+/**
+ * 使用 shallowRef 进行非深度监听，因为在 Vue3 所使用的 Proxy 拦截操作会
+ * 改变 JSAPI 原生对象，建议 JS API 相关对象采用非响应式的普通对象来存储
+ * @link https://lbs.amap.com/api/jsapi-v2/guide/webcli/map-vue1
+ */
+let map = shallowRef(null)
 const fenceVal = ref(0)
 const mapSearchVal = ref('')
 const searchCity = ref([])
@@ -69,9 +75,13 @@ onMounted(() => {
   initBaseMap()
 })
 
+onUnmounted(() => map?.destroy())
+
 const initBaseMap = () => {
   lazyAMapApiLoaderInstance.then(() => {
-    map.value = new AMap.Map('fence-map-wrapper')
+    map = new AMap.Map('fence-map-wrapper', {
+      zoom: 12
+    })
   })
 }
 
@@ -94,14 +104,14 @@ const mapSearch = query => {
 }
 
 const searchMapChange = id => {
-  const arr = searchCity.value.filter(i => i.id === id)
-  if (arr.length) {
-    map.value.clearMap()
+  const arr = searchCity.value.find(item => item.id === id)
+  if (arr) {
+    map.clearMap()
     const marker = new AMap.Marker({
-      position: arr[0].location
+      position: arr.location
     })
-    map.value.add(marker)
-    map.value.setFitView()
+    map.add(marker)
+    map.setFitView()
   }
 }
 </script>
