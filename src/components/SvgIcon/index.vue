@@ -11,11 +11,11 @@ const props = defineProps({
   iconClass: {
     type: String,
     required: true
-  },
+  }
 })
 
-const iconName = computed(()=>`#icon-${props.iconClass}`)
-const svgClass = computed(()=> {
+const iconName = computed(() => `#icon-${props.iconClass}`)
+const svgClass = computed(() => {
   if (props.iconClass) {
     return `svg-icon icon-${props.iconClass}`
   }
