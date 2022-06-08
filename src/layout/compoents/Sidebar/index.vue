@@ -53,6 +53,7 @@
             <el-menu-item-group>
               <el-menu-item index="/map/default">默认地图</el-menu-item>
               <el-menu-item index="/map/electric-fence">电子围栏</el-menu-item>
+              <el-menu-item index="/map/area-preview">行政区域预览</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
         </el-menu>
