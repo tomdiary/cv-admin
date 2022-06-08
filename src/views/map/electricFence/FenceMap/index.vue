@@ -9,10 +9,10 @@
           :value="item.value"
         />
       </el-select>
-      <el-button type="primary" text bg>添加围栏</el-button>
-      <el-button type="warning" text bg>清除围栏</el-button>
-      <el-button type="primary" text bg>开始编辑</el-button>
-      <el-button type="primary" text bg>结束编辑</el-button>
+      <el-button type="primary" @click="addFence({})" text bg>添加围栏</el-button>
+      <el-button type="warning" @click="clearFence" text bg>清除围栏</el-button>
+      <el-button type="primary" @click="startEdit" text bg>开始编辑</el-button>
+      <el-button type="primary" @click="endEdit" text bg>结束编辑</el-button>
     </div>
     <div class="fence-main">
       <div class="map-search">
@@ -51,9 +51,10 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, isShallow } from 'vue'
 import { shallowRef } from '@vue/reactivity'
 import { lazyAMapApiLoaderInstance } from '@vuemap/vue-amap'
+import useLayoutStore from '@/store/layout'
 
 /**
  * 使用 shallowRef 进行非深度监听，因为在 Vue3 所使用的 Proxy 拦截操作会
@@ -61,6 +62,13 @@ import { lazyAMapApiLoaderInstance } from '@vuemap/vue-amap'
  * @link https://lbs.amap.com/api/jsapi-v2/guide/webcli/map-vue1
  */
 let map = shallowRef(null)
+let circleFence = shallowRef(null)
+let circleEditor = shallowRef(null)
+let polygonFence = shallowRef(null)
+let polygonEditor = shallowRef(null)
+let rectangleEditor = shallowRef(null)
+let rectangleFence = shallowRef(null)
+const layoutStore = useLayoutStore()
 const fenceVal = ref(0)
 const mapSearchVal = ref('')
 const searchCity = ref([])
@@ -113,6 +121,138 @@ const searchMapChange = id => {
     map.add(marker)
     map.setFitView()
   }
+}
+// 添加围栏
+const addFence = (dataSource = {}) => {
+  clearFence()
+  const isDataSourceEmpy = !Object.keys(dataSource).length
+  // 矩形围栏
+  if (fenceVal.value === 0) {
+    const visualRange = map.getBounds() // 可视范围
+    const southWestLng = isDataSourceEmpy ? visualRange.southWest.lng : dataSource.rightBottomX
+    const southWestLat = isDataSourceEmpy ? visualRange.southWest.lat : dataSource.leftTopY
+    const northEastLng = isDataSourceEmpy ? visualRange.northEast.lng : dataSource.leftTopX
+    const northEastLat = isDataSourceEmpy ? visualRange.northEast.lat : dataSource.rightBottomY
+    // eslint-disable-next-line max-len
+    const southWest = isDataSourceEmpy ? new AMap.LngLat(southWestLng + 0.020000, southWestLat + 0.020000) : new AMap.LngLat(southWestLng, southWestLat)
+    // eslint-disable-next-line max-len
+    const northEast = isDataSourceEmpy ? new AMap.LngLat(northEastLng - 0.020000, northEastLat - 0.020000) : new AMap.LngLat(northEastLng, northEastLat)
+    const bounds = new AMap.Bounds(southWest, northEast)
+    rectangleFence = new AMap.Rectangle({
+      bounds,
+      strokeColor: layoutStore.themeColor,
+      strokeWeight: 6,
+      strokeOpacity: 0.3,
+      strokeDasharray: [30, 10],
+      strokeStyle: 'dashed',
+      fillColor: layoutStore.themeColor,
+      fillOpacity: 0.5,
+      cursor: 'pointer',
+      zIndex: 50
+    })
+    map.add(rectangleFence) // 添加矩形
+    map.setFitView([rectangleFence]) // 缩放到合适的级别
+    AMap.plugin(['AMap.RectangleEditor'], () => {
+      rectangleEditor = new AMap.RectangleEditor(map, rectangleFence)
+    })
+  }
+  // 多边形围栏
+  if (fenceVal.value === 1) {
+    const visualRangeArr = []
+    const visualRange = map.getCenter()
+    const { lng, lat } = visualRange
+    if (isDataSourceEmpy) {
+      visualRangeArr.push([lng, lat])
+      visualRangeArr.push([lng, lat - 0.03])
+      visualRangeArr.push([lng - 0.03, lat - 0.03])
+      visualRangeArr.push([lng - 0.03, lat])
+    } else {
+      dataSource.map(item => visualRangeArr.push([item.x, item.y]))
+    }
+    polygonFence = new AMap.Polygon({
+      map,
+      path: visualRangeArr,
+      isOutline: true,
+      borderWeight: 3,
+      strokeColor: layoutStore.themeColor,
+      strokeWeight: 6,
+      strokeOpacity: 0.2,
+      fillOpacity: 0.4,
+      fillColor: layoutStore.themeColor,
+      zIndex: 50
+    })
+    map.add(polygonFence) // 添加多边形
+    map.setFitView([polygonFence]) // 缩放到合适的级别
+    AMap.plugin(['AMap.PolygonEditor'], () => {
+      polygonEditor = new AMap.PolygonEditor(map, polygonFence)
+    })
+  }
+  // 圆形围栏
+  if (fenceVal.value === 2) {
+    const visualRange = map.getCenter()
+    // eslint-disable-next-line max-len
+    const bounds = isDataSourceEmpy ? [visualRange.lng, visualRange.lat] : [dataSource.centerX, dataSource.centerY]
+    circleFence = new AMap.Circle({
+      center: bounds,
+      radius: isDataSourceEmpy ? 7000 : dataSource.radius,
+      borderWeight: 3,
+      strokeColor: layoutStore.themeColor,
+      strokeWeight: 6,
+      strokeOpacity: 0.3,
+      fillOpacity: 0.4,
+      strokeStyle: 'dashed',
+      strokeDasharray: [10, 10],
+      fillColor: layoutStore.themeColor,
+      zIndex: 50
+    })
+    map.add(circleFence) // 添加矩形
+    map.setFitView([circleFence]) // 缩放到合适的级别
+    AMap.plugin(['AMap.CircleEditor'], () => {
+      circleEditor = new AMap.CircleEditor(map, circleFence)
+    })
+  }
+}
+// 清除围栏
+const clearFence = () => {
+  // 矩形
+  if (!isShallow(rectangleEditor)) {
+    rectangleEditor.close()
+    rectangleEditor = shallowRef(null)
+  }
+  if (!isShallow(rectangleFence)) {
+    map.remove(rectangleFence)
+    rectangleFence = shallowRef(null)
+  }
+  // 多边形
+  if (!isShallow(polygonEditor)) {
+    polygonEditor.close()
+    polygonEditor = shallowRef(null)
+  }
+  if (!isShallow(polygonFence)) {
+    map.remove(polygonFence)
+    polygonFence = shallowRef(null)
+  }
+  // 圆形
+  if (!isShallow(circleEditor)) {
+    circleEditor.close()
+    circleEditor = shallowRef(null)
+  }
+  if (!isShallow(circleFence)) {
+    map.remove(circleFence)
+    circleFence = shallowRef(null)
+  }
+}
+// 开始编辑
+const startEdit = () => {
+  if (fenceVal.value === 0 && !isShallow(rectangleEditor)) rectangleEditor.open()
+  if (fenceVal.value === 1 && !isShallow(polygonEditor)) polygonEditor.open()
+  if (fenceVal.value === 2 && !isShallow(circleEditor)) circleEditor.open()
+}
+// 结束编辑
+const endEdit = () => {
+  if (fenceVal.value === 0 && !isShallow(rectangleEditor)) rectangleEditor.close()
+  if (fenceVal.value === 1 && !isShallow(polygonEditor)) polygonEditor.close()
+  if (fenceVal.value === 2 && !isShallow(circleEditor)) circleEditor.close()
 }
 </script>
 
