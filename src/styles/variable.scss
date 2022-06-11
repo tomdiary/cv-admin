@@ -12,23 +12,31 @@ $main-bgc: var(--el-bg-color);
 $main-color: var(--el-color-primary, #E84545);
 $secondary-color: #E84545;
 
-$cv-fill-color-light: var(--el-fill-color-light, #E0E0E0);
+$cv-fill-color-light: #39393A;
 
 // header
 $header-hei: 52px;
-$header-bgc: #FFF;
+$header-bgc: #272C34;
 $operation-hei: 52px;
 
 // sidebar
 $sidebar-width: 260px;
 $sidebar-sm-width: 64px;
 $sidebar-hei: 56px;
-$sidebar-bgc: var(--el-menu-bg-color);
-$sidebar-text-color: var(--el-menu-text-color);
+$sidebar-bgc: #272C34;
+$sidebar-text-color: #FFF;
+$sidebar-text-hover-color: #FFF;
+$sidebar-icon-color: #FFF;
+$sidebar-icon-active-color: #FFF;
+$sidebar-icon-hover-color: #FFF;
+$sidebar-hover-bgc: var(--el-color-primary);
+$sidebar-active-bgc: var(--el-color-primary);
 $sidebar-menu-group-color: var(--el-menu-bg-color);
 $sidebar-menu-hover-bg-color: var(--el-menu-hover-bg-color);
 $sidebar-menu-item-hover-color: #FFF;
 $sidebar-menu-group-item-hover-color: #FFF;
+$sidebar-menu-item-bgc-active: var(--el-color-primary);
+$sidebar-menu-item-border-active: var(--el-color-primary-light-7);
 
 // tagsView
 $tags-view-hei: 44px;

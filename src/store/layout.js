@@ -17,7 +17,8 @@ const useLayoutStore = defineStore('layoutStore', {
           'themeFont',
           'fontFamily',
           'themeColor',
-          'themeLanguage'
+          'themeLanguage',
+          'breadcrumbStatus'
         ]
       }
     ]
@@ -28,7 +29,8 @@ const useLayoutStore = defineStore('layoutStore', {
     themeSize: null,
     fontFamily: null,
     themeLanguage: null,
-    themeColor: null
+    themeColor: null,
+    breadcrumbStatus: null
   }),
   getters: {
     gtSidebarStatus: state => state.sidebarStatus !== 'open',
@@ -49,6 +51,7 @@ const useLayoutStore = defineStore('layoutStore', {
       this.asFontFamilyChange(this.fontFamily)
       this.asThemeColorChange(this.themeColor)
       this.asThemeSizeChange(this.themeSize)
+      this.asBreadcrumbChange(this.breadcrumbStatus)
       if (!this.themeLanguage) this.themeLanguage = config.themeLanguage
       if (!this.sidebarStatus) this.sidebarStatus = config.sidebarStatus
     },
@@ -58,7 +61,7 @@ const useLayoutStore = defineStore('layoutStore', {
     asThemeSizeChange(size) {
       this.themeSize = size || config.themeSize
     },
-    asThemeMode(mode) {
+    asThemeModeChange(mode) {
       if (mode === 'auto') return this.asThemeModeAuto()
       document.documentElement.classList.remove(mode === 'dark' ? 'light' : 'dark')
       document.documentElement.classList.add(mode)
@@ -67,16 +70,39 @@ const useLayoutStore = defineStore('layoutStore', {
     asThemeColorChange(color) {
       this.themeColor = color || config.themeColor
       document.body.style.setProperty('--el-color-primary', this.themeColor)
-      document.body.style.setProperty('--el-color-primary-light-3', calculateWeightColor(this.themeColor, '#FFFFFF', 0.3))
-      document.body.style.setProperty('--el-color-primary-light-5', calculateWeightColor(this.themeColor, '#FFFFFF', 0.5))
-      document.body.style.setProperty('--el-color-primary-light-7', calculateWeightColor(this.themeColor, '#FFFFFF', 0.7))
-      document.body.style.setProperty('--el-color-primary-light-8', calculateWeightColor(this.themeColor, '#FFFFFF', 0.8))
-      document.body.style.setProperty('--el-color-primary-light-9', calculateWeightColor(this.themeColor, '#FFFFFF', 0.9))
-      document.body.style.setProperty('--el-color-primary-dark-2', calculateWeightColor(this.themeColor, '#000000', 0.2))
+      document.body.style.setProperty('--el-menu-bg-color', '#272C34')
+      document.body.style.setProperty(
+        '--el-color-primary-light-3',
+        calculateWeightColor(this.themeColor, '#FFFFFF', 0.3)
+      )
+      document.body.style.setProperty(
+        '--el-color-primary-light-5',
+        calculateWeightColor(this.themeColor, '#FFFFFF', 0.5)
+      )
+      document.body.style.setProperty(
+        '--el-color-primary-light-7',
+        calculateWeightColor(this.themeColor, '#FFFFFF', 0.7)
+      )
+      document.body.style.setProperty(
+        '--el-color-primary-light-8',
+        calculateWeightColor(this.themeColor, '#FFFFFF', 0.8)
+      )
+      document.body.style.setProperty(
+        '--el-color-primary-light-9',
+        calculateWeightColor(this.themeColor, '#FFFFFF', 0.9)
+      )
+      document.body.style.setProperty(
+        '--el-color-primary-dark-2',
+        calculateWeightColor(this.themeColor, '#000000', 0.2)
+      )
     },
     asFontFamilyChange(fontFamily) {
-      // this.fontFamily = fontFamily || config.fontFamily
+      this.fontFamily = fontFamily || config.fontFamily
       // document.body.style.fontFamily = this.fontFamily
+    },
+    asBreadcrumbChange(status) {
+      console.log(status)
+      this.breadcrumbStatus = typeof status === 'boolean' ? status : config.breadcrumbStatus
     },
     asThemeModeAuto() {
       this.themeMode = 'auto'

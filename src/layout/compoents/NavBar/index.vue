@@ -61,6 +61,7 @@ const sidebarToggle = () => layoutStore.asSidebarStatus()
     height: 100%;
     font-size: 20px;
     letter-spacing: 1px;
+    color: #FFF;
   }
 
   .nav-bar-option {
@@ -89,6 +90,7 @@ const sidebarToggle = () => layoutStore.asSidebarStatus()
 
       .el-icon {
         font-size: 20px;
+        color: #FFF;
       }
     }
 

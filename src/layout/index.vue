@@ -46,7 +46,7 @@ onMounted(() => {
 
   .layout-header {
     height: $header-hei;
-    background-color: $main-bgc;
+    background-color: $header-bgc;
   }
 
   .layout-wrapper {
