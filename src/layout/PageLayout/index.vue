@@ -92,7 +92,7 @@ const calculateSize = () => {
     margin-bottom: $main-interval;
     padding: $main-interval;
     border-radius: 4px;
-    background-color: $main-bgc;
+    background-color: #FFF;
   }
 
   .page-layout-main {}
@@ -102,7 +102,7 @@ const calculateSize = () => {
     align-items: center;
     padding: $main-interval;
     border-radius: 4px;
-    background-color: $main-bgc;
+    background-color: #FFF;
   }
 
   .page-layout-footer-left {
