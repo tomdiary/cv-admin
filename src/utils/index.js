@@ -12,7 +12,7 @@ import config from '@/config'
  * @param color2
  * @param weight
  * @link https://juejin.cn/post/7024025899813044232
- * @return {`#${number}${number}${number}`}
+ * @return {`#${string}${string}${string}`}
  */
 export const calculateWeightColor = (color1, color2, weight) => {
   const calculateWeight = Math.max(Math.min(Number(weight), 1), 0)
