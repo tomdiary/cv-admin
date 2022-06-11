@@ -15,10 +15,10 @@ CV Admin 是一款免费开源的后台管理系统，基于 [Vue3.2](https://gi
 ## 演示
 
 ### 默认表格
-![https://raw.githubusercontent.com/tomdiary/cv-admin/master/src/assets/images/iShot_2022-06-12_00.48.45.png]()
+![](https://raw.githubusercontent.com/tomdiary/cv-admin/master/src/assets/images/iShot_2022-06-12_00.48.45.png)
 
 ### 电子围栏
-![https://raw.githubusercontent.com/tomdiary/cv-admin/master/src/assets/images/iShot_2022-06-12_00.56.17.png]()
+![](https://raw.githubusercontent.com/tomdiary/cv-admin/master/src/assets/images/iShot_2022-06-12_00.56.17.png)
 
 ## 说明
 
