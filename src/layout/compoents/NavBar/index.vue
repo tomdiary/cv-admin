@@ -1,6 +1,14 @@
 <template>
   <div class="nav-bar">
-    <div class="logo">LOGO</div>
+    <div class="logo">
+      <div v-if="!layoutStore.gtSidebarStatus" class="logo-normal">
+        <svg-icon icon-class="vuejs" />
+        <h1>cv-admin</h1>
+      </div>
+      <div v-else class="logo-zoom-out">
+        <svg-icon icon-class="vuejs" />
+      </div>
+    </div>
     <div class="nav-bar-option">
       <div class="operation-bar-left">
         <section class="operation-item" @click="sidebarToggle">
@@ -54,21 +62,30 @@ const sidebarToggle = () => layoutStore.asSidebarStatus()
   height: 100%;
 
   .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: $sidebar-sm-width;
-    height: 100%;
     font-size: 20px;
     letter-spacing: 1px;
     color: #FFF;
+
+    .svg-icon {
+      font-size: 36px;
+    }
+
+    .logo-normal, .logo-zoom-out {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      h1 {
+        font-size: 22px;
+      }
+    }
   }
 
   .nav-bar-option {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: calc(100% - #{$sidebar-sm-width});
     height: 100%;
 
     .operation-bar-left,

@@ -34,6 +34,54 @@ onMounted(() => {
 })
 </script>
 
+<style lang="scss">
+.layout:not(.collapse-open) {
+  .nav-bar {
+
+    .logo {
+      width: $sidebar-sm-width;
+    }
+
+    .nav-bar-option {
+      width: calc(100% - #{$sidebar-sm-width});
+    }
+  }
+
+  .layout-sidebar {
+    width: $sidebar-sm-width;
+  }
+
+  .layout-main {
+    left: $sidebar-sm-width;
+  }
+
+  .svg-icon {
+    margin-right: 0;
+  }
+}
+
+.layout:not(.collapse-close) {
+  .nav-bar {
+
+    .logo {
+      width: $sidebar-width;
+    }
+
+    .nav-bar-option {
+      width: calc(100% - #{$sidebar-width});
+    }
+  }
+
+  .layout-sidebar {
+    width: $sidebar-width;
+  }
+
+  .layout-main {
+    left: $sidebar-width;
+  }
+}
+</style>
+
 <style scoped lang="scss">
 .layout, .layout-container {
   position: absolute;
@@ -70,30 +118,6 @@ onMounted(() => {
       bottom: 0;
       transition: left 0.28s;
     }
-  }
-}
-
-.layout:not(.collapse-open) {
-  .layout-sidebar {
-    width: $sidebar-sm-width;
-  }
-
-  .layout-main {
-    left: $sidebar-sm-width;
-  }
-
-  .svg-icon {
-    margin-right: 0;
-  }
-}
-
-.layout:not(.collapse-close) {
-  .layout-sidebar {
-    width: $sidebar-width;
-  }
-
-  .layout-main {
-    left: $sidebar-width;
   }
 }
 </style>
