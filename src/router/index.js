@@ -59,7 +59,7 @@ const authorityRoutes = [
       {
         path: 'default',
         name: 'MapDefault',
-        meta: { title: '默认表格' },
+        meta: { title: '默认地图', layoutPadding: false },
         component: () => import('@views/map/default/index.vue')
       },
       {
@@ -71,7 +71,7 @@ const authorityRoutes = [
       {
         path: 'area-preview',
         name: 'MapAreaPreview',
-        meta: { title: '行政区域预览' },
+        meta: { title: '行政区域预览', layoutPadding: false },
         component: () => import('@views/map/areaPreview/index.vue')
       }
     ]
@@ -99,7 +99,7 @@ const authorityRoutes = [
       {
         path: 'list',
         name: 'ComList',
-        meta: { title: '组件列表' },
+        meta: { title: '组件列表', layoutPadding: false },
         component: () => import('@views/com/list/index.vue')
       },
       {
