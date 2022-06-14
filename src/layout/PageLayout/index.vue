@@ -4,7 +4,14 @@
       <slot name="header"></slot>
     </header>
     <main class="page-layout-main">
-      <slot :mainHeight="mainHeight"></slot>
+      <template v-if="isScrollY">
+        <el-scrollbar>
+          <slot :mainHeight="mainHeight"></slot>
+        </el-scrollbar>
+      </template>
+      <template v-else>
+        <slot :mainHeight="mainHeight"></slot>
+      </template>
     </main>
     <footer
       v-if="isFooter"
@@ -73,10 +80,19 @@ const calculateSize = () => {
   const layoutFooter = document.querySelector('.page-layout-footer')
   const calculateHooterHei = props.isHeader ? layoutHeader.offsetHeight + layoutHeaderMarginBottom : 0
   const calculateFooterHei = props.isFooter ? layoutFooter.offsetHeight : 0
-  layoutMain.setAttribute(
-    'style',
-    `height: calc(100% - ${calculateHooterHei + calculateFooterHei}px)`
-  )
+  if (props.isScrollY) {
+    const elScrollbar = document.querySelector('.page-layout .el-scrollbar')
+    elScrollbar.setAttribute(
+      'style',
+      `height: calc(100% - ${calculateHooterHei + calculateFooterHei}px)`
+    )
+    layoutMain.setAttribute('style', 'height: 100%')
+  } else {
+    layoutMain.setAttribute(
+      'style',
+      `height: calc(100% - ${calculateHooterHei + calculateFooterHei}px)`
+    )
+  }
   mainHeight.value = layoutMain.offsetHeight
 }
 </script>
