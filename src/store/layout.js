@@ -70,7 +70,11 @@ const useLayoutStore = defineStore('layoutStore', {
     asThemeColorChange(color) {
       this.themeColor = color || config.themeColor
       document.body.style.setProperty('--el-color-primary', this.themeColor)
+      document.body.style.setProperty('--el-menu-hover-bg-color', this.themeColor)
+      document.body.style.setProperty('--el-menu-active-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-bg-color', '#272C34')
+      document.body.style.setProperty('--el-menu-text-color', '#FFFFFF')
+      document.body.style.setProperty('--el-menu-hover-text-color', '#FFFFFF')
       document.body.style.setProperty(
         '--el-color-primary-light-3',
         calculateWeightColor(this.themeColor, '#FFFFFF', 0.3)
@@ -101,7 +105,6 @@ const useLayoutStore = defineStore('layoutStore', {
       // document.body.style.fontFamily = this.fontFamily
     },
     asBreadcrumbChange(status) {
-      console.log(status)
       this.breadcrumbStatus = typeof status === 'boolean' ? status : config.breadcrumbStatus
     },
     asThemeModeAuto() {

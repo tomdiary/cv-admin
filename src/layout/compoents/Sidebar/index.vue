@@ -6,8 +6,6 @@
             :router="true"
             :unique-opened="true"
             :collapse-transition="false"
-            :background-color="layoutStore.menuBgColor"
-            :text-color="layoutStore.menuFontColor"
             :collapse="layoutStore.gtSidebarStatus"
             :default-active="defaultRouter"
             class="sidebar-menu">
