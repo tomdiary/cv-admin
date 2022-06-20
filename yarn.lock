@@ -963,6 +963,11 @@ es-abstract@^1.19.1, es-abstract@^1.19.2:
     string.prototype.trimstart "^1.0.4"
     unbox-primitive "^1.0.1"
 
+es-module-lexer@^0.10.5:
+  version "0.10.5"
+  resolved "https://registry.npmmirror.com/es-module-lexer/-/es-module-lexer-0.10.5.tgz#06f76d51fa53b1f78e3bd8bb36dd275eda2fdd53"
+  integrity sha512-+7IwY/kiGAacQfY+YBhKMvEmyAJnw5grTUgjG85Pe7vcUI/6b7pZjZG8nQ7+48YhzEAEqrEgD2dCz/JIK+AYvw==
+
 es-shim-unscopables@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmmirror.com/es-shim-unscopables/-/es-shim-unscopables-1.0.0.tgz#702e632193201e3edf8713635d083d378e510241"
@@ -2999,6 +3004,16 @@ unplugin-auto-import@^0.7.1:
     local-pkg "^0.4.1"
     magic-string "^0.26.1"
     resolve "^1.22.0"
+    unplugin "^0.6.1"
+
+unplugin-element-plus@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmmirror.com/unplugin-element-plus/-/unplugin-element-plus-0.4.0.tgz#8039901a087b8b0498497fa5ce5594c5b52ccdad"
+  integrity sha512-iE4EZu8pp5Vz/qb9r45sCNSz9Px6KOthBpe6gFBV1E60g9A45HS+JhwAaj4Zki8HZ0YGW3LyrsBCrd+XhOypnQ==
+  dependencies:
+    "@rollup/pluginutils" "^4.2.0"
+    es-module-lexer "^0.10.5"
+    magic-string "^0.26.1"
     unplugin "^0.6.1"
 
 unplugin-vue-components@^0.19.3:
