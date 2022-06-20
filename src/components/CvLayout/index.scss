@@ -1,0 +1,31 @@
+.cv-layout {
+  height: 100%;
+
+  .cv-layout-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: $main-interval;
+    padding: $main-interval;
+    border-radius: 4px;
+    background-color: #FFF;
+  }
+
+  .cv-layout-main {}
+
+  .cv-layout-footer {
+    display: flex;
+    align-items: center;
+    padding: $main-interval;
+    border-radius: 4px;
+    background-color: #FFF;
+  }
+
+  .cv-layout-footer-left {
+    justify-content: flex-start;
+  }
+
+  .cv-layout-footer-right {
+    justify-content: flex-end;
+  }
+}
