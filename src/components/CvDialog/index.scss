@@ -1,0 +1,23 @@
+.cv-dialog {
+  max-height: 80vh;
+  border-radius: 0;
+
+  .el-dialog__header {
+    height: 50px;
+    margin-right: 0;
+    padding: 0 12px;
+    line-height: 50px;
+    border-bottom: 1px solid #dcdfe6;
+
+    .cv-dialog-header {
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+
+  .el-dialog__body {
+    max-height: calc(80vh - 91px);
+    padding: 20px;
+    overflow-y: auto;
+  }
+}
