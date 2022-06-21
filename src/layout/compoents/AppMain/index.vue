@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import { useRoute, onBeforeRouteLeave } from 'vue-router'
+import { useRoute, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 const route = useRoute()
 const layoutType = ref('main-is-padding')
@@ -16,6 +16,10 @@ onBeforeMount(() => {
 })
 
 onBeforeRouteLeave((to, from) => {
+  initLayoutPadding(to.meta.layoutPadding)
+})
+
+onBeforeRouteUpdate((to, from) => {
   initLayoutPadding(to.meta.layoutPadding)
 })
 
