@@ -53,6 +53,10 @@ a {
   }
 }
 
+.el-overlay-dialog {
+  overflow: hidden !important;
+}
+
 /* 电子围栏 - 地图关键字搜索 */
 .search-map-select {
   width: 260px;
