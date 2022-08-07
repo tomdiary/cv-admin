@@ -1,5 +1,5 @@
 import lodash from 'lodash'
-import { genBetweenAll } from '../_utils'
+import { genBetweenAll, detectTokenExpiration } from '../_utils'
 import { vehicleInfoFun } from '../_mockStorage'
 import {
   URL_MARK,
@@ -21,6 +21,9 @@ export default [
     method: 'GET',
     timeout: genBetweenAll(500, 2000),
     response: config => {
+      console.log(config.headers)
+      const code = detectTokenExpiration(config.headers)
+      if (code === 1) return { code: ERROR_CODE, msg: 'token过期或失效' }
       if (!config.query) return { code: ERROR_CODE, msg: '请传递参数' }
       const { page: queryPage, pageSize: queryPageSize } = config.query
       const page = !queryPage ? 1 : Number(queryPage)
