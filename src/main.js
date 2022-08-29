@@ -7,8 +7,9 @@ import { createApp } from 'vue'
 import { initStore } from '@/store'
 import { initComponents } from '@/components/init'
 import { initDirective } from '@/directive'
-import { initConfig } from '@/config/init'
-import router from '@/router'
+import { initConfig } from '@/config'
+import { initLanguage } from '@/language'
+import { initRouter } from '@/router'
 import App from '@/App.vue'
 import api from '@/api'
 import '@/styles/index.scss'
@@ -19,13 +20,15 @@ window.$api = api
 async function bootstrap() {
   const app = createApp(App)
 
-  app.use(router)
+  initRouter(app)
 
   initComponents(app)
 
   initStore(app)
 
   initConfig(app)
+
+  initLanguage(app)
 
   initDirective(app)
 

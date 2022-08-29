@@ -17,7 +17,7 @@ const useLayoutStore = defineStore('layoutStore', {
           'themeFont',
           'fontFamily',
           'themeColor',
-          'themeLanguage',
+          'language',
           'breadcrumbStatus'
         ]
       }
@@ -28,7 +28,7 @@ const useLayoutStore = defineStore('layoutStore', {
     themeMode: null,
     themeSize: null,
     fontFamily: null,
-    themeLanguage: null,
+    language: null,
     themeColor: null,
     breadcrumbStatus: null
   }),
@@ -52,7 +52,7 @@ const useLayoutStore = defineStore('layoutStore', {
       this.asThemeColorChange(this.themeColor)
       this.asThemeSizeChange(this.themeSize)
       this.asBreadcrumbChange(this.breadcrumbStatus)
-      if (!this.themeLanguage) this.themeLanguage = config.themeLanguage
+      this.asLanguageChange(this.language)
       if (!this.sidebarStatus) this.sidebarStatus = config.sidebarStatus
     },
     asSidebarStatus() {
@@ -60,6 +60,14 @@ const useLayoutStore = defineStore('layoutStore', {
     },
     asThemeSizeChange(size) {
       this.themeSize = size || config.themeSize
+    },
+    asLanguageChange(language) {
+      this.language = language || config.language
+      document.documentElement.lang = this.language
+      // TODO 需要刷新页面，否则页面国际化不更新
+      // this.$router.replace({
+      //   path: `/redirect${viewPath}`
+      // })
     },
     asThemeModeChange(mode) {
       if (mode === 'auto') return this.asThemeModeAuto()

@@ -45,7 +45,10 @@
       </el-select>
     </el-form-item>
     <el-form-item label="国际化">
-      <el-select v-model="formData.language" placeholder="请选择">
+      <el-select
+          v-model="formData.language"
+          @change="themeItemChange('asLanguageChange', $event)"
+          placeholder="请选择">
         <el-option
             v-for="item in languageList"
             :key="item.value"
@@ -89,7 +92,7 @@ const formData = reactive({
   themeMode: layoutStore.themeMode,
   themeSize: layoutStore.themeSize,
   fontFamily: layoutStore.fontFamily,
-  language: layoutStore.themeLanguage,
+  language: layoutStore.language,
   themeColor: layoutStore.themeColor,
   breadcrumbStatus: layoutStore.breadcrumbStatus,
 })

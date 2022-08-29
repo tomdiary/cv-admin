@@ -18,10 +18,11 @@ export const themeSizeList = [
 
 // 国际化
 export const languageList = [
-  { label: '简体中文', value: 'zh-CN' },
-  { label: '繁体中文', value: 'zh-TW' },
-  { label: 'English', value: 'en' },
-  { label: '日本語', value: 'ja' }
+  { label: '简体中文', value: 'zh-cn', i18n: 'zh_CN' },
+  { label: '繁体中文', value: 'zh-tw', i18n: 'zh_TW' },
+  { label: 'English', value: 'en', i18n: 'en' },
+  { label: '日本語', value: 'ja', i18n: 'ja' },
+  { label: 'Español', value: 'es', i18n: 'es' },
 ]
 
 // 字体
