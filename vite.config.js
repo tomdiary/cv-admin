@@ -1,4 +1,4 @@
-import path from 'path'
+import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue'
 import { defineConfig, loadEnv } from 'vite'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -6,15 +6,23 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import { svgBuilder } from './src/utils/svgBuilder'
+import { svgBuilder } from './src/utils/svgBuilder.js'
+
+const pathResolve = dir => resolve(process.cwd(), '.', dir)
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
+  console.log(process.cwd())
+  console.log(resolve(process.cwd(), '.', 'src'))
   const env = loadEnv(mode, process.cwd())
   const localEnabled = env.VITE_USE_MOCK || false
   const prodEnabled = env.VITE_USE_CHUNK_MOCK || false
 
   return defineConfig({
+    server: {
+      open: Boolean(env.VITE_OPEN),
+      port: Number(env.VITE_PORT)
+    },
     plugins: [
       vue(),
       // Mock
@@ -54,11 +62,11 @@ export default ({ mode }) => {
     ],
     resolve: {
       alias: [
-        { find: '@', replacement: path.resolve(__dirname, './src') },
-        { find: '@views', replacement: path.resolve(__dirname, './src/views') },
-        { find: '@util', replacement: path.resolve(__dirname, './src/utils') },
-        { find: '@com', replacement: path.resolve(__dirname, './src/components') },
-        { find: '@lay', replacement: path.resolve(__dirname, './src/layout') }
+        { find: '@', replacement: pathResolve('src') },
+        { find: '@views', replacement: pathResolve('src/views') },
+        { find: '@util', replacement: pathResolve('src/utils') },
+        { find: '@com', replacement: pathResolve('src/components') },
+        { find: '@lay', replacement: pathResolve('src/layout') }
       ],
       // 不推荐省略后缀 https://github.com/vitejs/vite/issues/178#issuecomment-630138450
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
