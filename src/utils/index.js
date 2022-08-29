@@ -36,9 +36,4 @@ export const calculateWeightColor = (color1, color2, weight) => {
  * @param {*} pageTitle
  * @returns {string}
  */
-export const getPageTitle = (pageTitle) => {
-  if (pageTitle) {
-    return `${pageTitle} - ${config.title}`
-  }
-  return `${config.title}`
-}
+export const getPageTitle = (pageTitle) => (pageTitle ? `${pageTitle} - ${config.title}` : `${config.title}`)
