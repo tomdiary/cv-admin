@@ -117,6 +117,7 @@ onMounted(() => {
       top: 0;
       bottom: 0;
       transition: left 0.28s;
+      overflow: hidden;
     }
   }
 }

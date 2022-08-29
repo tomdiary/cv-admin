@@ -22,9 +22,13 @@
   url('../assets/fonts/siyuan-black-body/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
 }
 
-body,p,h1,h2,h3,h4,h5,h6,table,thead,tbody,tfoot,tr,td,th,ul,ol,li {
+body, p, h1, h2, h3, h4, h5, h6, table, thead, tbody, tfoot, tr, td, th, ul, ol, li {
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: $main-bgc;
 }
 
 a {

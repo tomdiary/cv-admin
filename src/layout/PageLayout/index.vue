@@ -108,17 +108,22 @@ const calculateSize = () => {
     margin-bottom: $main-interval;
     padding: $main-interval;
     border-radius: 4px;
-    background-color: #FFF;
+    background-color: $main-bgc;
+    box-shadow: $cv-box-shadow;
   }
 
-  .page-layout-main {}
+  .page-layout-main {
+    box-shadow: $cv-box-shadow;
+  }
 
   .page-layout-footer {
     display: flex;
     align-items: center;
     padding: $main-interval;
-    border-radius: 4px;
-    background-color: #FFF;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: $main-bgc;
+    box-shadow: $cv-box-shadow;
   }
 
   .page-layout-footer-left {

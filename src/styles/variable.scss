@@ -11,12 +11,15 @@ $main-text-color: var(--el-text-color-primary);
 $main-bgc: #EBECF0;
 $main-color: var(--el-color-primary, #E84545);
 $secondary-color: #E84545;
+$main-bgc: var(--el-bg-color);
+$cv-box-shadow: var(--el-box-shadow);
+$cv-box-shadow-dark: var(--el-box-shadow-dark);
 
-$cv-fill-color-light: #39393A;
+$cv-fill-color-light: var(--el-bg-color-overlay);
 
 // header
 $header-hei: 52px;
-$header-bgc: #272C34;
+$header-bgc: $main-bgc;
 $operation-hei: 52px;
 
 // sidebar
@@ -40,6 +43,7 @@ $sidebar-menu-item-border-active: var(--el-color-primary-light-7);
 
 // tagsView
 $tags-view-hei: 44px;
+$tags-view-bgc: $main-bgc;
 
 $theme-name: null;
 $theme-map: null;
