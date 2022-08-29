@@ -6,13 +6,19 @@
     "build": "vite build",
     "serve": "vite preview"
   },
+  "author": {
+    "name": "TomDiary",
+    "url": "https://github.com/tomdiary"
+  },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
+    "@vue/reactivity": "^3.2.37",
     "@vuemap/vue-amap": "^1.1.4",
     "@vueuse/core": "^8.6.0",
     "axios": "^0.27.2",
     "echarts": "^5.3.2",
     "element-plus": "^2.2.5",
+    "eslint": "8.13.0",
     "fontisto": "^3.0.4",
     "js-base64": "^3.7.2",
     "js-md5": "^0.7.3",
@@ -25,8 +31,8 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "pinia-plugin-persist": "^1.0.0",
-    "url": "^0.11.0",
     "vue": "^3.2.37",
+    "vue-i18n": "9",
     "vue-router": "^4.0.15",
     "vuex": "^4.0.2"
   },
@@ -35,17 +41,30 @@
     "@iconify/vue": "^3.2.1",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/compiler-sfc": "^3.2.6",
-    "eslint": "^8.14.0",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-vue": "^8.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.4.0",
+    "prettier": "^2.7.1",
+    "rollup": "^2.78.1",
     "sass": "^1.51.0",
-    "sass-loader": "^13.0.2",
     "svg-sprite-loader": "^6.0.9",
     "unplugin-auto-import": "^0.7.1",
     "unplugin-element-plus": "^0.4.0",
     "unplugin-vue-components": "^0.19.3",
     "vite": "^2.9.5",
     "vite-plugin-mock": "^2.9.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomdiary/cv-admin.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomdiary/cv-admin/issues"
+  },
+  "homepage": "https://github.com/tomdiary/cv-admin",
+  "engines": {
+    "node": "^16"
   }
 }
