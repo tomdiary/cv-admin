@@ -10,8 +10,8 @@ import esLocale from 'element-plus/lib/locale/lang/es'
 import en from './en'
 import es from './es'
 import ja from './ja'
-import zhCN from './zh-CN'
-import zhTW from './zh-TW'
+import zhCN from './zh-cn'
+import zhTW from './zh-tw'
 
 export const initLanguage = app => {
   const layoutStore = useLayoutStore()
@@ -23,14 +23,14 @@ export const initLanguage = app => {
     zh_TW: { ...zhTW, ...zhTwLocale },
     en: { ...en, ...enLocale.el },
     es: { ...es, ...esLocale.el },
-    ja: { ...ja, ...jaLocale.el },
+    ja: { ...ja, ...jaLocale.el }
   }
 
   const i18n = createI18n({
-    legacy: false,
-    globalInjection: true,
+    legacy: false, // 使用 Composition API 模式，则需要将其设置为 false
+    globalInjection: true, // 全局注入 $t 函数
     locale: locale ? locale.i18n : config.i18nLocale,
-    messages: messages
+    messages
   })
 
   app.use(i18n)
