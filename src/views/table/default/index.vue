@@ -20,15 +20,15 @@
             @selection-change="tableSelectionChange"
             :height="scope.mainHeight">
           <template #empty>
-            <el-empty ref="tableEmpty" :description="tableEmptyDes" :image-size="100"></el-empty>
+            <el-empty ref="tableEmpty" :description="tableEmptyDes" :image-size="100" />
           </template>
-          <el-table-column type="index" label="#" align="center"></el-table-column>
-          <el-table-column prop="vin" label="VIN" align="center"></el-table-column>
-          <el-table-column prop="carNum" label="车牌" align="center" width="150"></el-table-column>
-          <el-table-column prop="terminal" label="终端号" align="center" width="150"></el-table-column>
-          <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
-          <el-table-column prop="address" label="地址" align="center" show-overflow-tooltip></el-table-column>
-          <el-table-column prop="customerName" label="客户" align="center"></el-table-column>
+          <el-table-column type="index" label="#" align="center" />
+          <el-table-column prop="vin" :label="$t('tableView.default.vin')" align="center"></el-table-column>
+          <el-table-column prop="carNum" :label="$t('tableView.default.carNum')" align="center" width="150" />
+          <el-table-column prop="terminal" :label="$t('tableView.default.terminal')" align="center" width="150" />
+          <el-table-column prop="createTime" :label="$t('tableView.default.createTime')" align="center" />
+          <el-table-column prop="address" :label="$t('tableView.default.address')" align="center" show-overflow-tooltip />
+          <el-table-column prop="customerName" :label="$t('tableView.default.customerName')" align="center" />
         </el-table>
       </template>
       <template #footer>
