@@ -22,7 +22,7 @@ export const languageList = [
   { label: '繁体中文', value: 'zh-tw', i18n: 'zh_TW' },
   { label: 'English', value: 'en', i18n: 'en' },
   { label: '日本語', value: 'ja', i18n: 'ja' },
-  { label: 'Español', value: 'es', i18n: 'es' },
+  { label: 'Español', value: 'es', i18n: 'es' }
 ]
 
 // 字体
