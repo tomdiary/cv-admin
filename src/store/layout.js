@@ -62,12 +62,11 @@ const useLayoutStore = defineStore('layoutStore', {
       this.themeSize = size || config.themeSize
     },
     asLanguageChange(language) {
-      this.language = language || config.language
-      document.documentElement.lang = this.language
-      // TODO 需要刷新页面，否则页面国际化不更新
-      // this.$router.replace({
-      //   path: `/redirect${viewPath}`
-      // })
+      return new Promise(resolve => {
+        this.language = language || config.language
+        document.documentElement.lang = this.language
+        resolve(this.language)
+      })
     },
     asThemeModeChange(mode) {
       if (mode === 'auto') return this.asThemeModeAuto()
