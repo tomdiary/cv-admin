@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig, loadEnv } from 'vite'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -12,8 +12,6 @@ const pathResolve = dir => resolve(process.cwd(), '.', dir)
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-  console.log(process.cwd())
-  console.log(resolve(process.cwd(), '.', 'src'))
   const env = loadEnv(mode, process.cwd())
   const localEnabled = env.VITE_USE_MOCK || false
   const prodEnabled = env.VITE_USE_CHUNK_MOCK || false
@@ -75,7 +73,7 @@ export default ({ mode }) => {
       preprocessorOptions: {
         scss: {
           // 不推荐使用 import 引入，Sass 官方会在接下来几年逐步淘汰 import，详情：https://sass-lang.com/documentation/at-rules/import
-          additionalData: `@use "@/styles/variable.scss" as *;`
+          additionalData: '@use "@/styles/variable.scss" as *;'
         }
       }
     }
