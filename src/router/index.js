@@ -13,6 +13,16 @@ const routes = [
     name: 'Login',
     meta: { title: '登录' },
     component: () => import('@views/login/index.vue')
+  },
+  {
+    path: '/redirect',
+    component: () => import('@lay/index.vue'),
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@views/redirect/index.vue')
+      }
+    ]
   }
 ]
 
@@ -109,6 +119,12 @@ const authorityRoutes = [
         component: () => import('@views/com/dialog/index.vue')
       },
       {
+        path: 'list',
+        name: 'ComList',
+        meta: { title: '组件列表', layoutPadding: false },
+        component: () => import('@views/com/list/index.vue')
+      },
+      {
         path: 'icons',
         name: 'ComIcons',
         meta: { title: '图标' },
@@ -134,4 +150,6 @@ router.afterEach((to) => {
   document.title = getPageTitle(to.meta.title)
 })
 
-export default router
+export const initRouter = app => {
+  app.use(router)
+}
