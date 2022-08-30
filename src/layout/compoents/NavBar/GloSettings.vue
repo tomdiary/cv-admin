@@ -47,7 +47,7 @@
     <el-form-item label="国际化">
       <el-select
           v-model="formData.language"
-          @change="themeItemChange('asLanguageChange', $event)"
+          @change="languageChange"
           placeholder="请选择">
         <el-option
             v-for="item in languageList"
@@ -78,6 +78,7 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import {
   themeModeList,
   themeSizeList,
@@ -87,6 +88,9 @@ import {
 } from '@/config/dataSource'
 import useLayoutStore from '@/store/layout'
 
+const route = useRoute()
+const router = useRouter()
+const { path, query } = route
 const layoutStore = useLayoutStore()
 const formData = reactive({
   themeMode: layoutStore.themeMode,
@@ -98,6 +102,13 @@ const formData = reactive({
 })
 
 const themeItemChange = (themeItem, e) => layoutStore[themeItem](e)
+
+const languageChange = event => {
+  layoutStore.asLanguageChange(event).then(() => {
+    // router.replace({ path: `/redirect${path}`, query }) // TODO 无法实时更新国际化
+    window.location.reload()
+  })
+}
 </script>
 
 <style scoped lang="scss">
