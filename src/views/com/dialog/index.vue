@@ -6,10 +6,9 @@
     <el-button type="info">Info</el-button>
     <el-button type="warning">Warning</el-button>
     <el-button type="danger">Danger</el-button>
-    <el-button>中文</el-button>
   </el-row>
-  <cv-dialog title="初始弹窗" width="30%" draggable v-model="basicDialogStatus">
-    <el-form :model="formData" label-position="top" label-width="80px">
+  <cv-dialog title="初始弹窗" width="30%" draggable @close="basicDialogStatus = false" v-model="basicDialogStatus">
+    <el-form :model="formData" label-position="left" label-width="80px">
       <el-form-item label="VIN">
         <el-input v-model="formData.vin" />
       </el-form-item>
@@ -20,6 +19,12 @@
         <el-input v-model="formData.terminalNum" />
       </el-form-item>
     </el-form>
+    <template v-slot:footer>
+      <div class="footer">
+        <el-button type="info">{{ $t('reset') }}</el-button>
+        <el-button type="primary">{{ $t('submit') }}</el-button>
+      </div>
+    </template>
   </cv-dialog>
 </template>
 

@@ -1,23 +1,61 @@
 .cv-dialog {
   max-height: 80vh;
-  border-radius: 0;
+  border-radius: $cv-main-border-radius;
 
   .el-dialog__header {
-    height: 50px;
-    margin-right: 0;  
+    height: 58px;
+    margin-right: 0;
     padding: 0 12px;
-    line-height: 50px;
     border-bottom: 1px solid #dcdfe6;
 
     .cv-dialog-header {
-      text-align: center;
-      font-size: 18px;
+      position: relative;
+      height: 100%;
+
+      .header-title {
+        height: 100%;
+        line-height: 58px;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      .header-action {
+        display: inline-flex;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        .action-icon {
+          display: inline-flex;
+          margin-left: 12px;
+          cursor: pointer;
+        }
+
+        .action-icon:first-child {
+          margin-left: 0;
+        }
+      }
     }
   }
 
   .el-dialog__body {
-    max-height: calc(80vh - 91px);
-    padding: 20px;
-    overflow-y: auto;
+    max-height: 80vh;
+    padding: 0;
+    //padding: 20px 30px;
+    //overflow-y: auto;
+
+    .el-form-item:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .el-dialog__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 58px;
+    padding: 0 12px;
+    border-top: 1px solid #dcdfe6;
   }
 }
