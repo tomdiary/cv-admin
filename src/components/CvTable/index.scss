@@ -1,0 +1,13 @@
+.cv-table {
+
+  .table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: $main-interval;
+  }
+}
+
+.el-table-column--selection > .cell {
+  justify-content: center;
+}
