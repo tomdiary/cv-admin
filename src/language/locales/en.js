@@ -6,6 +6,8 @@ export default {
   reset: 'Reset',
   export: 'Export',
   import: 'Import',
+  submit: 'Submit',
+  pleaseChoose: 'Please Choose',
   inspirational: 'You can\'t change the world, but you can change yourself',
   tableView: {
     default: {
@@ -16,5 +18,15 @@ export default {
       address: 'Address',
       customerName: 'Clients'
     }
+  },
+  gloSettings: {
+    defaultConfig: 'Default Config',
+    themMode: 'Them Mode',
+    fontSettings: 'Font Settings',
+    themeSize: 'Theme Size',
+    language: 'Language',
+    colorConfig: 'Color Config',
+    themeColor: 'Theme Color',
+    breadcrumbStatus: 'Breadcrumb Status',
   }
 }

@@ -6,6 +6,8 @@ export default {
   reset: 'リセット',
   export: '輸出',
   import: '輸入',
+  submit: '参加する',
+  pleaseChoose: '選んでください',
   inspirational: '世界は変えられないが、自分は変えられる',
   tableView: {
     default: {
@@ -16,5 +18,15 @@ export default {
       address: '住所',
       customerName: '取引先'
     }
+  },
+  gloSettings: {
+    defaultConfig: '一般的な構成',
+    themMode: 'テーマモード',
+    fontSettings: 'フォント設定',
+    themeSize: 'テーマサイズ',
+    language: 'グローバル化',
+    colorConfig: 'カラー構成',
+    themeColor: 'テーマカラー',
+    breadcrumbStatus: 'パン粉',
   }
 }

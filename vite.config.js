@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import { svgBuilder } from './src/utils/svgBuilder.js'
 
 const pathResolve = dir => resolve(process.cwd(), '.', dir)
@@ -55,6 +56,9 @@ export default ({ mode }) => {
           ElementPlusResolver()
         ]
       }),
+      vueI18n({
+        include: pathResolve('src/language/locales/**')
+      }),
       // Svg
       svgBuilder('./src/icons/svg/')
     ],
@@ -62,9 +66,11 @@ export default ({ mode }) => {
       alias: [
         { find: '@', replacement: pathResolve('src') },
         { find: '@views', replacement: pathResolve('src/views') },
+        { find: '@v', replacement: pathResolve('src/views') },
         { find: '@util', replacement: pathResolve('src/utils') },
         { find: '@com', replacement: pathResolve('src/components') },
-        { find: '@lay', replacement: pathResolve('src/layout') }
+        { find: '@lay', replacement: pathResolve('src/layout') },
+        { find: '@ld', replacement: pathResolve('src/layout/Default/index.vue') }
       ],
       // 不推荐省略后缀 https://github.com/vitejs/vite/issues/178#issuecomment-630138450
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']

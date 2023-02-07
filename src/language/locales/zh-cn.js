@@ -6,6 +6,8 @@ export default {
   reset: '重置',
   export: '导出',
   import: '导入',
+  submit: '提交',
+  pleaseChoose: '请选择',
   inspirational: '你无法改变世界，但你可以改变自己。',
   tableView: {
     default: {
@@ -16,5 +18,20 @@ export default {
       address: '地址',
       customerName: '客户'
     }
+  },
+  gloSettings: {
+    defaultConfig: '常规配置',
+    themMode: '主题模式',
+    fontSettings: '字体设置',
+    themeSize: '主题大小',
+    language: '国际化',
+    colorConfig: '颜色配置',
+    themeColor: '主题颜色',
+    breadcrumbStatus: '面包屑',
+  },
+  themeMode: {
+    light: '白天',
+    dark: '黑夜',
+    auto: '自动'
   }
 }
