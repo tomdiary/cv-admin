@@ -4,12 +4,12 @@
     label-width="140px"
     :model="formData"
     style="max-width: 460px">
-    <cv-title title="常规配置"></cv-title>
-    <el-form-item label="主题模式">
+    <cv-title :title="$t('gloSettings.defaultConfig')"></cv-title>
+    <el-form-item :label="$t('gloSettings.themMode')">
       <el-select
           v-model="formData.themeMode"
           @change="themeItemChange('asThemeModeChange', $event)"
-          placeholder="请选择">
+          :placeholder="$t('pleaseChoose')">
         <el-option
             v-for="item in themeModeList"
             :key="item.value"
@@ -18,11 +18,11 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="字体设置">
+    <el-form-item :label="$t('gloSettings.fontSettings')">
       <el-select
           v-model="formData.fontFamily"
           @change="themeItemChange('asFontFamilyChange', $event)"
-          placeholder="请选择">
+          :placeholder="$t('pleaseChoose')">
         <el-option
             v-for="item in fontFamilyList"
             :key="item.value"
@@ -31,11 +31,11 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="主题大小">
+    <el-form-item :label="$t('gloSettings.themeSize')">
       <el-select
           v-model="formData.themeSize"
           @change="themeItemChange('asThemeSizeChange', $event)"
-          placeholder="请选择">
+          :placeholder="$t('pleaseChoose')">
         <el-option
             v-for="item in themeSizeList"
             :key="item.value"
@@ -44,11 +44,11 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="国际化">
+    <el-form-item :label="$t('gloSettings.language')">
       <el-select
           v-model="formData.language"
           @change="languageChange"
-          placeholder="请选择">
+          :placeholder="$t('pleaseChoose')">
         <el-option
             v-for="item in languageList"
             :key="item.value"
@@ -57,17 +57,15 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <cv-title title="颜色配置">
-      <svg-icon icon-class="table" />
-    </cv-title>
-    <el-form-item label="主题颜色">
+    <cv-title :title="$t('gloSettings.colorConfig')" />
+    <el-form-item :label="$t('gloSettings.themeColor')">
       <el-color-picker
           v-model="formData.themeColor"
           :predefine="predefineColors"
           @change="themeItemChange('asThemeColorChange', $event)">
       </el-color-picker>
     </el-form-item>
-    <el-form-item label="面包屑">
+    <el-form-item :label="$t('gloSettings.breadcrumbStatus')">
       <el-switch
           v-model="formData.breadcrumbStatus"
           @change="themeItemChange('asBreadcrumbChange', $event)">
