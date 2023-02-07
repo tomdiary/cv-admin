@@ -1,134 +1,79 @@
 /**
  * @description 路由主配置文件
- * @author TomDiary
- * @link https://github.com/tomdiary
+ * @author TomDiary <https://github.com/tomdiary>
+ * @firstTime 2022-09-13
+ * @lastTime 2023-01-30 11:36
  */
 import NProgress from 'nprogress'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import comRouter from '@/router/modules/com'
+import mapRouter from '@/router/modules/map'
+import topRouter from '@/router/modules/top'
+import tableRouter from '@/router/modules/table'
+import echartsRouter from '@/router/modules/echarts'
 import { getPageTitle } from '@/utils'
 
+/**
+ * 以下是具体路由菜单配置项
+ *
+ * path: '/user',           路由地址
+ * name: 'User',            路由唯一名称
+ * redirect: '/user/info',  重定向路由地址（例如当路由地址是 user 时，会自动被重定向到 user/info 页面下）
+ * component: User,         组件地址
+ * meta: {
+ *   id: '22-23-12',        菜单唯一标记
+ *   title: 'table',        菜单名称
+ *   icon: 'table',         菜单图标：需要使用svg
+ *   roles: ['admin'],      角色控制
+ *   badge: 0,              菜单徽章
+ *   keep: 1,               菜单缓存：1-开启，0-禁用
+ *   type: 0,               菜单类型：0-目录，1-菜单，2-按钮，3-独立页面，4-弹窗页面
+ *   link: 0,               是否外链：1-是，0-否
+ *   show: 1,               显示状态（控制菜单是否隐藏）：1-显示，0-隐藏
+ *   status: 1,             菜单状态（控制菜单是否可用）：1-启用，0-禁用
+ *   affix: 1,              是否固定（用于tags-view，开启后不可关闭）：1-启用，0-禁用
+ *   breadcrumb: 1,         面包屑：1-启用，0-禁用
+ * }
+ */
+
+// 基础路由
 const routes = [
   {
     path: '/login',
     name: 'Login',
     meta: { title: '登录' },
-    component: () => import('@views/login/index.vue')
+    component: () => import('@/views/login/index.vue')
   },
   {
     path: '/redirect',
-    component: () => import('@lay/index.vue'),
+    component: () => import('@ld'),
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@views/redirect/index.vue')
+        component: () => import('@/views/redirect/index.vue')
       }
     ]
   }
 ]
 
+// 动态路由
 const authorityRoutes = [
+  topRouter,
+  mapRouter,
+  tableRouter,
+  echartsRouter,
+  comRouter,
   {
-    path: '/',
-    redirect: 'dashboard',
-    component: () => import('@lay/index.vue'),
-    children: [
-      {
-        path: 'dashboard',
-        name: 'Dashboard',
-        meta: { title: '首页', icon: 'dashboard', affix: true },
-        component: () => import('@views/dashboard/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/table',
-    redirect: '/table/default',
-    component: () => import('@lay/index.vue'),
-    meta: { title: '表格', icon: 'table' },
-    children: [
-      {
-        path: 'default',
-        name: 'TableDefault',
-        meta: { title: '默认表格' },
-        component: () => import('@views/table/default/index.vue')
-      },
-      {
-        path: 'merge',
-        name: 'TableMerge',
-        meta: { title: '表格合并行/列' },
-        component: () => import('@views/table/merge/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/map',
-    redirect: '/map/default',
-    component: () => import('@lay/index.vue'),
-    meta: { title: '高德地图', icon: 'map' },
-    children: [
-      {
-        path: 'default',
-        name: 'MapDefault',
-        meta: { title: '默认地图', layoutPadding: false },
-        component: () => import('@views/map/default/index.vue')
-      },
-      {
-        path: 'electric-fence',
-        name: 'MapElectricFence',
-        meta: { title: '电子围栏' },
-        component: () => import('@views/map/electricFence/index.vue')
-      },
-      {
-        path: 'area-preview',
-        name: 'MapAreaPreview',
-        meta: { title: '行政区域预览', layoutPadding: false },
-        component: () => import('@views/map/areaPreview/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/echarts',
-    redirect: '/echarts/default',
-    component: () => import('@lay/index.vue'),
-    meta: { title: 'ECharts', icon: 'echarts' },
+    path: '/assistant',
+    redirect: '/assistant/default',
+    component: () => import('@lay/Assistant/index.vue'),
+    meta: { title: '子页面', icon: 'assistant' },
     children: [
       {
         path: 'default',
         name: 'EChartsDefault',
         meta: { title: '默认ECharts' },
         component: () => import('@/views/echarts/default/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/com',
-    redirect: '/com/list',
-    component: () => import('@lay/index.vue'),
-    meta: { title: '组件库', icon: 'com' },
-    children: [
-      {
-        path: 'list',
-        name: 'ComList',
-        meta: { title: '组件列表', layoutPadding: false },
-        component: () => import('@views/com/list/index.vue')
-      },
-      {
-        path: 'dialog',
-        name: 'ComDialog',
-        meta: { title: '对话框' },
-        component: () => import('@views/com/dialog/index.vue')
-      },
-      {
-        path: 'list',
-        name: 'ComList',
-        meta: { title: '组件列表', layoutPadding: false },
-        component: () => import('@views/com/list/index.vue')
-      },
-      {
-        path: 'icons',
-        name: 'ComIcons',
-        meta: { title: '图标' },
-        component: () => import('@views/com/icons/index.vue')
       }
     ]
   }
