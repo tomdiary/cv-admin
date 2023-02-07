@@ -14,11 +14,11 @@ import App from '@/App.vue'
 import api from '@/api'
 import '@/styles/index.scss'
 
-// 全局挂载api
-window.$api = api
-
 async function bootstrap() {
   const app = createApp(App)
+
+  // 全局挂载api
+  window.$api = api
 
   initRouter(app)
 
@@ -35,4 +35,4 @@ async function bootstrap() {
   app.mount('#cv-admin')
 }
 
-bootstrap()
+await bootstrap()

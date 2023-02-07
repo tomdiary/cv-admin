@@ -40,7 +40,6 @@ export const actions = {
           cvLocalStorage.set('user_info', data.data.userInfo)
           cvLocalStorage.set('access_token', data.data.accessToken)
           cvLocalStorage.set('refresh_token', data.data.refreshToken)
-          router.push({ path: '/' })
           resolve(data)
         } else {
           ElNotification.warning(data.msg)

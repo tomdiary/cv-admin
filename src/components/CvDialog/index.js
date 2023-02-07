@@ -129,7 +129,7 @@ const headerAction = ({ emit, slots, props }) => h('div', {
     h('span', {
       class: 'action-icon',
       onClick: () => emit('close')
-    },[
+    }, [
       h(ElIcon, {
           color: '#606266',
           size: 20

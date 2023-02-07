@@ -5,11 +5,11 @@ export const crudHooks = ({ requestType }) => {
   const pageTotal = ref(0) // 总条数
   const tableLoadingText = ref('拼命加载中') // 表格加载文字
   const tableEmptyDes = ref('暂无数据') // 表格空数据描述
-  const fullscreenLoading = ref(false) // 提交按钮状态
+  // const fullscreenLoading = ref(false) // 提交按钮状态
   const dialogCrudTitle = ref('添加/标记') // dialog标题
   const dialogCrudStatus = ref(false) // dialog新增/编辑状态
-  const tableLoading = ref(false) // 表格loadding
-  const tableSourceData = ref([]) // 自定义分页数据源
+  const tableLoading = ref(false) // 表格 Loading
+  // const tableSourceData = ref([]) // 自定义分页数据源
   const multipleSelection = ref([]) // 表格多选
   const tableData = ref([]) // 数据源
   const pageData = ref({
@@ -18,8 +18,8 @@ export const crudHooks = ({ requestType }) => {
   }) // 分页
   const queryForm = ref({}) // 查询参数
 
-  onMounted(() => {
-    initBaseData(requestType.list, { ...queryForm.value, ...pageData.value })
+  onMounted(async () => {
+    await initBaseData(requestType.list, { ...queryForm.value, ...pageData.value })
   })
 
   const initBaseData = async(request, queryData) => {
@@ -41,30 +41,30 @@ export const crudHooks = ({ requestType }) => {
     dialogCrudTitle.value = type ? '编辑' : '新增'
   }
 
-  const submitData = (request) => {}
+  // const submitData = (request) => {}
 
   const queryAction = () => {
   }
 
-  const resetAction = () => {
+  const resetAction = async () => {
     queryForm.value = {}
     pageData.value = { page: 1, pageSize: 10 }
-    initBaseData(requestType.list, { ...queryForm.value, ...pageData.value })
-  }
+    await initBaseData(requestType.list, {...queryForm.value, ...pageData.value})
+   }
 
   const exportAction = () => {}
 
   const importAction = () => {}
 
-  const pageCurrentChange = (request, page) => {
+  const pageCurrentChange = async (request, page) => {
     pageData.value.page = page
-    initBaseData(request, { ...queryForm.value, ...pageData.value })
+    await initBaseData(request, { ...queryForm.value, ...pageData.value })
   }
 
-  const pageSizeChange = (request, pageSize) => {
+  const pageSizeChange = async (request, pageSize) => {
     pageData.value.page = 1
     pageData.value.pageSize = pageSize
-    initBaseData(request, { ...queryForm.value, ...pageData.value })
+    await initBaseData(request, { ...queryForm.value, ...pageData.value })
   }
 
   /**
@@ -72,8 +72,9 @@ export const crudHooks = ({ requestType }) => {
    * @param {*} type number，0-单选，1-多选
    * @returns Boolean
    */
-  // eslint-disable-next-line max-len
-  const actionStatusDisabled = (type = 0) => (!type ? multipleSelection.value.length > 1 || !multipleSelection.value.length : !multipleSelection.value.length)
+  const actionStatusDisabled = (type = 0) => {
+    return (!type ? multipleSelection.value.length > 1 || !multipleSelection.value.length : !multipleSelection.value.length)
+  }
 
   /**
    * 表格多选
