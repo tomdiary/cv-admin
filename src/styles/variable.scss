@@ -12,14 +12,15 @@ $main-bgc: #EBECF0;
 $main-color: var(--el-color-primary, #E84545);
 $secondary-color: #E84545;
 $main-bgc: var(--el-bg-color);
+$cv-main-border-radius: 2px;
 $cv-box-shadow: var(--el-box-shadow);
 $cv-box-shadow-dark: var(--el-box-shadow-dark);
 
-$cv-fill-color-light: var(--el-bg-color-overlay);
+$cv-fill-color-light: #272C34;
 
 // header
 $header-hei: 52px;
-$header-bgc: $main-bgc;
+$header-bgc: #272C34;
 $operation-hei: 52px;
 
 // sidebar
@@ -43,7 +44,19 @@ $sidebar-menu-item-border-active: var(--el-color-primary-light-7);
 
 // tagsView
 $tags-view-hei: 44px;
-$tags-view-bgc: $main-bgc;
+$tags-view-item-hei: 32px;
+$tags-view-bgc: #FFF;
+$tags-view-icon-color: #FFF;
+$tag-light-color: #333;
+$tag-dark-color: #FFF;
+$tag-light-active-color: var(--el-color-primary);
+$tag-dark-active-color: #FFF;
+$tag-light-bgc: #FFF;
+$tag-dark-bgc: #FFF;
+$tag-light-active-bgc: var(--el-color-primary-light-8);
+$tag-dark-active-bgc: var(--el-color-primary-dark-2);
+$tag-light-active-border-col: var(--el-color-primary);
+$tag-dark-active-border-col: #FFF;
 
 $theme-name: null;
 $theme-map: null;

@@ -57,6 +57,10 @@ a {
   }
 }
 
+.el-overlay {
+  backdrop-filter: blur(2px);
+}
+
 .el-overlay-dialog {
   overflow: hidden !important;
 }

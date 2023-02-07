@@ -27,7 +27,7 @@ defineProps({
   color:#333;
   text-align: center;
   letter-spacing: 1px;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 
   .title-wrapper {
     display: flex;

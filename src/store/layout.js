@@ -82,6 +82,7 @@ const useLayoutStore = defineStore('layoutStore', {
       document.body.style.setProperty('--el-menu-bg-color', '#272C34')
       document.body.style.setProperty('--el-menu-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-hover-text-color', '#FFFFFF')
+      document.body.style.setProperty('--el-border-radius-base', '2px')
       document.body.style.setProperty(
         '--el-color-primary-light-3',
         calculateWeightColor(this.themeColor, '#FFFFFF', 0.3)

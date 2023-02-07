@@ -33,7 +33,10 @@
     </div>
     <el-drawer
         v-model="state.settingStatus"
-        custom-class="global-settings"
+        :open-delay="100"
+        :close-delay="150"
+        class="cv-global-settings"
+        modal-class="cv-global-settings-modal"
         :with-header="false">
       <GloSettings />
     </el-drawer>

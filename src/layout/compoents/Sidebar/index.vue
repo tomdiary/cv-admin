@@ -20,6 +20,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/com/list">组件列表</el-menu-item>
+              <el-menu-item index="/com/table">表格</el-menu-item>
               <el-menu-item index="/com/dialog">对话框</el-menu-item>
               <el-menu-item index="/com/icons">图标</el-menu-item>
             </el-menu-item-group>
