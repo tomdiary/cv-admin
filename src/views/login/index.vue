@@ -1,32 +1,21 @@
 <template>
   <div class="login">
     <div class="login-box">
-      <div class="decorate-box">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
       <div class="core-login">
         <h2 class="login-title">用户登录</h2>
-        <el-form ref="formRef" :model="formData" :rules="formRules" size="default">
+        <el-form label-position="left" ref="formRef" :model="formData" :rules="formRules" size="default">
           <el-form-item prop="username">
-            <el-input
-                class="username"
-                v-model="formData.username"
-                placeholder="用户名"
-                clearable>
-              <!-- <svg-icon slot="prefix" icon-class="username" /> -->
+            <el-input class="username" v-model="formData.username" placeholder="请输入用户名">
+              <template #prefix>
+                <el-icon size="18" class="el-input__icon"><User /></el-icon>
+              </template>
             </el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-                class="password"
-                show-password
-                v-model="formData.password"
-                placeholder="密码"
-                clearable>
-              <!-- <svg-icon slot="prefix" icon-class="password" /> -->
+            <el-input class="password" show-password v-model="formData.password" placeholder="请输入密码">
+              <template #prefix>
+                <el-icon size="18" class="el-input__icon"><Lock /></el-icon>
+              </template>
             </el-input>
           </el-form-item>
           <el-form-item>
@@ -44,6 +33,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { Lock, User } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/user'
 import md5 from 'md5'
 
@@ -92,29 +82,16 @@ const onSubmit = () => {
 <style scoped lang="scss">
 ::v-deep(.el-form) {
 
-  .username, .password {
+  .username, .password, .code {
 
-    .el-input__inner {
-      padding: 26px 20px 26px 50px !important;
-      // color: #FFF !important;
-      font-size: 18px !important;
-      background-color: transparent !important;
-      border: 2px solid #16A3EA;
-      border-radius: 0 !important;
+    .el-input__wrapper {
+      padding: 8px 12px;
+      background-color: #293443;
+      border: 1px solid #3E4957;
+      box-shadow: none;
 
-      &::-webkit-input-placeholder {
-        color: #FFF;
-      }
-    }
-
-    .el-input__prefix {
-      margin-left: 10px;
-      display: flex;
-      align-items: center;
-
-      .svg-icon {
-        color: #FFF;
-        font-size: 24px;
+      .el-input__inner, .el-icon {
+        color: #d3d3e8;
       }
     }
   }
@@ -126,33 +103,21 @@ const onSubmit = () => {
     .el-checkbox__input {
 
       .el-checkbox__inner {
-        width: 20px;
-        height: 20px;
-        border: 1px solid #16A3EA;
+        border: 1px solid $main-color;
         background-color: transparent;
-
-        &::after {
-          width: 6px;
-          height: 8px;
-          //left: -50%;
-          //top: -50%;
-          transform-origin: 50% 50%;
-        }
       }
     }
 
     .el-checkbox__label {
       color: #FFF !important;
-      font-size: 18px;
     }
   }
 
   .el-button {
     width: 100%;
-    height: 56px;
-    border-color: #1F5FFF;
-    background-color: #1F5FFF !important;
-    font-size: 20px;
+    height: 46px;
+    border-color: $main-color;
+    background-color: $main-color !important;
     letter-spacing: 2px;
   }
 }
@@ -162,7 +127,7 @@ const onSubmit = () => {
   top: 0;
   bottom: 0;
   width: 100%;
-  background-color: $main-color;
+  background-color: #2D3A4B;
 
   .login-box {
     position: absolute;
@@ -172,50 +137,6 @@ const onSubmit = () => {
     width: 534px;
     height: 490px;
     z-index: 1000;
-    border: 2px solid #16A3EA;
-    background-color: rgba(13, 127, 205, 0.1);
-
-    .decorate-box {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      z-index: -1;
-
-      span {
-        position: absolute;
-        width: 38px;
-        height: 38px;
-      }
-
-      span:nth-child(1) {
-        left: -3px;
-        top: -3px;
-        border-left: 5px solid #16A3EA;
-        border-top: 5px solid #16A3EA;
-      }
-
-      span:nth-child(2) {
-        right: -3px;
-        top: -3px;
-        border-right: 5px solid #16A3EA;
-        border-top: 5px solid #16A3EA;
-      }
-
-      span:nth-child(3) {
-        left: -3px;
-        bottom: -3px;
-        border-left: 5px solid #16A3EA;
-        border-bottom: 5px solid #16A3EA;
-      }
-
-      span:nth-child(4) {
-        right: -3px;
-        bottom: -3px;
-        border-right: 5px solid #16A3EA;
-        border-bottom: 5px solid #16A3EA;
-      }
-    }
 
     .core-login {
       position: absolute;
@@ -228,7 +149,7 @@ const onSubmit = () => {
 
       .login-title {
         margin-bottom: 50px;
-        color: #FFF;
+        color: #FFFFFF;
         font-size: 32px;
         text-align: center;
         letter-spacing: 6px;
