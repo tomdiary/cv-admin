@@ -16,22 +16,14 @@ import '@/styles/index.scss'
 
 async function bootstrap() {
   const app = createApp(App)
-
   // 全局挂载api
   window.$api = api
-
-  initRouter(app)
-
-  initComponents(app)
-
-  initStore(app)
-
-  initConfig(app)
-
-  initLanguage(app)
-
-  initDirective(app)
-
+  initRouter(app) // 初始化路由
+  initComponents(app) // 初始化组件
+  initStore(app) // 初始化状态管理
+  initConfig(app) // 初始化配置项
+  initLanguage(app) // 初始化国际化
+  initDirective(app) // 初始化自定义指令
   app.mount('#cv-admin')
 }
 
