@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import'
 import vueI18n from '@intlify/unplugin-vue-i18n/vite'
 import { svgBuilder } from './src/utils/svgBuilder.js'
 
@@ -60,7 +61,13 @@ export default ({ mode }) => {
         include: pathResolve('src/language/locales/**')
       }),
       // Svg
-      svgBuilder('./src/icons/svg/')
+      svgBuilder('./src/icons/svg/'),
+      // Vxe-Table
+      createStyleImportPlugin({
+        resolves: [
+          VxeTableResolve()
+        ]
+      })
     ],
     resolve: {
       alias: [
