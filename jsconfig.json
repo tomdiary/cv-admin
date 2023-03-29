@@ -8,7 +8,6 @@
       "@com/*": ["src/components/*"],
       "@util/*": ["src/utils/*"],
       "@lay/*": ["src/layout/*"],
-      "@views/*": ["src/views/*"],
       "@v/*": ["src/views/*"],
       "@ld": ["./src/layout/Default/index.vue"]
     }
