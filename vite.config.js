@@ -72,7 +72,6 @@ export default ({ mode }) => {
     resolve: {
       alias: [
         { find: '@', replacement: pathResolve('src') },
-        { find: '@views', replacement: pathResolve('src/views') },
         { find: '@v', replacement: pathResolve('src/views') },
         { find: '@util', replacement: pathResolve('src/utils') },
         { find: '@com', replacement: pathResolve('src/components') },
