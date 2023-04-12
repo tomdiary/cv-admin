@@ -1,0 +1,21 @@
+# 配置文档: https://editorconfig.org/
+# 配置规范: https://spec.editorconfig.org/
+# 以下编辑器无需安装插件：WebStorm, PyCharm, PyCharm, InteliJ IDEA, Github, Gitlab, Visual Studio, TortoiseGit
+# 以下编辑器需要安装插件方可食用：Vs Code(EditorConfig for VS Code), Sublime Text, Vim, PhpStorm, Geany, AppCode, Atom, Brackets, CLion, Coda, Eclipse, Emacs, JEdit, Notepad++
+# 更多编辑器插件请参考配置文档
+
+# 表示是最顶层的 EditorConfig 配置文件
+root = true
+
+[*]
+charset = utf-8 # 设置文件字符集为 utf-8
+indent_style = space # 缩进风格(tab | space)
+end_of_line = lf # 控制换行类型(lf | cr | crlf)
+insert_final_newline = true # 始终在文件末尾插入一个新行
+
+[*.{js,jsx,ts,tsx,vue,scss,sass,less,styl,css,html}]
+indent_size = 2 # 缩进大小
+trim_trailing_whitespace = true # 去除行首的任意空白字符
+
+[*.md]
+trim_trailing_whitespace = false # 去除行首的任意空白字符
