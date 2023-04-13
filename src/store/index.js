@@ -1,5 +1,5 @@
 /**
- * @description Vuex主配置文件
+ * pinia主配置文件
  * @author TomDiary
  * @link https://github.com/tomdiary
  */
