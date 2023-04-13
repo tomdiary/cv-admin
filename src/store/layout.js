@@ -5,7 +5,7 @@ import { calculateWeightColor } from '@/utils'
 
 const useLayoutStore = defineStore('layoutStore', {
   persist: {
-    enabled: true,
+    persist: true,
     strategies: [
       {
         key: 'layout_store',

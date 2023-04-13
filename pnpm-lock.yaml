@@ -29,7 +29,7 @@ specifiers:
   normalize.css: ^8.0.1
   nprogress: ^0.2.0
   pinia: ^2.0.14
-  pinia-plugin-persist: ^1.0.0
+  pinia-plugin-persistedstate: ^3.1.0
   sass: ^1.51.0
   unplugin-auto-import: ^0.7.1
   unplugin-element-plus: ^0.4.0
@@ -63,7 +63,7 @@ dependencies:
   normalize.css: registry.npmmirror.com/normalize.css/8.0.1
   nprogress: registry.npmmirror.com/nprogress/0.2.0
   pinia: registry.npmmirror.com/pinia/2.0.32_vue@3.2.47
-  pinia-plugin-persist: registry.npmmirror.com/pinia-plugin-persist/1.0.0_pinia@2.0.32+vue@3.2.47
+  pinia-plugin-persistedstate: registry.npmmirror.com/pinia-plugin-persistedstate/3.1.0_pinia@2.0.32
   vue: registry.npmmirror.com/vue/3.2.47
   vue-i18n: registry.npmmirror.com/vue-i18n/9.2.2_vue@3.2.47
   vue-router: registry.npmmirror.com/vue-router/4.1.6_vue@3.2.47
@@ -525,8 +525,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.3.0-beta.16
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.3.0-beta.16
+      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.3.0-beta.17
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.3.0-beta.17
       jsonc-eslint-parser: registry.npmmirror.com/jsonc-eslint-parser/1.4.1
       source-map: registry.npmmirror.com/source-map/0.6.1
       vue-i18n: registry.npmmirror.com/vue-i18n/9.2.2_vue@3.2.47
@@ -561,13 +561,13 @@ packages:
       '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.2
       source-map: registry.npmmirror.com/source-map/0.6.1
 
-  registry.npmmirror.com/@intlify/message-compiler/9.3.0-beta.16:
-    resolution: {integrity: sha512-CGQI3xRcs1ET75eDQ0DUy3MRYOqTauRIIgaMoISKiF83gqRWg93FqN8lGMKcpBqaF4tI0JhsfosCaGiBL9+dnw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/message-compiler/-/message-compiler-9.3.0-beta.16.tgz}
+  registry.npmmirror.com/@intlify/message-compiler/9.3.0-beta.17:
+    resolution: {integrity: sha512-i7hvVIRk1Ax2uKa9xLRJCT57to08OhFMhFXXjWN07rmx5pWQYQ23MfX1xgggv9drnWTNhqEiD+u4EJeHoS5+Ww==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/message-compiler/-/message-compiler-9.3.0-beta.17.tgz}
     name: '@intlify/message-compiler'
-    version: 9.3.0-beta.16
+    version: 9.3.0-beta.17
     engines: {node: '>= 14'}
     dependencies:
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.3.0-beta.16
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.3.0-beta.17
       source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
@@ -577,10 +577,10 @@ packages:
     version: 9.2.2
     engines: {node: '>= 14'}
 
-  registry.npmmirror.com/@intlify/shared/9.3.0-beta.16:
-    resolution: {integrity: sha512-kXbm4svALe3lX+EjdJxfnabOphqS4yQ1Ge/iIlR8tvUiYRCoNz3hig1M4336iY++Dfx5ytEQJPNjIcknNIuvig==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/shared/-/shared-9.3.0-beta.16.tgz}
+  registry.npmmirror.com/@intlify/shared/9.3.0-beta.17:
+    resolution: {integrity: sha512-mscf7RQsUTOil35jTij4KGW1RC9SWQjYScwLxP53Ns6g24iEd5HN7ksbt9O6FvTmlQuX77u+MXpBdfJsGqizLQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/shared/-/shared-9.3.0-beta.17.tgz}
     name: '@intlify/shared'
-    version: 9.3.0-beta.16
+    version: 9.3.0-beta.17
     engines: {node: '>= 14'}
     dev: true
 
@@ -603,7 +603,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': registry.npmmirror.com/@intlify/bundle-utils/4.0.0_vue-i18n@9.2.2
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.3.0-beta.16
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.3.0-beta.17
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils/4.2.1
       '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc/3.2.47
       debug: registry.npmmirror.com/debug/4.3.4
@@ -3074,22 +3074,15 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  registry.npmmirror.com/pinia-plugin-persist/1.0.0_pinia@2.0.32+vue@3.2.47:
-    resolution: {integrity: sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia-plugin-persist/-/pinia-plugin-persist-1.0.0.tgz}
-    id: registry.npmmirror.com/pinia-plugin-persist/1.0.0
-    name: pinia-plugin-persist
-    version: 1.0.0
+  registry.npmmirror.com/pinia-plugin-persistedstate/3.1.0_pinia@2.0.32:
+    resolution: {integrity: sha512-8UN+vYMEPBdgNLwceY08mi5olI0wkYaEb8b6hD6xW7SnBRuPydWHlEhZvUWgNb/ibuf4PvufpvtS+dmhYjJQOw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-3.1.0.tgz}
+    id: registry.npmmirror.com/pinia-plugin-persistedstate/3.1.0
+    name: pinia-plugin-persistedstate
+    version: 3.1.0
     peerDependencies:
-      '@vue/composition-api': ^1.0.0
       pinia: ^2.0.0
-      vue: ^2.0.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
     dependencies:
       pinia: registry.npmmirror.com/pinia/2.0.32_vue@3.2.47
-      vue: registry.npmmirror.com/vue/3.2.47
-      vue-demi: registry.npmmirror.com/vue-demi/0.12.5_vue@3.2.47
     dev: false
 
   registry.npmmirror.com/pinia/2.0.32_vue@3.2.47:
@@ -3798,24 +3791,6 @@ packages:
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
-
-  registry.npmmirror.com/vue-demi/0.12.5_vue@3.2.47:
-    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.12.5.tgz}
-    id: registry.npmmirror.com/vue-demi/0.12.5
-    name: vue-demi
-    version: 0.12.5
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      vue: registry.npmmirror.com/vue/3.2.47
-    dev: false
 
   registry.npmmirror.com/vue-demi/0.13.11_vue@3.2.47:
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.13.11.tgz}
