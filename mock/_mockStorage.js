@@ -1,6 +1,5 @@
 import lodash from 'lodash'
-
-const Mock = require('mockjs')
+import Mock from 'mockjs'
 
 const { Random } = Mock
 const province = '京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新'
