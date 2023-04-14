@@ -1,13 +1,13 @@
 /**
- * @description Vuex主配置文件
+ * pinia主配置文件
  * @author TomDiary
  * @link https://github.com/tomdiary
  */
 import { createPinia } from 'pinia'
-import piniaPluginPersist from 'pinia-plugin-persist'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 const store = createPinia()
-store.use(piniaPluginPersist)
+store.use(piniaPluginPersistedstate)
 
 export function initStore(app) {
   app.use(store)

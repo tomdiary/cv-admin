@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus'
 
 export const useUserStore = defineStore('userStore', {
   persist: {
-    enabled: true,
+    persist: true,
     strategies: [
       {
         key: 'user_store',

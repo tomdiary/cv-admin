@@ -5,22 +5,18 @@ import { calculateWeightColor } from '@/utils'
 
 const useLayoutStore = defineStore('layoutStore', {
   persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'layout_store',
-        storage: localStorage,
-        paths: [
-          'sidebarStatus',
-          'themeMode',
-          'themeSize',
-          'themeFont',
-          'fontFamily',
-          'themeColor',
-          'language',
-          'breadcrumbStatus'
-        ]
-      }
+    key: 'LAYOUT_STORE',
+    storage: localStorage,
+    // 部分数据持久化
+    paths: [
+      'sidebarStatus',
+      'themeMode',
+      'themeSize',
+      'themeFont',
+      'fontFamily',
+      'themeColor',
+      'language',
+      'breadcrumbStatus'
     ]
   },
   state: () => ({
