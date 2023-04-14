@@ -70,6 +70,7 @@ export default ({ mode }) => {
         ]
       }),
       viteCompression({
+        algorithm: 'gzip',
         filter: /\.(js|mjs|json|css|html)$/i
       })
     ],
@@ -92,6 +93,9 @@ export default ({ mode }) => {
           additionalData: '@use "@/styles/variable.scss" as *;'
         }
       }
+    },
+    build: {
+      target: 'esnext'
     }
   })
 }
