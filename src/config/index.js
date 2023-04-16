@@ -48,3 +48,4 @@ export const initConfig = app => {
     media.addListener(callback)
   }
 }
+

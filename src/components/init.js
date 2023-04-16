@@ -15,10 +15,12 @@ import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 // import { ElMessage, ElBadge } from 'element-plus'
 import PageLayout from '@lay/PageLayout'
+import { Column, Table } from 'vxe-table'
 
 export const initComponents = app => {
   app.component('cv-page-layout', PageLayout)
-
+  app.use(Table)
+  app.use(Column)
   // echarts 注册必须的组件
   echarts.use([
     TitleComponent,

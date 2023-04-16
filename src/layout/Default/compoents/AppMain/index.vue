@@ -31,6 +31,7 @@ const initLayoutPadding = status => {
 
 <style scoped lang="scss">
 .app-main {
+  background-color: $app-main-bgc;
 }
 
 .main-is-padding {
