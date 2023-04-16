@@ -26,21 +26,28 @@ $operation-hei: 52px;
 // sidebar
 $sidebar-width: 260px;
 $sidebar-sm-width: 64px;
-$sidebar-hei: 56px;
-$sidebar-bgc: #272C34;
-$sidebar-text-color: #FFF;
-$sidebar-text-hover-color: #FFF;
-$sidebar-icon-color: #FFF;
-$sidebar-icon-active-color: #FFF;
-$sidebar-icon-hover-color: #FFF;
+$sidebar-hei: 50px;
+$sidebar-bgc: #FFF;
 $sidebar-hover-bgc: var(--el-color-primary);
 $sidebar-active-bgc: var(--el-color-primary);
-$sidebar-menu-group-color: var(--el-menu-bg-color);
-$sidebar-menu-hover-bg-color: var(--el-menu-hover-bg-color);
+
+$sidebar-text-color: #929292;
+$sidebar-text-hover-color: var(--el-color-primary);
+$sidebar-text-active-color: var(--el-color-primary);
+
+$sidebar-icon-color: #929292;
+$sidebar-icon-active-color: var(--el-color-primary);
+$sidebar-icon-hover-color: var(--el-color-primary);
+
+$sidebar-menu-hover-bg-color: var(--el-color-primary-light-9);
+
+$sidebar-menu-group-bgc: #FBFBFB;
+$sidebar-menu-group-hover-color: var(--el-color-primary-light-9);
+$sidebar-menu-group-item-hover-color: var(--el-color-primary-light-9);
+
 $sidebar-menu-item-hover-color: #FFF;
-$sidebar-menu-group-item-hover-color: #FFF;
-$sidebar-menu-item-bgc-active: var(--el-color-primary);
-$sidebar-menu-item-border-active: var(--el-color-primary-light-7);
+$sidebar-menu-item-bgc-active: var(--el-color-primary-light-9);
+$sidebar-menu-item-border-active: var(--el-color-primary);
 
 // tagsView
 $tags-view-hei: 44px;
@@ -57,6 +64,10 @@ $tag-light-active-bgc: var(--el-color-primary-light-8);
 $tag-dark-active-bgc: var(--el-color-primary-dark-2);
 $tag-light-active-border-col: var(--el-color-primary);
 $tag-dark-active-border-col: #FFF;
+
+// app-main
+$app-main-bgc: #F3F3F3;
+
 
 $theme-name: null;
 $theme-map: null;
