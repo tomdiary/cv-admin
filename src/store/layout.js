@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import config from '@/config'
+import * as styleSource from '@/config/styleSource'
 import moment from 'moment'
 import { calculateWeightColor } from '@/utils'
 
@@ -16,6 +17,7 @@ const useLayoutStore = defineStore('layoutStore', {
       'fontFamily',
       'themeColor',
       'language',
+      'theme',
       'breadcrumbStatus'
     ]
   },
@@ -26,7 +28,8 @@ const useLayoutStore = defineStore('layoutStore', {
     fontFamily: null,
     language: null,
     themeColor: null,
-    breadcrumbStatus: null
+    breadcrumbStatus: null,
+    theme: null
   }),
   getters: {
     gtSidebarStatus: state => state.sidebarStatus !== 'open',
@@ -45,7 +48,7 @@ const useLayoutStore = defineStore('layoutStore', {
         document.documentElement.classList.add(this.themeMode)
       }
       this.asFontFamilyChange(this.fontFamily)
-      this.asThemeColorChange(this.themeColor)
+      this.asThemeColorChange(this.theme)
       this.asThemeSizeChange(this.themeSize)
       this.asBreadcrumbChange(this.breadcrumbStatus)
       this.asLanguageChange(this.language)
@@ -70,38 +73,53 @@ const useLayoutStore = defineStore('layoutStore', {
       document.documentElement.classList.add(mode)
       this.themeMode = mode
     },
-    asThemeColorChange(color) {
-      this.themeColor = color || config.themeColor
-      document.body.style.setProperty('--el-color-primary', this.themeColor)
-      document.body.style.setProperty('--el-menu-hover-bg-color', this.themeColor)
+    // 主题变更
+    asThemeColorChange(theme) {
+      this.theme = theme || config.theme
+      const {
+        Cv_Color_Primary,
+        Cv_Color_Success,
+        Cv_Color_Warning,
+        Cv_Color_Danger,
+        Cv_Color_Info,
+        Cv_Color_Error,
+      } = styleSource[this.theme]
+      document.body.style.setProperty('--el-color-primary', Cv_Color_Primary)
+      document.body.style.setProperty('--el-color-success', Cv_Color_Success)
+      document.body.style.setProperty('--el-color-warning', Cv_Color_Warning)
+      document.body.style.setProperty('--el-color-danger', Cv_Color_Danger)
+      document.body.style.setProperty('--el-color-info', Cv_Color_Info)
+      document.body.style.setProperty('--el-color-error', Cv_Color_Error)
+      document.body.style.setProperty('--el-menu-hover-bg-color', Cv_Color_Primary)
       document.body.style.setProperty('--el-menu-active-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-bg-color', '#272C34')
       document.body.style.setProperty('--el-menu-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-hover-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-border-radius-base', '2px')
+      // primary
       document.body.style.setProperty(
         '--el-color-primary-light-3',
-        calculateWeightColor(this.themeColor, '#FFFFFF', 0.3)
+        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.3)
       )
       document.body.style.setProperty(
         '--el-color-primary-light-5',
-        calculateWeightColor(this.themeColor, '#FFFFFF', 0.5)
+        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.5)
       )
       document.body.style.setProperty(
         '--el-color-primary-light-7',
-        calculateWeightColor(this.themeColor, '#FFFFFF', 0.7)
+        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.7)
       )
       document.body.style.setProperty(
         '--el-color-primary-light-8',
-        calculateWeightColor(this.themeColor, '#FFFFFF', 0.8)
+        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.8)
       )
       document.body.style.setProperty(
         '--el-color-primary-light-9',
-        calculateWeightColor(this.themeColor, '#FFFFFF', 0.9)
+        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.9)
       )
       document.body.style.setProperty(
         '--el-color-primary-dark-2',
-        calculateWeightColor(this.themeColor, '#000000', 0.2)
+        calculateWeightColor(Cv_Color_Primary, '#000000', 0.2)
       )
     },
     asFontFamilyChange(fontFamily) {
