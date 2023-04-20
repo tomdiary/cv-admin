@@ -9,8 +9,7 @@ export default {
   sidebarStatus: 'close', // 侧边栏：open-展开、close-收回
   themeMode: 'auto', // 主题模式：light-白天、dark-黑夜、auto-自动
   themeSize: 'default', // 主题大小：large-大、default-默认、small-小
-  themeColor: '#006E7F', // 主题颜色
-  theme: 'BASIC_STYLE_GREEN_WHITE', // 主题
+  themeColor: '#BASIC_STYLE_GREEN_WHITE', // 主题颜色
   breadcrumbStatus: false, // 面包屑状态
   headerBgColor: '#272C34', // 头部背景色
   headerFontColor: '#FFFFFF', // 头部字体颜色

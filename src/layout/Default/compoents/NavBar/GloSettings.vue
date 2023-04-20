@@ -59,11 +59,17 @@
     </el-form-item>
     <cv-title :title="$t('gloSettings.colorConfig')" />
     <el-form-item :label="$t('gloSettings.themeColor')">
-      <el-color-picker
-          v-model="formData.themeColor"
-          :predefine="predefineColors"
-          @change="themeItemChange('asThemeColorChange', $event)">
-      </el-color-picker>
+      <el-select
+        v-model="formData.themeColor"
+        @change="themeItemChange('asThemeColorChange', $event)"
+        :placeholder="$t('pleaseChoose')">
+        <el-option
+          v-for="item in themeMatchColors"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </el-form-item>
     <el-form-item :label="$t('gloSettings.breadcrumbStatus')">
       <el-switch
@@ -82,7 +88,8 @@ import {
   themeSizeList,
   languageList,
   fontFamilyList,
-  predefineColors
+  predefineColors,
+  themeMatchColors
 } from '@/config/dataSource'
 import useLayoutStore from '@/store/layout'
 

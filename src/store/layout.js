@@ -75,7 +75,7 @@ const useLayoutStore = defineStore('layoutStore', {
     },
     // 主题变更
     asThemeColorChange(theme) {
-      this.theme = theme || config.theme
+      this.themeColor = theme || config.themeColor
       const {
         Cv_Color_Primary,
         Cv_Color_Success,
@@ -86,7 +86,7 @@ const useLayoutStore = defineStore('layoutStore', {
         Cv_Sidebar_Bg_Color,
         Cv_Header_Bg_Color,
         Cv_Tags_View_Bg_Color
-      } = { ...styleSource }[this.theme]
+      } = { ...styleSource }[this.themeColor]
 
       document.body.style.setProperty('--el-menu-hover-bg-color', Cv_Color_Primary)
       document.body.style.setProperty('--el-menu-active-color', '#FFFFFF')
