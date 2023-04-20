@@ -16,6 +16,7 @@ module.exports = {
   },
   globals: {
     $api: true,
+    $bu: true,
     defineProps: true
   },
   plugins: [

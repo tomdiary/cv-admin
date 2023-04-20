@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import config from '@/config'
 import * as styleSource from '@/config/styleSource'
+import * as themeStyle from '@/utils/themeStyle'
 import moment from 'moment'
-import { calculateWeightColor } from '@/utils'
 
 const useLayoutStore = defineStore('layoutStore', {
   persist: {
@@ -75,7 +75,7 @@ const useLayoutStore = defineStore('layoutStore', {
     },
     // 主题变更
     asThemeColorChange(theme) {
-      this.theme = theme || config.theme
+      this.themeColor = theme || config.themeColor
       const {
         Cv_Color_Primary,
         Cv_Color_Success,
@@ -83,44 +83,30 @@ const useLayoutStore = defineStore('layoutStore', {
         Cv_Color_Danger,
         Cv_Color_Info,
         Cv_Color_Error,
-      } = styleSource[this.theme]
-      document.body.style.setProperty('--el-color-primary', Cv_Color_Primary)
-      document.body.style.setProperty('--el-color-success', Cv_Color_Success)
-      document.body.style.setProperty('--el-color-warning', Cv_Color_Warning)
-      document.body.style.setProperty('--el-color-danger', Cv_Color_Danger)
-      document.body.style.setProperty('--el-color-info', Cv_Color_Info)
-      document.body.style.setProperty('--el-color-error', Cv_Color_Error)
+        Cv_Sidebar_Bg_Color,
+        Cv_Header_Bg_Color,
+        Cv_Tags_View_Bg_Color
+      } = { ...styleSource }[this.themeColor]
+
       document.body.style.setProperty('--el-menu-hover-bg-color', Cv_Color_Primary)
       document.body.style.setProperty('--el-menu-active-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-bg-color', '#272C34')
       document.body.style.setProperty('--el-menu-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-hover-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-border-radius-base', '2px')
-      // primary
-      document.body.style.setProperty(
-        '--el-color-primary-light-3',
-        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.3)
-      )
-      document.body.style.setProperty(
-        '--el-color-primary-light-5',
-        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.5)
-      )
-      document.body.style.setProperty(
-        '--el-color-primary-light-7',
-        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.7)
-      )
-      document.body.style.setProperty(
-        '--el-color-primary-light-8',
-        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.8)
-      )
-      document.body.style.setProperty(
-        '--el-color-primary-light-9',
-        calculateWeightColor(Cv_Color_Primary, '#FFFFFF', 0.9)
-      )
-      document.body.style.setProperty(
-        '--el-color-primary-dark-2',
-        calculateWeightColor(Cv_Color_Primary, '#000000', 0.2)
-      )
+      // 菜单侧边栏
+      document.body.style.setProperty('--cv-sidebar-bg-color', Cv_Sidebar_Bg_Color)
+      // 顶部栏
+      document.body.style.setProperty('--cv-header-bg-color', Cv_Header_Bg_Color)
+      // tags view
+      document.body.style.setProperty('--cv-tags-view-bg-color', Cv_Tags_View_Bg_Color)
+
+      themeStyle.tsWeightColor('primary', Cv_Color_Primary)
+      themeStyle.tsWeightColor('success', Cv_Color_Success)
+      themeStyle.tsWeightColor('warning', Cv_Color_Warning)
+      themeStyle.tsWeightColor('danger', Cv_Color_Danger)
+      themeStyle.tsWeightColor('info', Cv_Color_Info)
+      themeStyle.tsWeightColor('error', Cv_Color_Error)
     },
     asFontFamilyChange(fontFamily) {
       this.fontFamily = fontFamily || config.fontFamily

@@ -57,3 +57,13 @@ export const predefineColors = [
 
 // 菜单背景颜色
 export const predefineMenuBgColor = ['#06113C', '#005555']
+
+// 主题配色
+export const themeMatchColors = [
+  { label: '绿白', value: 'BASIC_STYLE_GREEN_WHITE' },
+  { label: '绿黑', value: 'BASIC_STYLE_GREEN_BLACK' },
+  { label: '红白', value: 'BASIC_STYLE_RED_WHITE' },
+  { label: '红黑', value: 'BASIC_STYLE_RED_BLACK' },
+  { label: '紫白', value: 'BASIC_STYLE_PURPLE_WHITE' },
+  { label: '粉白', value: 'BASIC_STYLE_PINK_WHITE' },
+]
