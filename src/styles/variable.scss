@@ -4,6 +4,25 @@
  */
 @use "element" as *;
 
+$cv-primary: var(--el-color-primary);
+$cv-success: var(--el-color-success);
+$cv-warning: var(--el-color-warning);
+$cv-danger: var(--el-color-danger);
+$cv-info: var(--el-color-info);
+$cv-error: var(--el-color-error);
+
+$cv-interval: 12px;
+$cv-font-size: 16px;
+$cv-border-radius: 2px;
+
+$cv-font-color: var(--el-text-color-primary);
+$cv-sidebar-bg-color: var(--cv-sidebar-bg-color);
+$cv-header-bg-color: var(--cv-header-bg-color);
+$cv-tags-view-bg-color: var(--cv-tags-view-bg-color);
+$cv-box-shadow: var(--el-box-shadow);
+$cv-box-shadow-dark: var(--el-box-shadow-dark);
+$cv-fill-color-light: #272C34;
+
 $main-padding: 12px;
 $main-interval: 12px;
 $main-size: 16px;
@@ -13,10 +32,6 @@ $main-color: var(--el-color-primary, #E84545);
 $secondary-color: #E84545;
 $main-bgc: var(--el-bg-color);
 $cv-main-border-radius: 2px;
-$cv-box-shadow: var(--el-box-shadow);
-$cv-box-shadow-dark: var(--el-box-shadow-dark);
-
-$cv-fill-color-light: #272C34;
 
 // header
 $header-hei: 52px;
@@ -67,7 +82,6 @@ $tag-dark-active-border-col: #FFF;
 
 // app-main
 $app-main-bgc: #F3F3F3;
-
 
 $theme-name: null;
 $theme-map: null;
