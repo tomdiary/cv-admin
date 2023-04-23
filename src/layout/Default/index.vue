@@ -39,20 +39,20 @@ onMounted(() => {
   .nav-bar {
 
     .logo {
-      width: $sidebar-sm-width;
+      width: $cv-sidebar-min-width;
     }
 
     .nav-bar-option {
-      width: calc(100% - #{$sidebar-sm-width});
+      width: calc(100% - #{$cv-sidebar-min-width});
     }
   }
 
   .layout-sidebar {
-    width: $sidebar-sm-width;
+    width: $cv-sidebar-min-width;
   }
 
   .layout-main {
-    left: $sidebar-sm-width;
+    left: $cv-sidebar-min-width;
   }
 
   .svg-icon {
@@ -64,20 +64,20 @@ onMounted(() => {
   .nav-bar {
 
     .logo {
-      width: $sidebar-width;
+      width: $cv-sidebar-width;
     }
 
     .nav-bar-option {
-      width: calc(100% - #{$sidebar-width});
+      width: calc(100% - #{$cv-sidebar-width});
     }
   }
 
   .layout-sidebar {
-    width: $sidebar-width;
+    width: $cv-sidebar-width;
   }
 
   .layout-main {
-    left: $sidebar-width;
+    left: $cv-sidebar-width;
   }
 }
 </style>
@@ -108,7 +108,7 @@ onMounted(() => {
       bottom: 0;
       z-index: 100;
       transition: width 0.28s;
-      background-color: $sidebar-bgc;
+      background-color: $cv-sidebar-bg-color;
     }
 
     .layout-main {

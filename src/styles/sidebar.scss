@@ -1,5 +1,6 @@
 .sidebar {
   height: 100%;
+  background-color: $cv-sidebar-bg-color;
 
   .scrollbar-wrapper {
     overflow-x: hidden !important;
@@ -9,20 +10,20 @@
 
     .sidebar-menu {
       border-right: none;
-      background-color: $sidebar-bgc;
+      background-color: $cv-sidebar-bg-color;
 
       .svg-icon {
-        color: $sidebar-icon-color;
+        color: $cv-sidebar-icon-color;
       }
 
       .el-menu-item {
         position: relative;
-        color: $sidebar-text-color;
+        color: $cv-sidebar-font-color;
         border-left: 4px solid transparent;
       }
 
       .el-menu-item:is(.is-active) {
-        color: $sidebar-text-active-color;
+        color: $cv-sidebar-font-active-color;
         background-color: $sidebar-menu-item-bgc-active;
         border-color: $sidebar-menu-item-border-active;
       }
@@ -38,18 +39,18 @@
 
 
       & > .el-menu-item:hover {
-        color: $sidebar-text-hover-color;
-        background-color: $sidebar-active-bgc;
+        color: $cv-sidebar-font-hover-color;
+        background-color: $cv-sidebar-active-bgc;
 
         .svg-icon {
-          color: $sidebar-icon-hover-color;
+          color: $cv-sidebar-icon-hover-color;
         }
       }
 
       & > .el-sub-menu {
 
         & > .el-sub-menu__title {
-          color: $sidebar-text-color;
+          color: $cv-sidebar-font-color;
         }
 
         & > .el-sub-menu__title:hover {
@@ -67,17 +68,17 @@
             }
 
             .el-menu-item {
-              height: $sidebar-hei;
-              line-height: $sidebar-hei;
+              height: $cv-sidebar-height;
+              line-height: $cv-sidebar-height;
             }
 
             .el-menu-item.is-active {
-              //color: $sidebar-text-color;
+              //color: $cv-sidebar-font-color;
             }
 
             .el-menu-item:hover {
-              color: $sidebar-text-hover-color;
-              background-color: $sidebar-hover-bgc;
+              color: $cv-sidebar-font-hover-color;
+              background-color: $cv-sidebar-hover-bgc;
             }
           }
         }
@@ -85,6 +86,8 @@
     }
   }
 }
+
+
 
 .layout:not(.collapse-open) {
   .svg-icon {

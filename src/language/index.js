@@ -43,3 +43,5 @@ export const initLanguage = app => {
 
   app.use(i18n)
 }
+
+export const initElementLocale = () => {}
