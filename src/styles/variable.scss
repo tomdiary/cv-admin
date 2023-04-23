@@ -39,19 +39,20 @@ $header-bgc: #272C34;
 $operation-hei: 52px;
 
 // sidebar
-$cv-sidebar-bg-color: var(--cv-sidebar-bg-color);
-$cv-sidebar-width: var(--cv-sidebar-width);
-$cv-sidebar-min-width: var(--cv-sidebar-min-width);
-$cv-sidebar-height: var(--cv-sidebar-height);
-$cv-sidebar-hover-bgc: var(--el-color-primary);
-$cv-sidebar-active-bgc: var(--el-color-primary);
-$cv-sidebar-font-color: var(--cv-sidebar-font-color);
-$cv-sidebar-font-hover-color: var(--cv-sidebar-font-hover-color);
-$cv-sidebar-font-active-color: var(--cv-sidebar-font-active-color);
-$cv-sidebar-icon-color: var(--cv-sidebar-icon-color);
-$cv-sidebar-icon-hover-color: var(--cv-sidebar-icon-hover-color);
-$cv-sidebar-icon-active-color: var(--cv-sidebar-icon-active-color);
+$sidebar-width: 260px;
+$sidebar-sm-width: 64px;
+$sidebar-hei: 50px;
+$sidebar-bgc: #FFF;
+$sidebar-hover-bgc: var(--el-color-primary);
+$sidebar-active-bgc: var(--el-color-primary);
 
+$sidebar-text-color: #929292;
+$sidebar-text-hover-color: var(--el-color-primary);
+$sidebar-text-active-color: var(--el-color-primary);
+
+$sidebar-icon-color: #929292;
+$sidebar-icon-active-color: var(--el-color-primary);
+$sidebar-icon-hover-color: var(--el-color-primary);
 
 $sidebar-menu-hover-bg-color: var(--el-color-primary-light-9);
 

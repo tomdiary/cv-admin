@@ -3,7 +3,6 @@ import config from '@/config'
 import * as styleSource from '@/config/styleSource'
 import * as themeStyle from '@/utils/themeStyle'
 import moment from 'moment'
-import { tsSidebarColor, tsTagsViewColor } from '@/utils/themeStyle'
 
 const useLayoutStore = defineStore('layoutStore', {
   persist: {
@@ -77,8 +76,6 @@ const useLayoutStore = defineStore('layoutStore', {
     // 主题变更
     asThemeColorChange(theme) {
       this.themeColor = theme || config.themeColor
-      const data = { ...styleSource }[this.themeColor]
-      console.log(data)
       const {
         Cv_Color_Primary,
         Cv_Color_Success,
@@ -86,8 +83,10 @@ const useLayoutStore = defineStore('layoutStore', {
         Cv_Color_Danger,
         Cv_Color_Info,
         Cv_Color_Error,
-        Cv_Header_Bg_Color
-      } = data
+        Cv_Sidebar_Bg_Color,
+        Cv_Header_Bg_Color,
+        Cv_Tags_View_Bg_Color
+      } = { ...styleSource }[this.themeColor]
 
       document.body.style.setProperty('--el-menu-hover-bg-color', Cv_Color_Primary)
       document.body.style.setProperty('--el-menu-active-color', '#FFFFFF')
@@ -95,23 +94,19 @@ const useLayoutStore = defineStore('layoutStore', {
       document.body.style.setProperty('--el-menu-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-hover-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-border-radius-base', '2px')
+      // 菜单侧边栏
+      document.body.style.setProperty('--cv-sidebar-bg-color', Cv_Sidebar_Bg_Color)
+      // 顶部栏
+      document.body.style.setProperty('--cv-header-bg-color', Cv_Header_Bg_Color)
+      // tags view
+      document.body.style.setProperty('--cv-tags-view-bg-color', Cv_Tags_View_Bg_Color)
 
-      // 主色
       themeStyle.tsWeightColor('primary', Cv_Color_Primary)
       themeStyle.tsWeightColor('success', Cv_Color_Success)
       themeStyle.tsWeightColor('warning', Cv_Color_Warning)
       themeStyle.tsWeightColor('danger', Cv_Color_Danger)
       themeStyle.tsWeightColor('info', Cv_Color_Info)
       themeStyle.tsWeightColor('error', Cv_Color_Error)
-
-      // 标签视图
-      themeStyle.tsTagsViewColor(Cv_Color_Primary)
-
-      // 侧边菜单
-      themeStyle.tsSidebarColor(data)
-
-      // 顶部栏
-      document.body.style.setProperty('--cv-header-bg-color', Cv_Header_Bg_Color)
     },
     asFontFamilyChange(fontFamily) {
       this.fontFamily = fontFamily || config.fontFamily
