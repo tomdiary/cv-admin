@@ -100,7 +100,7 @@ const useLayoutStore = defineStore('layoutStore', {
       document.body.style.setProperty('--cv-header-bg-color', Cv_Header_Bg_Color)
       // tags view
       document.body.style.setProperty('--cv-tags-view-bg-color', Cv_Tags_View_Bg_Color)
-
+      // 主色/辅色
       themeStyle.tsWeightColor('primary', Cv_Color_Primary)
       themeStyle.tsWeightColor('success', Cv_Color_Success)
       themeStyle.tsWeightColor('warning', Cv_Color_Warning)
