@@ -37,3 +37,24 @@ export const calculateWeightColor = (color1, color2, weight) => {
  * @returns {string}
  */
 export const getPageTitle = (pageTitle) => (pageTitle ? `${pageTitle} - ${config.title}` : `${config.title}`)
+
+/**
+ * 检测颜色是否浅色
+ * 只能检测 RBG 颜色，HSL、HSV 颜色需要转换成 RGB 格式。带透明的颜色也需要将其转换成不透明颜色，再进行检测。
+ * @param color
+ * @returns {boolean}
+ */
+export const isLightColor = color => {
+  // 如果颜色以 # 开头，则去掉 #
+  if (color.charAt(0) === '#') {
+    color = color.substr(1)
+  }
+  // 解析颜色分量
+  const r = parseInt(color.substr(0, 2), 16)
+  const g = parseInt(color.substr(2, 2), 16)
+  const b = parseInt(color.substr(4, 2), 16)
+  // 计算相对亮度
+  const L = 0.2126 * r + 0.7152 * g + 0.0722 * b
+  // 返回相对亮度是否大于 0.5
+  return L > 0.5
+}
