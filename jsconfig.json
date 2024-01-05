@@ -11,7 +11,7 @@
       "@v/*": ["src/views/*"],
       "@ld": ["./src/layout/Default/index.vue"]
     },
-    "types": ["element-plus/global"]
+    "types": ["element-plus/global", "vite/client"]
   },
   "exclude": ["node_modules", "dist"]
 }
