@@ -5,7 +5,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
-import viteCompression from 'vite-plugin-compression'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import'
 import vueI18n from '@intlify/unplugin-vue-i18n/vite'
@@ -69,9 +69,11 @@ export default ({ mode, command }) => {
           VxeTableResolve()
         ]
       }),
-      viteCompression({
-        algorithm: 'gzip',
-        filter: /\.(js|mjs|json|css|html)$/i
+      visualizer({
+        open: true,
+        template: 'treemap',
+        gzipSize: true,
+        brotliSize: true,
       })
     ],
     resolve: {
