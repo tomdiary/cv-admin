@@ -1,4 +1,4 @@
-const modules = import.meta.globEager('./**/*.js')
+const modules = import.meta.glob('./**/*.js')
 
 export const initDirective = app => {
   Object.keys(modules).forEach((key) => {
