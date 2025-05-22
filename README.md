@@ -66,6 +66,10 @@ CV Admin 是一款免费开源的后台管理系统，基于 [Vue3.2](https://gi
 ├─ yarn.lock               # Yarn 包信息
 ```
 
+## DOC 规范
+
+https://jsdoc.app/
+
 ## 温馨提示
 
 1. 如果启动时报错 `Cannot find package 'consola' imported from` 的问题，请手动下载 `consola` 包。原因是 `vite-plugin-style-import` 在 v2.0 版本中没有在 package.json 中下载 `consola` 依赖包，暂时需要我们手动下载解决

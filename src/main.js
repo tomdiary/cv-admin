@@ -14,6 +14,7 @@ import * as basicUtils from '@/utils'
 import App from '@/App.vue'
 import api from '@/api'
 import '@/styles/index.scss'
+import '@/utils/rem'
 
 async function bootstrap() {
   const app = createApp(App)

@@ -58,3 +58,83 @@ export const isLightColor = color => {
   // 返回相对亮度是否大于 0.5
   return L > 0.5
 }
+
+export const buildTree = (data, options = {}) => {
+  const {
+    idField = 'id',
+    nameField = 'menuName',
+    parentIdField = 'parentId',
+    valueField = 'value',
+    labelField = 'label',
+    childrenField = 'children',
+    menuType = 'type',
+    rootParentIdValues = null
+  } = options
+
+  let temp = {}
+  let treeData = []
+  let orphanNodes = {}
+
+  data.forEach(item => {
+    temp[item[idField]] = { ...item, [valueField]: item[idField], [labelField]: item[nameField], disabled: [4, 6].includes(item[menuType])  }
+  })
+
+  Object.values(temp).forEach(item => {
+    if (item[parentIdField] === rootParentIdValues || !item[parentIdField]) {
+      treeData.push(item)
+    } else if (temp[item[parentIdField]]) {
+      if (!temp[item[parentIdField]][childrenField]) {
+        temp[item[parentIdField]][childrenField] = []
+      }
+      temp[item[parentIdField]][childrenField].push(item)
+    } else {
+      if (!orphanNodes[item[parentIdField]]) {
+        orphanNodes[item[parentIdField]] = []
+      }
+      orphanNodes[item[parentIdField]].push(item)
+    }
+  })
+
+  Object.keys(orphanNodes).forEach(parentId => {
+    if (temp[parentId]) {
+      orphanNodes[parentId].forEach(orphanNode => {
+        if (!temp[parentId][childrenField]) {
+          temp[parentId][childrenField] = []
+        }
+        temp[parentId][childrenField].push(orphanNode)
+      })
+    }
+  })
+
+  return treeData
+}
+
+/**
+ * @param source
+ * @param idField
+ * @param parentIdField
+ * @param childrenField
+ * @param parentIdNoneValue
+ * @returns {*}
+ */
+export const cleaningTree = (
+  source = [],
+  idField = 'id',
+  parentIdField = 'parentId',
+  childrenField = 'children',
+  parentIdNoneValue = 0
+) => {
+  const cloneData = JSON.parse(JSON.stringify(source))
+  const parentArr = []
+  cloneData.filter(parent => {
+    const branchArr = cloneData.filter(child => parent[idField] === child[parentIdField])
+    if (parent[parentIdField] === parentIdNoneValue) {
+      parentArr.push(parent)
+    }
+    if (branchArr.length > 0) {
+      parent[childrenField] = branchArr
+    }
+    return parent[parentIdField]
+  })
+  return parentArr
+}

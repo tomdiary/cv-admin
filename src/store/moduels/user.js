@@ -1,59 +1,42 @@
-/**
- * @description 主配置文件
- * @author TomDiary
- * @link https://www.7b3.rog or https://github.com/tomdiary
- */
-import router from '@/router'
-import { ElNotification } from 'element-plus'
-import { cvLocalStorage } from '@util/util.storage'
+import { defineStore } from 'pinia'
+import { ElMessage } from 'element-plus'
 
-export const state = {
-  accessToken: cvLocalStorage.get('access_token') || '',
-  refreshToken: cvLocalStorage.get('refresh_token') || '',
-  userInfo: cvLocalStorage.get('user_info') || {}
-}
-
-export const getters = {}
-
-export const mutations = {
-  SET_USER_TOKEN: (state, data) => {
-    state.accessToken = data.accessToken
-    state.refreshToken = data.refreshToken
+const useUserStore = defineStore('userStore', {
+  persist: {
+    key: 'USER_STORE',
+    storage: localStorage,
+    paths: [
+      'accessToken',
+      'refreshToken',
+      'userInfo'
+    ]
   },
-  SET_USER_INFO: (state, userInfo) => {
-    state.userInfo = userInfo
+  state: () => ({
+    accessToken: null,
+    refreshToken: null,
+    userInfo: null
+  }),
+  getters: {},
+  actions: {
+    atUserLogin(formData) {
+      return new Promise((resolve, reject) => {
+        $api.userLogin(formData).then(response => {
+          const { accessToken, refreshToken, userInfo } = response.data
+          ElMessage.success('登录成功')
+          this.accessToken = accessToken
+          this.refreshToken = refreshToken
+          this.userInfo = userInfo
+          resolve(response)
+        }).catch(error => reject(error))
+      })
+    },
+    atUserLogout() {
+      return new Promise((resolve, reject) => {
+        localStorage.removeItem('USER_STORE')
+        resolve()
+      })
+    }
   }
-}
+})
 
-export const actions = {
-  atUserLogin({ commit }, formData) {
-    return new Promise((resolve, reject) => {
-      $api.userLogin(formData).then(response => {
-        const { data } = response
-        if (!data.code) {
-          ElNotification.success('登录成功')
-          commit('SET_USER_TOKEN', {
-            accessToken: data.data.accessToken,
-            refreshToken: data.data.refreshToken
-          })
-          commit('SET_USER_INFO', data.data.userInfo)
-          cvLocalStorage.set('user_info', data.data.userInfo)
-          cvLocalStorage.set('access_token', data.data.accessToken)
-          cvLocalStorage.set('refresh_token', data.data.refreshToken)
-          resolve(data)
-        } else {
-          ElNotification.warning(data.msg)
-          resolve(data)
-        }
-      }).catch(error => reject(error))
-    })
-  }
-}
-
-export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions
-}
+export default useUserStore

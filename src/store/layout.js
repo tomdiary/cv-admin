@@ -48,7 +48,7 @@ const useLayoutStore = defineStore('layoutStore', {
         document.documentElement.classList.add(this.themeMode)
       }
       this.asFontFamilyChange(this.fontFamily)
-      this.asThemeColorChange(this.theme)
+      this.asThemeColorChange(this.themeColor)
       this.asThemeSizeChange(this.themeSize)
       this.asBreadcrumbChange(this.breadcrumbStatus)
       this.asLanguageChange(this.language)
@@ -76,6 +76,7 @@ const useLayoutStore = defineStore('layoutStore', {
     // 主题变更
     asThemeColorChange(theme) {
       this.themeColor = theme || config.themeColor
+      const COLOR = { ...styleSource }[this.themeColor]
       const {
         Cv_Color_Primary,
         Cv_Color_Success,
@@ -83,21 +84,25 @@ const useLayoutStore = defineStore('layoutStore', {
         Cv_Color_Danger,
         Cv_Color_Info,
         Cv_Color_Error,
-        Cv_Sidebar_Bg_Color,
-        Cv_Header_Bg_Color,
         Cv_Tags_View_Bg_Color
-      } = { ...styleSource }[this.themeColor]
+      } = COLOR
 
       document.body.style.setProperty('--el-menu-hover-bg-color', Cv_Color_Primary)
       document.body.style.setProperty('--el-menu-active-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-bg-color', '#272C34')
       document.body.style.setProperty('--el-menu-text-color', '#FFFFFF')
       document.body.style.setProperty('--el-menu-hover-text-color', '#FFFFFF')
-      document.body.style.setProperty('--el-border-radius-base', '2px')
+      // document.body.style.setProperty('--el-border-radius-base', '2px')
+      document.body.style.setProperty('--cv-border-color', COLOR.CV_BORDERC)
       // 菜单侧边栏
-      document.body.style.setProperty('--cv-sidebar-bg-color', Cv_Sidebar_Bg_Color)
+      document.body.style.setProperty('--cv-sidebar-bg-color', COLOR.CV_SIDEBAR_BGC)
+      document.body.style.setProperty('--cv-sidebar-font-color', COLOR.CV_SIDEBAR_FONTC)
+      document.body.style.setProperty('--cv-sidebar-icon-color', COLOR.CV_SIDEBAR_ICONC)
+      document.body.style.setProperty('--cv-sidebar-menu-border-color', COLOR.CV_SIDEBAR_MENU_BORDERC)
+      document.body.style.setProperty('--cv-sidebar-menu-hover-bgc', COLOR.CV_SIDEBAR_MENU_HOVER_BGC)
       // 顶部栏
-      document.body.style.setProperty('--cv-header-bg-color', Cv_Header_Bg_Color)
+      document.body.style.setProperty('--cv-header-bg-color', COLOR.CV_HEADER_BGC)
+      document.body.style.setProperty('--cv-header-border-color', COLOR.CV_HEADER_BORDERC)
       // tags view
       document.body.style.setProperty('--cv-tags-view-bg-color', Cv_Tags_View_Bg_Color)
       // 主色/辅色

@@ -1,11 +1,11 @@
 html {
 
   body {
-    font-size: $main-size;
+    font-size: $cv-font-size;
     font-weight: 400;
-    color: $main-text-color;
+    color: $cv-font-color;
     letter-spacing: .1px;
-    background-color: $main-bgc;
+    background-color: $cv-bgc;
   }
 
   body,
@@ -22,6 +22,10 @@ html {
 //body {
 //  @include bgColor();
 //}
+
+.cv-wrapper {
+  height: 100%;
+}
 
 .cv-global-settings {
   width: 16vw !important;
@@ -67,7 +71,7 @@ html {
 
   .el-tabs__item.is-active {
     color: #FFFFFF;
-    background-color: $main-color;
+    background-color: $cv-primary;
   }
 
   .tag-title {
@@ -79,17 +83,25 @@ html {
 }
 
 html:is(.dark) {
-  .svg-icon, .tag-title, .el-icon {
+
+  .svg-icon, .tag-title {
     color: $tag-dark-color;
+  }
+
+  .el-button {
+
+    & > .el-icon {
+      color: $button-icon-color;
+    }
   }
 
   .el-tabs__item {}
 
   .el-tabs__item:hover {
-    border-color: $main-color !important;
+    border-color: $cv-primary !important;
 
     .svg-icon, .tag-title, .el-icon {
-      color: $main-color;
+      color: $cv-primary;
     }
   }
 
@@ -104,8 +116,16 @@ html:is(.dark) {
 }
 
 html:is(.light) {
-  .svg-icon, .tag-title, .el-icon {
+
+  .svg-icon, .tag-title {
     color: $tag-light-color;
+  }
+
+  .el-button {
+
+    & > .el-icon {
+      color: $button-icon-color;
+    }
   }
 
   .el-tabs__item {}

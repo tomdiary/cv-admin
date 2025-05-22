@@ -67,6 +67,12 @@ export default defineComponent({
       if (newVal) nextTick(() => onWindowResize())
     })
 
+    const reslut = {
+      default: () => defaultWrapper({ emit, slots, props }),
+      header: () => headerSlots,
+    }
+    if (slots.footer) reslut.footer = () => slots.footer()
+
     return () => h(ElDialog, {
       // 待优化，可改为批量导入 props
       top: `${dialogTop.value}px`, // Dialog CSS 中的 margin-top 值
@@ -74,17 +80,11 @@ export default defineComponent({
       title: props.title, // Dialog 对话框 Dialog 的标题
       width: props.width, // Dialog 的宽度
       draggable: props.draggable, // 为 Dialog 启用可拖拽功能
-      customClass: props.customClass, // Dialog 的自定义类名
+      class: props.customClass, // Dialog 的自定义类名
       showClose: props.showClose, // 是否显示关闭按钮
       appendToBody: props.appendToBody, // Dialog 自身是否插入至 body 元素上。
       'onUpdate:modelValue': (value) => emit('update:modelValue', value)
-    }, {
-      default: () => [
-        defaultWrapper({ emit, slots, props })
-      ],
-      header: () => headerSlots,
-      footer: slots.footer && slots.footer()
-    })
+    }, reslut)
   }
 })
 
@@ -100,9 +100,9 @@ const defaultWrapper = ({ emit, slots, props }) => {
         padding: '20px 30px'
       }
     },
-    [
-      slots.default && slots.default()
-    ]
+    {
+      default: slots.default ? () => slots.default() : undefined
+    }
   )
 }
 
@@ -122,9 +122,10 @@ const headerAction = ({ emit, slots, props }) => h('div', {
           color: '#606266',
           size: 18
         },
-        [
-          h(FullScreen)
-        ])
+        {
+          default: () => h(FullScreen)
+        }
+      )
     ]),
     h('span', {
       class: 'action-icon',
@@ -134,9 +135,10 @@ const headerAction = ({ emit, slots, props }) => h('div', {
           color: '#606266',
           size: 20
         },
-        [
-          h(Close)
-        ])
+        {
+          default: () => h(Close)
+        }
+      )
     ])
   ]
 )

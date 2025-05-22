@@ -32,19 +32,54 @@
         </template>
       </el-tab-pane>
     </el-tabs>
+    <el-dropdown>
+      <span class="el-dropdown-link">
+        <el-icon :size="20" class="el-icon--right">
+          <MoreFilled />
+        </el-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Action 1</el-dropdown-item>
+          <el-dropdown-item>Action 2</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { MoreFilled } from '@element-plus/icons-vue'
 
 const activeName = ref('Dashboard')
 </script>
 
 <style scoped lang="scss">
 .tags-view {
+  display: flex;
+  flex-wrap: nowrap;
   height: $tags-view-hei;
   box-shadow: $cv-box-shadow;
   z-index: 1000;
+  border-top: 1px solid $cv-border-color;
+  border-bottom: 1px solid $cv-border-color;
+
+  .el-tabs {
+    width: calc(100% - 50px);
+  }
+
+  .el-dropdown {
+    width: 40px;
+    margin-right: 10px;
+
+    .el-dropdown-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
 }
 </style>

@@ -35,8 +35,8 @@ const initLayoutPadding = status => {
 }
 
 .main-is-padding {
-  height: calc(100% - #{$tags-view-hei + $main-padding * 2});
-  padding: $main-padding;
+  height: calc(100% - #{$tags-view-hei + $cv-padding * 2});
+  padding: $cv-padding;
 }
 
 .main-no-padding {

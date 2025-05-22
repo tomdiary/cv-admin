@@ -7,3 +7,6 @@
 *.{bat,[bB][aA][tT]} text eol=crlf
 
 *.{ico,png,jpg,jpeg,gif,webp,svg,woff,woff2} binary # 转换为二进制流，不进行比较
+
+*.js linguist-language=JavaScript
+*.vue linguist-language=Vue

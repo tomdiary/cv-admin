@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-import { shallowRef } from '@vue/reactivity'
 import { onMounted, onUnmounted } from 'vue'
 import { lazyAMapApiLoaderInstance } from '@vuemap/vue-amap'
 

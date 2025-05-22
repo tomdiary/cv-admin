@@ -52,7 +52,6 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref, isShallow } from 'vue'
-import { shallowRef } from '@vue/reactivity'
 import { lazyAMapApiLoaderInstance } from '@vuemap/vue-amap'
 import useLayoutStore from '@/store/layout'
 

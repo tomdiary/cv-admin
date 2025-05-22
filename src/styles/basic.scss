@@ -28,32 +28,32 @@ body, p, h1, h2, h3, h4, h5, h6, table, thead, tbody, tfoot, tr, td, th, ul, ol,
 }
 
 body {
-  background-color: $main-bgc;
+  background-color: $cv-bgc;
 }
 
 a {
   text-decoration: none;
-  color: $main-color;
+  color: $cv-primary;
 }
 
 .svg-icon {
-  color: $main-color;
+  color: $cv-primary;
   font-size: 16px;
 }
 
 #nprogress {
 
   .bar {
-    background-color: $main-color !important;
+    background-color: $cv-primary !important;
   }
 
   .peg {
-    box-shadow: 0 0 10px $main-color, 0 0 5px $main-color !important;
+    box-shadow: 0 0 10px $cv-primary, 0 0 5px $cv-primary !important;
   }
 
   .spinner-icon {
-    border-top-color: $main-color !important;
-    border-left-color: $main-color !important;
+    border-top-color: $cv-primary !important;
+    border-left-color: $cv-primary !important;
   }
 }
 

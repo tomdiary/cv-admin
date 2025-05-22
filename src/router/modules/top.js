@@ -10,6 +10,12 @@ export default {
       component: () => import('@/views/dashboard/index.vue')
     },
     {
+      path: 'menu',
+      name: 'Menu',
+      meta: { id: '87dd1126-c617-4364-989c-e34153d1611n', title: '菜单', icon: 'menu', type: 0, layoutPadding: true, affix: true },
+      component: () => import('@/views/menu/index.vue')
+    },
+    {
       path: 'https://github.com/',
       name: 'Github',
       meta: { id: 'f910ac89-a182-4446-8c22-2a0a318105d4', title: 'Github', icon: 'github', link: 1 },

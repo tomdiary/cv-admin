@@ -13,22 +13,56 @@
       <div class="operation-bar-left">
         <section class="operation-item" @click="sidebarToggle">
           <el-icon>
-            <Expand v-if="layoutStore.gtSidebarStatus" />
-            <Fold v-else />
+            <DArrowRight v-if="layoutStore.gtSidebarStatus" />
+            <DArrowLeft v-else />
           </el-icon>
         </section>
       </div>
       <div class="operation-bar-right">
-        <section class="operation-item" @click="settingsToggle">
+        <section class="operation-item">
           <el-icon>
-            <Operation />
+            <Search />
           </el-icon>
         </section>
         <section class="operation-item">
           <el-icon>
-            <Share />
+            <FullScreen />
           </el-icon>
         </section>
+        <section class="operation-item">
+          <el-icon>
+            <Refresh />
+          </el-icon>
+        </section>
+        <section class="operation-item">
+          <el-badge is-dot class="badge-item">
+            <el-icon>
+              <Bell />
+            </el-icon>
+          </el-badge>
+        </section>
+        <section class="operation-item" @click="settingsToggle">
+          <el-icon>
+            <Setting />
+          </el-icon>
+        </section>
+        <el-dropdown @command="onCommand">
+          <span class="el-dropdown-link">
+            <el-avatar shape="square" :size="28" :src="avatar" />
+            <span class="nickname">Avecle soleil丶</span>
+            <el-icon class="el-icon--right">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="A1">个人信息</el-dropdown-item>
+              <el-dropdown-item command="A2">修改密码</el-dropdown-item>
+              <el-dropdown-item command="A3" disabled>切换角色</el-dropdown-item>
+              <el-dropdown-item command="A4">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </div>
     </div>
     <el-drawer
@@ -45,20 +79,45 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import useLayoutStore from '@/store/layout'
+import useUserStore from '@/store/moduels/user'
 import GloSettings from './GloSettings.vue'
-import { Share, Operation, Fold, Expand } from '@element-plus/icons-vue'
+import { ElMessageBox } from 'element-plus'
+import { ArrowDown, FullScreen, Search, DArrowLeft, DArrowRight, Refresh, Bell, Setting } from '@element-plus/icons-vue'
+import avatar from '@/assets/images/29516632319712.jpg'
 
 const state = reactive({
   settingStatus: false
 })
+const router = useRouter()
+const userStore = useUserStore()
 const layoutStore = useLayoutStore()
 
 const settingsToggle = () => (state.settingStatus = !state.settingStatus)
 const sidebarToggle = () => layoutStore.asSidebarStatus()
+const onCommand = async (event) => {
+  if (event === 'A4') {
+    ElMessageBox.confirm(
+      '确认需要退出登录吗？',
+      '温馨提示',
+    {
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      type: 'warning',
+    }).then(async () => {
+      await userStore.atUserLogout()
+      router.push({ path: '/login' })
+    })
+  }
+}
 </script>
 
 <style scoped lang="scss">
+.badge-item {
+  margin-top: 6px;
+}
+
 .nav-bar {
   display: flex;
   flex-wrap: nowrap;
@@ -68,6 +127,7 @@ const sidebarToggle = () => layoutStore.asSidebarStatus()
     font-size: 20px;
     letter-spacing: 1px;
     color: #FFF;
+    border-right: 1px solid $cv-border-color;
 
     .svg-icon {
       font-size: 36px;
@@ -104,18 +164,35 @@ const sidebarToggle = () => layoutStore.asSidebarStatus()
       display: flex;
       align-items: center;
       justify-content: center;
-      width: $operation-hei;
       height: $operation-hei;
+      padding: 0 10px;
       cursor: pointer;
 
       .el-icon {
-        font-size: 20px;
-        color: #FFF;
+        font-size: 18px;
+        color: $cv-font-color;
       }
     }
 
-    .operation-item:hover {
-      background-color: $cv-fill-color-light;
+    .el-dropdown {
+      margin-left: 10px;
+      align-items: center;
+
+      .el-dropdown-link {
+        cursor: pointer;
+        color: $cv-font-color;
+        display: flex;
+        align-items: center;
+
+        .el-avatar {
+          border: 1px solid #CCC;
+          border-radius: 6px;
+        }
+
+        .nickname {
+          margin-left: 8px;
+        }
+      }
     }
   }
 }

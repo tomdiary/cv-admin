@@ -67,3 +67,31 @@ export const themeMatchColors = [
   { label: '紫白', value: 'BASIC_STYLE_PURPLE_WHITE' },
   { label: '粉白', value: 'BASIC_STYLE_PINK_WHITE' },
 ]
+
+// 菜单类型
+export const menuTypeList = [
+  { label: '目录', value: 1 },
+  { label: '菜单', value: 2 },
+  { label: 'Tab', value: 3 },
+  { label: '外部', value: 4 },
+  { label: 'Dialog', value: 5 },
+  { label: '按钮', value: 6 },
+]
+
+// 按钮类型
+export const btnTypeList = [
+  { label: '查询', value: 'BTN_QUERY' },
+  { label: '添加', value: 'BTN_ADD' },
+  { label: '编辑', value: 'BTN_EDIT' },
+  { label: '删除', value: 'BTN_DEL' },
+  { label: '导入', value: 'BTN_IMPORT' },
+  { label: '导出', value: 'BTN_EXPORT' },
+  { label: '下载', value: 'BTN_DOWNLOAD' },
+]
+
+// 路由
+export const routerSourceData = [
+  {
+
+  }
+]

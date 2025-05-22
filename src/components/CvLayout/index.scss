@@ -5,8 +5,8 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: $main-interval;
-    padding: $main-interval;
+    margin-bottom: $cv-interval;
+    padding: $cv-interval;
     border-radius: 4px;
     background-color: #FFF;
   }
@@ -16,7 +16,7 @@
   .cv-layout-footer {
     display: flex;
     align-items: center;
-    padding: $main-interval;
+    padding: $cv-interval;
     border-radius: 4px;
     background-color: #FFF;
   }

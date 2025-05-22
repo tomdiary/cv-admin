@@ -29,19 +29,49 @@ export default [
   {
     url: `${URL_MARK}user/login`,
     method: 'POST',
-    response: res => {
-      const { username, password } = res.body
+    rawResponse: async (req, res) => {
+      let reqbody = ''
+      await new Promise((resolve) => {
+        req.on('data', (chunk) => {
+          reqbody += chunk
+        })
+        req.on('end', () => resolve())
+      })
+      const { username, password } = JSON.parse(reqbody)
       const userlist = Object.keys(user)
-      if (!userlist.includes(username) || user[username].password !== password) return { code: 50001, msg: '账户或密码错误' }
-      return {
+      if (!userlist.includes(username) || user[username].password !== password) {
+        res.statusCode = 400
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+        return res.end(JSON.stringify({ code: 50001, msg: '账户或密码错误' }))
+      }
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+      return res.end(JSON.stringify({
         code: 200,
         data: {
           accessToken: encryptAccessToken(user[username]),
           refreshToken: encryptRefreshToken(user[username]),
           userInfo: user[username]
         }
-      }
-    }
+      }))
+    },
+    // response: (res) => {
+      // console.log(res)
+      // const { username, password } = res.body
+      // const userlist = Object.keys(user)
+      // if (!userlist.includes(username) || user[username].password !== password) {
+      //   res.statusCode = 400
+      //   return { code: 50001, msg: '账户或密码错误' }
+      // }
+      // return {
+      //   code: 200,
+      //   data: {
+      //     accessToken: encryptAccessToken(user[username]),
+      //     refreshToken: encryptRefreshToken(user[username]),
+      //     userInfo: user[username]
+      //   }
+      // }
+    // }
   },
   {
     url: `${URL_MARK}user/logout`,

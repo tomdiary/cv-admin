@@ -1,6 +1,6 @@
 <template>
   <div class="page-layout">
-    <header v-if="isFooter" class="page-layout-header">
+    <header v-if="isHeader" class="page-layout-header">
       <slot name="header"></slot>
     </header>
     <main class="page-layout-main">
@@ -105,25 +105,25 @@ const calculateSize = () => {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: $main-interval;
-    padding: $main-interval;
+    margin-bottom: $cv-interval;
+    padding: $cv-interval;
     border-radius: 4px;
-    background-color: $main-bgc;
-    box-shadow: $cv-box-shadow;
+    background-color: $cv-bgc;
+    // box-shadow: $cv-box-shadow;
   }
 
   .page-layout-main {
-    box-shadow: $cv-box-shadow;
+    // box-shadow: $cv-box-shadow;
   }
 
   .page-layout-footer {
     display: flex;
     align-items: center;
-    padding: $main-interval;
+    padding: $cv-interval;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    background-color: $main-bgc;
-    box-shadow: $cv-box-shadow;
+    background-color: $cv-bgc;
+    // box-shadow: $cv-box-shadow;
   }
 
   .page-layout-footer-left {

@@ -7,7 +7,7 @@
     <el-button type="warning">Warning</el-button>
     <el-button type="danger">Danger</el-button>
   </el-row>
-  <cv-dialog title="初始弹窗" width="30%" draggable @close="basicDialogStatus = false" v-model="basicDialogStatus">
+  <cv-dialog v-if="basicDialogStatus" title="初始弹窗" width="30%" draggable @close="basicDialogStatus = false" v-model="basicDialogStatus">
     <el-form :model="formData" label-position="left" label-width="80px">
       <el-form-item label="VIN">
         <el-input v-model="formData.vin" />
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import CvDialog from '@com/CvDialog'
 
 const basicDialogStatus = ref(false)
@@ -38,6 +38,8 @@ const formData = reactive({
   carNum: '',
   terminalNum: ''
 })
+
+onMounted(() => {})
 
 const openBasicDialog = () => {
   basicDialogStatus.value = !basicDialogStatus.value

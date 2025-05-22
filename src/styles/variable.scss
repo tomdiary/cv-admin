@@ -10,51 +10,43 @@ $cv-warning: var(--el-color-warning);
 $cv-danger: var(--el-color-danger);
 $cv-info: var(--el-color-info);
 $cv-error: var(--el-color-error);
-
-$cv-interval: 12px;
-$cv-font-size: 16px;
-$cv-border-radius: 2px;
-
-$cv-font-color: var(--el-text-color-primary);
-$cv-sidebar-bg-color: var(--cv-sidebar-bg-color);
+$cv-bgc: #FFF; // --el-bg-color
+$cv-border-color: var(--cv-border-color);
+$cv-font-color: var(--el-text-color-primary); // 主字体颜色
 $cv-header-bg-color: var(--cv-header-bg-color);
 $cv-tags-view-bg-color: var(--cv-tags-view-bg-color);
 $cv-box-shadow: var(--el-box-shadow);
 $cv-box-shadow-dark: var(--el-box-shadow-dark);
-$cv-fill-color-light: #272C34;
+$cv-fill-color-light: var(--el-color-primary-light-7);
 
-$main-padding: 12px;
-$main-interval: 12px;
-$main-size: 16px;
-$main-text-color: var(--el-text-color-primary);
-$main-bgc: #EBECF0;
-$main-color: var(--el-color-primary, #E84545);
-$secondary-color: #E84545;
-$main-bgc: var(--el-bg-color);
-$cv-main-border-radius: 2px;
+$cv-padding: 12px;
+$cv-interval: 12px;
+$cv-font-size: 16px;
+$cv-border-radius: 4px;
 
 // header
 $header-hei: 52px;
-$header-bgc: #272C34;
+$header-bgc: var(--cv-header-bg-color);
+$header-border-color: var(--cv-header-border-color);
 $operation-hei: 52px;
 
 // sidebar
 $sidebar-width: 260px;
 $sidebar-sm-width: 64px;
 $sidebar-hei: 50px;
-$sidebar-bgc: #FFF;
+$sidebar-bgc: var(--cv-sidebar-bg-color);
+$sidebar-font-color: var(--cv-sidebar-font-color);
 $sidebar-hover-bgc: var(--el-color-primary);
 $sidebar-active-bgc: var(--el-color-primary);
+$sidebar-menu-border-color: var(--cv-sidebar-menu-border-color);
+$sidebar-menu-hover-bgc: var(--el-color-primary-light-7); // --cv-sidebar-menu-hover-bgc
 
-$sidebar-text-color: #929292;
 $sidebar-text-hover-color: var(--el-color-primary);
 $sidebar-text-active-color: var(--el-color-primary);
 
-$sidebar-icon-color: #929292;
+$sidebar-icon-color: var(--cv-sidebar-icon-color);
 $sidebar-icon-active-color: var(--el-color-primary);
 $sidebar-icon-hover-color: var(--el-color-primary);
-
-$sidebar-menu-hover-bg-color: var(--el-color-primary-light-9);
 
 $sidebar-menu-group-bgc: #FBFBFB;
 $sidebar-menu-group-hover-color: var(--el-color-primary-light-9);
@@ -83,17 +75,20 @@ $tag-dark-active-border-col: #FFF;
 // app-main
 $app-main-bgc: #F3F3F3;
 
+// button
+$button-icon-color: var(--el-button-text-color);
+
 $theme-name: null;
 $theme-map: null;
 
 $themes: (
   light: (
     bgc: #EBECF0,
-    color: #2B2E4A
+    color: green
   ),
   dark: (
     bgc: #171717,
-    color: #d4d4d5
+    color: red
   )
 );
 
@@ -119,4 +114,14 @@ $themes: (
   @include themeIfy() {
     background-color: themed('bgc');
   }
+}
+
+@mixin fontColor() {
+  @include themeIfy() {
+    background-color: themed('color');
+  }
+}
+
+body {
+  // @include fontColor();
 }

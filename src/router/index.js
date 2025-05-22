@@ -11,6 +11,7 @@ import mapRouter from '@/router/modules/map'
 import topRouter from '@/router/modules/top'
 import tableRouter from '@/router/modules/table'
 import echartsRouter from '@/router/modules/echarts'
+import useUserStore from '@/store/moduels/user'
 import { getPageTitle } from '@/utils'
 
 /**
@@ -21,7 +22,7 @@ import { getPageTitle } from '@/utils'
  * redirect: '/user/info',  重定向路由地址（例如当路由地址是 user 时，会自动被重定向到 user/info 页面下）
  * component: User,         组件地址
  * meta: {
- *   id: '22-23-12',        菜单唯一标记
+ *   type: '22-23-12',      菜单类型: 1-目录, 2-菜单, 3-Tab, 4-外部, 5-Dialog, 6-按钮
  *   title: 'table',        菜单名称
  *   icon: 'table',         菜单图标：需要使用svg
  *   roles: ['admin'],      角色控制
@@ -76,7 +77,7 @@ const authorityRoutes = [
         component: () => import('@/views/echarts/default/index.vue')
       }
     ]
-  }
+  },
 ]
 
 const router = createRouter({
@@ -84,9 +85,38 @@ const router = createRouter({
   routes: [...routes, ...authorityRoutes]
 })
 
-router.beforeEach((to, from, next) => {
+const whiteList = ['/login', '/not-found']
+
+router.addRoute({
+  path: '/test',
+  name: 'Test',
+  component: () => import('@/views/test/index.vue')
+})
+router.addRoute({
+  path: '/:pathMatch(.*)',
+  redirect: '/not-found'
+})
+router.addRoute({
+  path: '/not-found',
+  name: 'NotFound',
+  component: () => import('@/views/error/notFound/index.vue')
+})
+router.beforeEach(async (to, from, next) => {
+
+  console.log('to', to, router.getRoutes())
+  const userStore = useUserStore()
   NProgress.start()
   document.title = getPageTitle(to.meta.title)
+  console.log(to.path)
+  if (whiteList.includes(to.path)) {
+    next()
+    return
+  }
+  if ((!userStore.accessToken || !userStore.refreshToken) && to.path !== '/login') {
+    await userStore.atUserLogout()
+    next({ path: '/login' })
+    return
+  }
   next()
 })
 

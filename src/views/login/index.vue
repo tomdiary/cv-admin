@@ -5,21 +5,21 @@
         <h2 class="login-title">用户登录</h2>
         <el-form label-position="left" ref="formRef" :model="formData" :rules="formRules" size="default">
           <el-form-item prop="username">
-            <el-input class="username" v-model="formData.username" placeholder="请输入用户名">
+            <el-input class="username" :input-style="{ fontSize: '16px' }" v-model="formData.username" placeholder="请输入用户名">
               <template #prefix>
                 <el-icon size="18" class="el-input__icon"><User /></el-icon>
               </template>
             </el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input class="password" show-password v-model="formData.password" placeholder="请输入密码">
+            <el-input class="password" :input-style="{ fontSize: '16px' }" show-password v-model="formData.password" placeholder="请输入密码">
               <template #prefix>
                 <el-icon size="18" class="el-input__icon"><Lock /></el-icon>
               </template>
             </el-input>
           </el-form-item>
           <el-form-item>
-            <el-checkbox v-model="formData.isPasswd">记住密码</el-checkbox>
+            <el-checkbox size="large" v-model="formData.isPasswd">记住密码</el-checkbox>
           </el-form-item>
           <el-form-item>
             <el-button :loading="loading" type="primary" @click="onSubmit">登录</el-button>
@@ -34,7 +34,7 @@
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Lock, User } from '@element-plus/icons-vue'
-import { useUserStore } from '@/store/user'
+import useUserStore from '@/store/moduels/user'
 import md5 from 'md5'
 
 const router = useRouter()
@@ -65,16 +65,12 @@ const onSubmit = () => {
       username: formData.username,
       password: md5(formData.password)
     }
-    store.atUserLogin(userInfo).then(res => {
-      if (res.code === 200) {
-        setInterval(() => {
-          loading.value = false
-          router.push({ path: '/' })
-        }, 2500)
-      } else {
-        setInterval(() => (loading.value = false), 1500)
-      }
-    })
+    store.atUserLogin(userInfo).then(() => {
+      setTimeout(() => {
+        loading.value = false
+        router.push({ path: '/' })
+      }, 2500)
+    }).catch(() => setTimeout(() => (loading.value = false), 1500))
   })
 }
 </script>
@@ -103,7 +99,7 @@ const onSubmit = () => {
     .el-checkbox__input {
 
       .el-checkbox__inner {
-        border: 1px solid $main-color;
+        border: 1px solid $cv-primary;
         background-color: transparent;
       }
     }
@@ -116,8 +112,8 @@ const onSubmit = () => {
   .el-button {
     width: 100%;
     height: 46px;
-    border-color: $main-color;
-    background-color: $main-color !important;
+    border-color: $cv-primary;
+    background-color: $cv-primary !important;
     letter-spacing: 2px;
   }
 }
